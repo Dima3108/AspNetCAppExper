@@ -11,15 +11,21 @@ on:
 
 jobs:
   build:
+    strategy:
+      matrix:
+        configuration: [Debug, Release]
+    runs-on: windows-2019
+    env:
+      Solution_Name: WebApplication1.sln                         # Replace with your solution name, i.e. MyWpfApp.sln.
+      Test_Project_Path:  Applications\WebApplication1\WebApplication1.csproj                # Replace with the path to your test project, i.e. MyWpfApp.Tests\MyWpfApp.Tests.csproj.
 
-    runs-on: ubuntu-latest
-
+      Wap_Project_Path:  Applications\WebApplication1\WebApplication1.csproj  
     steps:
     - uses: actions/checkout@v3
     - name: Setup .NET
       uses: actions/setup-dotnet@v3
       with:
-        dotnet-version: 6.0.x
+        dotnet-version: 3.1.x
     - name: Restore dependencies
       run: dotnet restore
     - name: Build
