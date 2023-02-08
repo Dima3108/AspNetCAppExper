@@ -26,3 +26,7 @@ jobs:
       run: dotnet build --no-restore
     - name: Test
       run: dotnet test --no-build --verbosity normal
+    - name: Test
+      run: dotnet test --no-build --verbosity normal # <-- this is the current bottom line
+    - name: Publish
+      run: dotnet publish WebApplication1.csproj -c Release -o website
