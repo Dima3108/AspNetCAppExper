@@ -5,25 +5,17 @@ name: .NET
 
 on:
   push:
-    branches: [ "main" ]
+    branches: [ main ]
   pull_request:
-    branches: [ "main" ]
+    branches: [ main ]
 
 jobs:
   build:
-  
-    strategy:
-      matrix:
-        configuration: [Debug, Release]
-    runs-on: windows-2019
-    env:
-      Solution_Name: Applications\WebApplication1\WebApplication1.sln                         # Replace with your solution name, i.e. MyWpfApp.sln.
-      Test_Project_Path:  Applications\WebApplication1\WebApplication1.csproj                # Replace with the path to your test project, i.e. MyWpfApp.Tests\MyWpfApp.Tests.csproj.
 
-      Wap_Project_Path:  Applications\WebApplication1\WebApplication1.csproj  
-      
+    runs-on: ubuntu-latest
+
     steps:
-     
+    - uses: actions/checkout@v3
     - name: Setup .NET
       uses: actions/setup-dotnet@v3
       with:
