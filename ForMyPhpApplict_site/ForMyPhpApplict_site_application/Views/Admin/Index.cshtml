@@ -1,0 +1,8 @@
+﻿@{
+    ViewData["Title"] = "Add file  page";
+}
+<form asp-controller="Admin" enctype="multipart/form-data" method="post" asp-action="LoadFiles">
+    <label for="f_r" class="form-control-file">load files</label>
+    <input type="file" class="form-control-file" multiple  id="f_r" name="files" />
+    <button type="submit" class="form-control btn btn-info">Отправить</button>
+</form>
