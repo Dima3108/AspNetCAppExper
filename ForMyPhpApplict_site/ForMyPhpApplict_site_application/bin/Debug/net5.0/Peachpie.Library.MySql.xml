@@ -1,0 +1,1553 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Peachpie.Library.MySql</name>
+    </assembly>
+    <members>
+        <member name="T:Peachpie.Library.MySql.MySql">
+            <summary>
+            Container containing global constants.
+            </summary>
+            <summary>
+            MySql functions container.
+            </summary>
+        </member>
+        <member name="F:Peachpie.Library.MySql.MySql.MYSQL_CLIENT_COMPRESS">
+            <summary>
+             Use compression protocol.
+            </summary>
+        </member>
+        <member name="F:Peachpie.Library.MySql.MySql.MYSQL_CLIENT_IGNORE_SPACE">
+            <summary>
+            Allow space after function names.
+            Not supported (ignored).
+            </summary>
+        </member>
+        <member name="F:Peachpie.Library.MySql.MySql.MYSQL_CLIENT_INTERACTIVE">
+            <summary>
+            Allow interactive_timeout seconds (instead of wait_timeout) of inactivity before closing the connection.
+            Not supported (ignored).
+            </summary>
+        </member>
+        <member name="F:Peachpie.Library.MySql.MySql.MYSQL_CLIENT_SSL">
+            <summary>
+            Use SSL encryption.
+            </summary>
+        </member>
+        <member name="F:Peachpie.Library.MySql.MySql.MYSQL_ASSOC">
+            <summary>
+            Add items keyed by column names.
+            </summary>
+        </member>
+        <member name="F:Peachpie.Library.MySql.MySql.MYSQL_NUM">
+            <summary>
+            Add items keyed by column indices.
+            </summary>
+        </member>
+        <member name="F:Peachpie.Library.MySql.MySql.MYSQL_BOTH">
+            <summary>
+            Add both items keyed by column names and items keyd by column indices.
+            </summary>
+        </member>
+        <member name="T:Peachpie.Library.MySql.MySql.ConnectFlags">
+            <summary>
+            Connection flags.
+            </summary>
+        </member>
+        <member name="F:Peachpie.Library.MySql.MySql.ConnectFlags.None">
+            <summary>
+            No flags.
+            </summary>
+        </member>
+        <member name="F:Peachpie.Library.MySql.MySql.ConnectFlags.Compress">
+            <summary>
+             Use compression protocol.
+            </summary>
+        </member>
+        <member name="F:Peachpie.Library.MySql.MySql.ConnectFlags.IgnoreSpace">
+            <summary>
+            Allow space after function names.
+            Not supported (ignored).
+            </summary>
+        </member>
+        <member name="F:Peachpie.Library.MySql.MySql.ConnectFlags.Interactive">
+            <summary>
+            Allow interactive_timeout seconds (instead of wait_timeout) of inactivity before closing the connection.
+            Not supported (ignored).
+            </summary>
+        </member>
+        <member name="F:Peachpie.Library.MySql.MySql.ConnectFlags.SSL">
+            <summary>
+            Use SSL encryption.
+            </summary>
+        </member>
+        <member name="F:Peachpie.Library.MySql.MySql.ConnectFlags.Pooling">
+            <summary>
+            Whether to enable polling on the connection string.
+            </summary>
+        </member>
+        <member name="T:Peachpie.Library.MySql.MySql.QueryResultKeys">
+            <summary>
+            Query result array format.
+            </summary>
+        </member>
+        <member name="F:Peachpie.Library.MySql.MySql.QueryResultKeys.ColumnNames">
+            <summary>
+            Add items keyed by column names.
+            </summary>
+        </member>
+        <member name="F:Peachpie.Library.MySql.MySql.QueryResultKeys.Numbers">
+            <summary>
+            Add items keyed by column indices.
+            </summary>
+        </member>
+        <member name="F:Peachpie.Library.MySql.MySql.QueryResultKeys.Both">
+            <summary>
+            Add both items keyed by column names and items keyd by column indices.
+            </summary>
+        </member>
+        <member name="M:Peachpie.Library.MySql.MySql.LastConnection(Pchp.Core.Context)">
+            <summary>
+            Gets last active connection.
+            </summary>
+        </member>
+        <member name="M:Peachpie.Library.MySql.MySql.mysql_close(Pchp.Core.Context,Pchp.Core.PhpResource)">
+            <summary>
+            Closes the non-persistent connection to the MySQL server that's associated with the specified link identifier.
+            If link_identifier isn't specified, the last opened link is used.
+            </summary>
+        </member>
+        <member name="M:Peachpie.Library.MySql.MySql.mysql_connect(Pchp.Core.Context,System.String,System.String,System.String,System.Boolean,Peachpie.Library.MySql.MySql.ConnectFlags)">
+            <summary>
+            Open a connection to a MySQL Server.
+            </summary>
+        </member>
+        <member name="M:Peachpie.Library.MySql.MySql.mysql_connect(Pchp.Core.Context,System.Data.IDbConnection)">
+            <summary>
+            Creates a connection resource using an existing <see cref="T:System.Data.IDbConnection"/> instance.
+            </summary>
+            <exception cref="T:System.ArgumentNullException">Provided instance is <c>null</c>.</exception>
+        </member>
+        <member name="M:Peachpie.Library.MySql.MySql.mysql_pconnect(Pchp.Core.Context,System.String,System.String,System.String,System.Boolean,Peachpie.Library.MySql.MySql.ConnectFlags)">
+            <summary>
+            Establishes a connection to MySQL server using a specified server, user, password, and flags.
+            </summary>
+            <returns>
+            Resource representing the connection or a <B>null</B> reference (<B>false</B> in PHP) on failure.
+            </returns>
+        </member>
+        <member name="M:Peachpie.Library.MySql.MySql.mysql_query(Pchp.Core.Context,Pchp.Core.PhpString,Pchp.Core.PhpResource)">
+            <summary>
+            Sends a query to the current database associated with a specified connection.
+            </summary>
+            <param name="ctx">Runtime context.</param>
+            <param name="query">Query.</param>
+            <param name="link">Connection resource.</param>
+            <returns>Query resource or a <B>null</B> reference (<B>null</B> in PHP) on failure.</returns>
+        </member>
+        <member name="M:Peachpie.Library.MySql.MySql.QueryBinary(System.Text.Encoding,System.Byte[],Peachpie.Library.MySql.MySqlConnectionResource)">
+            <summary>
+            Sends a query to the current database associated with a specified connection. Preserves binary characters.
+            </summary>
+            <param name="encoding">Current string encoding.</param>
+            <param name="query">Query.</param>
+            <param name="connection">Connection resource.</param>
+            <returns>Query resource or a <B>null</B> reference (<B>null</B> in PHP) on failure.</returns>
+        </member>
+        <member name="M:Peachpie.Library.MySql.MySql.UnescapeString(System.Byte[],System.Int32,System.Byte[])">
+            <summary>
+            Inverse function to <see cref="M:Peachpie.Library.MySql.MySql.mysql_escape_string(Pchp.Core.Context,Pchp.Core.PhpString)"/>.
+            </summary>
+            <param name="source">Source byte array containing escaped characters.</param>
+            <param name="startFrom">Index of the first character to start unescaping with.</param>
+            <param name="dest">Target byte array where unescaped <paramref name="source"/> is copied.</param>
+            <remarks>This method unescapes as many characters as <paramref name="dest"/> can hold.</remarks>
+        </member>
+        <member name="M:Peachpie.Library.MySql.MySql.mysql_insert_id(Pchp.Core.Context,Pchp.Core.PhpResource)">
+            <summary>
+            Gets id generated by the previous insert operation.
+            </summary>
+            <param name="ctx">Runtime context.</param>
+            <param name="linkIdentifier">Connection resource.</param>
+            <returns>Id or 0 if the last command wasn't an insertion.</returns>
+        </member>
+        <member name="M:Peachpie.Library.MySql.MySql.mysql_thread_id(Pchp.Core.Context,Pchp.Core.PhpResource)">
+            <summary>
+            Gets the current DB thread's id.
+            </summary>
+            <param name="ctx">Runtime context.</param>
+            <param name="linkIdentifier">Connection resource.</param>
+            <returns>The thread id.</returns>
+        </member>
+        <member name="M:Peachpie.Library.MySql.MySql.mysql_fetch_row(Pchp.Core.PhpResource)">
+            <summary>
+            Get a result row as an integer indexed array. 
+            </summary>
+            <param name="resultHandle">Query result resource.</param>
+            <returns>Array indexed by integers starting from 0 containing values of the current row.</returns>
+        </member>
+        <member name="M:Peachpie.Library.MySql.MySql.mysql_fetch_assoc(Pchp.Core.PhpResource)">
+            <summary>
+            Get a result row as an associative array. 
+            </summary>
+            <param name="resultHandle">Query result resource.</param>
+            <returns>Array indexed by column names containing values of the current row.</returns>
+        </member>
+        <member name="M:Peachpie.Library.MySql.MySql.mysql_fetch_array(Pchp.Core.PhpResource,Peachpie.Library.MySql.MySql.QueryResultKeys)">
+            <summary>
+            Get a result row as an array with a specified key format. 
+            </summary>
+            <param name="resultHandle">Query result resource.</param>
+            <param name="resultType">Type(s) of keys in the resulting array.</param>
+            <returns>
+            Array containing values of the rows indexed by column keys and/or column indices depending 
+            on value of <paramref name="resultType"/>.
+            </returns>
+        </member>
+        <member name="M:Peachpie.Library.MySql.MySql.mysql_fetch_object(Pchp.Core.PhpResource)">
+            <summary>
+            Get a result row as an object. 
+            </summary>
+            <param name="resultHandle">Query result resource.</param>
+            <returns>
+            Object whose fields contain values from the current row. 
+            Field names corresponds to the column names.
+            </returns>
+        </member>
+        <member name="M:Peachpie.Library.MySql.MySql.mysql_affected_rows(Pchp.Core.Context,Pchp.Core.PhpResource)">
+            <summary>
+            Get a number of affected rows in the previous operation.
+            </summary>
+            <param name="ctx">Runtime context.</param>
+            <param name="linkIdentifier">Connection resource.</param>
+            <returns>The number of affected rows or -1 if the last operation failed or the connection is invalid.</returns>
+        </member>
+        <member name="M:Peachpie.Library.MySql.MySql.mysql_num_fields(Pchp.Core.PhpResource)">
+            <summary>
+            Get number of columns (fields) in a specified result.
+            </summary>
+            <param name="resultHandle">Query result resource.</param>
+            <returns>Number of columns in the specified result or 0 if the result resource is invalid.</returns>
+        </member>
+        <member name="M:Peachpie.Library.MySql.MySql.mysql_num_rows(Pchp.Core.PhpResource)">
+            <summary>
+            Get number of rows in a specified result.
+            </summary>
+            <param name="resultHandle">Query result resource.</param>
+            <returns>Number of rows in the specified result or 0 if the result resource is invalid.</returns>
+        </member>
+        <member name="M:Peachpie.Library.MySql.MySql.mysql_free_result(Pchp.Core.PhpResource)">
+            <summary>
+            Releases a resource representing a query result.
+            </summary>
+            <param name="resultHandle">Query result resource.</param>
+            <returns><B>true</B> on success, <B>false</B> on failure (invalid resource).</returns>
+        </member>
+        <member name="M:Peachpie.Library.MySql.MySql.mysql_select_db(Pchp.Core.Context,System.String,Pchp.Core.PhpResource)">
+            <summary>
+            Selects the current DB for a specified connection.
+            </summary>
+            <param name="ctx">Runtime context.</param>
+            <param name="databaseName">Name of the database.</param>
+            <param name="linkIdentifier">Connection resource.</param>
+            <returns><B>true</B> on success, <B>false</B> on failure.</returns>
+        </member>
+        <member name="M:Peachpie.Library.MySql.MySql.mysql_error(Pchp.Core.Context,Pchp.Core.PhpResource)">
+            <summary>
+            Returns the text of the error message from previous operation.
+            </summary>
+            <param name="ctx">Runtime context.</param>
+            <param name="linkIdentifier">Connection resource.</param>
+            <returns>
+            Error message, empty string if no error occured, or a <B>null</B> reference 
+            if the connection resource is invalid.
+            </returns>
+        </member>
+        <member name="M:Peachpie.Library.MySql.MySql.mysql_errno(Pchp.Core.Context,Pchp.Core.PhpResource)">
+            <summary>
+            Returns the number of the error from previous operation.
+            </summary>
+            <param name="ctx">Runtime context.</param>
+            <param name="linkIdentifier">Connection resource.</param>
+            <returns>Error number, 0 if no error occured, or -1 if the number cannot be retrieved.</returns>
+        </member>
+        <member name="M:Peachpie.Library.MySql.MySql.mysql_result(Pchp.Core.PhpResource,System.Int32,Pchp.Core.PhpValue)">
+            <summary>
+            Gets a contents of a specified cell from a specified query result resource.
+            </summary>
+            <param name="resultHandle">Query result resource.</param>
+            <param name="row">Row index.</param>
+            <param name="field">Column (field) integer index or string name.</param>
+            <returns>The value of the cell or a <B>null</B> reference (<B>false</B> in PHP) on failure (invalid resource or row/field index/name).</returns>
+            <remarks>
+            Result is affected by run-time quoting.
+            </remarks>
+        </member>
+        <member name="M:Peachpie.Library.MySql.MySql.mysql_field_name(Pchp.Core.PhpResource,System.Int32)">
+            <summary>
+            Gets a name of a specified column (field) in a result. 
+            </summary>
+            <param name="resultHandle">Query result resource.</param>
+            <param name="fieldIndex">Column (field) index.</param>
+            <returns>Name of the column or a <B>null</B> reference on failure (invalid resource or column index).</returns>
+        </member>
+        <member name="M:Peachpie.Library.MySql.MySql.mysql_field_type(Pchp.Core.PhpResource,System.Int32)">
+            <summary>
+            Gets a type of a specified column (field) in a result. 
+            </summary>
+            <param name="resultHandle">Query result resource.</param>
+            <param name="fieldIndex">Column index.</param>
+            <returns>MySQL type translated to PHP terminology.</returns>
+            <remarks>
+            Possible values are: "string", "int", "real", "year", "date", "timestamp", "datetime", "time", 
+            "set", "enum", "blob", "bit" (Phalanger specific), "NULL", and "unknown".
+            </remarks>
+        </member>
+        <member name="M:Peachpie.Library.MySql.MySql.mysql_field_len(Pchp.Core.PhpResource,System.Int32)">
+            <summary>
+            Gets a length of a specified column (field) in a result. 
+            </summary>
+            <param name="resultHandle">Query result resource.</param>
+            <param name="fieldIndex">Column index, starts at <c>0</c>.</param>
+            <returns>Length of the column or a -1 (<c>FALSE</c>) on failure (invalid resource or column index).</returns>
+        </member>
+        <member name="M:Peachpie.Library.MySql.MySql.mysql_field_seek(Pchp.Core.PhpResource,System.Int32)">
+            <summary>
+            Sets the result resource's current column (field) offset.
+            </summary>
+            <param name="resultHandle">Query result resource.</param>
+            <param name="fieldOffset">New column offset.</param>
+            <returns><B>true</B> on success, <B>false</B> on failure (invalid resource or column offset).</returns>
+        </member>
+        <member name="M:Peachpie.Library.MySql.MySql.mysql_data_seek(Pchp.Core.PhpResource,System.Int32)">
+            <summary>
+            Sets the result resource's current row index.
+            </summary>
+            <param name="resultHandle">Query result resource.</param>
+            <param name="rowIndex">New row index.</param>
+            <returns><B>true</B> on success, <B>false</B> on failure (invalid resource or row index).</returns>
+        </member>
+        <member name="M:Peachpie.Library.MySql.MySql.mysql_field_table(Pchp.Core.PhpResource,System.Int32)">
+            <summary>
+            Gets a base table of a specified field.
+            </summary>
+            <param name="resultHandle">Query result resource.</param>
+            <param name="fieldIndex">Field index.</param>
+            <returns>Name of the base table of the field.</returns>
+        </member>
+        <member name="M:Peachpie.Library.MySql.MySql.mysql_field_flags(Pchp.Core.PhpResource,System.Int32)">
+            <summary>
+            Gets flags of a specified field.
+            </summary>
+            <param name="resultHandle">Query result resource.</param>
+            <param name="fieldIndex">Field index.</param>
+            <returns>Flags of the field.</returns>
+        </member>
+        <member name="M:Peachpie.Library.MySql.MySql.mysql_fetch_field(Pchp.Core.PhpResource)">
+            <summary>
+            Gets a PHP object whose properties describes the last fetched field.
+            </summary>
+            <param name="resultHandle">Query result resource.</param>
+            <returns>The PHP object.</returns>
+        </member>
+        <member name="M:Peachpie.Library.MySql.MySql.mysql_fetch_field(Pchp.Core.PhpResource,System.Int32)">
+            <summary>
+            Gets a PHP object whose properties describes a specified field.
+            </summary>
+            <param name="resultHandle">Query result resource.</param>
+            <param name="fieldIndex">Field index.</param>
+            <returns>The PHP object.</returns>
+        </member>
+        <member name="M:Peachpie.Library.MySql.MySql.mysql_fetch_lengths(Pchp.Core.PhpResource)">
+            <summary>
+            Gets an array of lengths of the values of the current row.
+            </summary>
+            <param name="resultHandle">Query result resource.</param>
+            <returns>An array containing a length of each value of the current row.</returns>
+        </member>
+        <member name="M:Peachpie.Library.MySql.MySql.mysql_get_client_info">
+            <summary>
+            Gets a version of the client library.
+            </summary>
+            <returns>Equivalent native library version.</returns>
+        </member>
+        <member name="M:Peachpie.Library.MySql.MySql.mysql_get_server_info(Pchp.Core.Context)">
+            <summary>
+            Gets server version.
+            </summary>
+            <returns>Server version</returns>
+        </member>
+        <member name="M:Peachpie.Library.MySql.MySql.mysql_get_server_info(Pchp.Core.PhpResource)">
+            <summary>
+            Gets server version.
+            </summary>
+            <returns>Server version</returns>
+        </member>
+        <member name="M:Peachpie.Library.MySql.MySql.mysql_get_host_info(Pchp.Core.Context)">
+            <summary>
+            Gets information about the server.
+            </summary>
+            <returns>Server name and protocol type.</returns>
+        </member>
+        <member name="M:Peachpie.Library.MySql.MySql.mysql_get_host_info(Pchp.Core.PhpResource)">
+            <summary>
+            Gets information about the server.
+            </summary>
+            <param name="link">Connection resource.</param>
+            <returns>Server name and protocol type.</returns>
+        </member>
+        <member name="M:Peachpie.Library.MySql.MySql.mysql_get_proto_info(Pchp.Core.Context)">
+            <summary>
+            Gets version of the protocol.
+            </summary>
+            <returns>Protocol version.</returns>
+        </member>
+        <member name="M:Peachpie.Library.MySql.MySql.mysql_get_proto_info(Pchp.Core.PhpResource)">
+            <summary>
+            Gets version of the protocol.
+            </summary>
+            <param name="link">Connection resource.</param>
+            <returns>Protocol version.</returns>
+        </member>
+        <member name="M:Peachpie.Library.MySql.MySql.mysql_real_escape_string(Pchp.Core.Context,Pchp.Core.PhpString,Pchp.Core.PhpResource)">
+            <summary>
+            Escapes special characters in a string for use in a SQL statement.
+            </summary>
+            <param name="ctx">Runtime context.</param>
+            <param name="str">String to escape.</param>
+            <param name="link">Connection resource.</param>
+            <returns>Escaped string.</returns>
+        </member>
+        <member name="M:Peachpie.Library.MySql.MySql.mysql_escape_string(Pchp.Core.Context,Pchp.Core.PhpString)">
+            <summary>
+            Escapes special characters in a string for use in a SQL statement.
+            </summary>
+            <param name="ctx">Runtime context.</param>
+            <param name="unescaped_str">String to escape.</param>
+            <returns>Escaped string.</returns>
+        </member>
+        <member name="M:Peachpie.Library.MySql.MySql.mysql_client_encoding(Pchp.Core.Context,Pchp.Core.PhpResource)">
+            <summary>
+            Gets the name of the client character set.
+            </summary>
+            <returns>Character set name.</returns>
+        </member>
+        <member name="M:Peachpie.Library.MySql.MySql.mysql_set_charset(Pchp.Core.Context,System.String,Pchp.Core.PhpResource)">
+            <summary>
+            Sets the client character set.
+            </summary>
+            <param name="charset">New character set. Must be valid SQL character set.</param>
+            <param name="ctx"></param>
+            <param name="linkIdentifier"></param>
+            <returns>True if successful.</returns>
+        </member>
+        <member name="M:Peachpie.Library.MySql.MySql.mysql_ping(Pchp.Core.Context,Pchp.Core.PhpResource)">
+            <summary>
+            Ping a server connection or reconnect if there is no connection.
+            </summary>
+            <returns>Whether the connection to the server MySQL server is working.</returns>
+        </member>
+        <member name="F:Peachpie.Library.MySql.MySqlConfiguration.ConnectTimeout">
+            <summary>
+            Request timeout in seconds. Non-positive value means no timeout.
+            </summary>
+        </member>
+        <member name="F:Peachpie.Library.MySql.MySqlConfiguration.MaxPoolSize">
+            <summary>
+            <c>Maximum Pool Size</c> value passed to the MySql Connector/Net Connection String.
+            </summary>
+        </member>
+        <member name="F:Peachpie.Library.MySql.MySqlConfiguration.DefaultCommandTimeout">
+            <summary>
+            Command timeout, in seconds.
+            </summary>
+        </member>
+        <member name="F:Peachpie.Library.MySql.MySqlConfiguration.Server">
+            <summary>
+            Default server (host) name.
+            </summary>
+        </member>
+        <member name="F:Peachpie.Library.MySql.MySqlConfiguration.Port">
+            <summary>
+            Default port.
+            </summary>
+        </member>
+        <member name="F:Peachpie.Library.MySql.MySqlConfiguration.User">
+            <summary>
+            Default user name.
+            </summary>
+        </member>
+        <member name="F:Peachpie.Library.MySql.MySqlConfiguration.Password">
+            <summary>
+            Default password.
+            </summary>
+        </member>
+        <member name="F:Peachpie.Library.MySql.MySqlConfiguration.ConnectionString">
+            <summary>
+            If not <c>null</c> reference, this connection string is used by parameterless <c>mysql_connect()</c> function call as MySql Connector/.NET connection string.
+            </summary>
+        </member>
+        <member name="F:Peachpie.Library.MySql.MySqlConfiguration.MaxConnections">
+            <summary>
+            Maximum number of connections per request. Negative value means no limit.
+            </summary>
+        </member>
+        <member name="M:Peachpie.Library.MySql.MySqlConfiguration.GetSet(Pchp.Core.Context,Pchp.Core.IPhpConfigurationService,System.String,Pchp.Core.PhpValue,Pchp.Library.StandardPhpOptions.IniAction)">
+            <summary>
+            Gets, sets, or restores a value of a legacy configuration option.
+            </summary>
+        </member>
+        <member name="M:Peachpie.Library.MySql.MySqlConfiguration.RegisterLegacyOptions">
+            <summary>
+            Registers legacy ini-options.
+            </summary>
+        </member>
+        <member name="M:Peachpie.Library.MySql.MySqlConnectionManager.GetInstance(Pchp.Core.Context)">
+            <summary>
+            Gets the manager singleton within runtime context.
+            </summary>
+        </member>
+        <member name="M:Peachpie.Library.MySql.MySqlConnectionManager.CreateConnection(System.Data.IDbConnection)">
+            <summary>
+            Creates a connection resource using an existing <see cref="T:System.Data.IDbConnection"/> instance.
+            </summary>
+        </member>
+        <member name="T:Peachpie.Library.MySql.MySqlConnectionResource">
+            <summary>
+            Resource representing MySql connection.
+            </summary>
+        </member>
+        <member name="F:Peachpie.Library.MySql.MySqlConnectionResource._mySqlConnection">
+            <summary>
+            <see cref="F:Peachpie.Library.MySql.MySqlConnectionResource._connection"/> lazily cast to <see cref="T:MySqlConnector.MySqlConnection"/>.
+            <see cref="M:Peachpie.Library.MySql.MySqlExtensions.GetUnderlyingValue``2(``0,System.Reflection.MethodInfo@,System.String,System.String)"/> for details.
+            </summary>
+        </member>
+        <member name="F:Peachpie.Library.MySql.MySqlConnectionResource._leaveopen">
+            <summary>
+            Whether to keep the underlying connection open after disposing this resource.
+            (The owner of the connection is someone else)
+            </summary>
+        </member>
+        <member name="P:Peachpie.Library.MySql.MySqlConnectionResource.Server">
+            <summary>
+            Lazily set server name used to initiate connection.
+            </summary>
+        </member>
+        <member name="P:Peachpie.Library.MySql.MySqlConnectionResource.Context">
+            <summary>
+            Gets associated runtime <see cref="P:Peachpie.Library.MySql.MySqlConnectionResource.Context"/>.
+            </summary>
+        </member>
+        <member name="P:Peachpie.Library.MySql.MySqlConnectionResource.MySqlConnection">
+            <summary>
+            Gets the underlying MySql connection from the connection. We specifically support the case where
+            the connection is a wrapped connection such as we get from MiniProfiler, and we look for WrappedConnection to
+            find the native MySqlConnection when we need it.
+            </summary>
+        </member>
+        <member name="P:Peachpie.Library.MySql.MySqlConnectionResource.ServerVersion">
+            <summary>
+            Gets the server version.
+            </summary>
+        </member>
+        <member name="P:Peachpie.Library.MySql.MySqlConnectionResource.ServerThread">
+            <summary>
+            Returns the id of the server thread this connection is executing on.
+            </summary>
+        </member>
+        <member name="M:Peachpie.Library.MySql.MySqlConnectionResource.Ping">
+            <summary>
+            Pings the server.
+            </summary>
+        </member>
+        <member name="M:Peachpie.Library.MySql.MySqlConnectionResource.QueryGlobalVariable(System.String)">
+            <summary>
+            Queries server for a value of a global variable.
+            </summary>
+            <param name="name">Global variable name.</param>
+            <returns>Global variable value (converted).</returns>
+        </member>
+        <member name="P:Peachpie.Library.MySql.MySqlConnectionResource.LastInsertedId">
+            <summary>
+            Gets last inserted row autogenerated ID if applicable, otherwise <c>-1</c>.
+            </summary>
+        </member>
+        <member name="T:Peachpie.Library.MySql.MySqlExtensions">
+            <summary>
+            Helper MySql methods.
+            </summary>
+        </member>
+        <member name="M:Peachpie.Library.MySql.MySqlExtensions.IsUnsigned(MySqlConnector.MySqlDbColumn)">
+            <summary>
+            Whether the column is typed as unsigned integer.
+            </summary>
+        </member>
+        <member name="M:Peachpie.Library.MySql.MySqlExtensions.IsBlob(MySqlConnector.MySqlDbColumn)">
+            <summary>
+            True for any blob type.
+            </summary>
+        </member>
+        <member name="M:Peachpie.Library.MySql.MySqlExtensions.IsNumeric(MySqlConnector.MySqlDbColumn)">
+            <summary>
+            True for any numeric type.
+            </summary>
+        </member>
+        <member name="M:Peachpie.Library.MySql.MySqlExtensions.ValidConnection(Pchp.Core.Context,Pchp.Core.PhpResource)">
+            <summary>
+            Returns <paramref name="link"/> as MySql connection or last opened MySql connection for given <paramref name="ctx"/>.
+            </summary>
+            <param name="ctx">Runtime context.</param>
+            <param name="link">Optional, an existing MySql connection resource.</param>
+            <returns>MySql connection resource or <c>null</c> if there is no connection.</returns>
+        </member>
+        <member name="M:Peachpie.Library.MySql.MySqlExtensions.ValidConnection(Peachpie.Library.MySql.MySqli.mysqli)">
+            <summary>
+            Returns underlying connection of given <paramref name="link"/>.
+            </summary>
+            <param name="link">Reference to <see cref="T:Peachpie.Library.MySql.MySqli.mysqli"/> object.</param>
+            <returns>MySql connection resource or <c>null</c> if there is no connection.</returns>
+        </member>
+        <member name="M:Peachpie.Library.MySql.MySqlExtensions.GetUnderlyingValue``2(``0,System.Reflection.MethodInfo@,System.String,System.String)">
+            <summary>
+            Casts the <paramref name="object"/> to <typeparamref name="TResult"/>.
+            Otherwise it reflects the <paramref name="object"/>, looking for a <paramref name="getterMethodName"/> and trying to invoke that to get the underlying reference.
+            </summary>
+            <typeparam name="TIn">Abstract type.</typeparam>
+            <typeparam name="TResult">Expected actual type of <paramref name="object"/>.</typeparam>
+            <param name="object">Reference to object.</param>
+            <param name="method">Lazily created method used ot obtain the underlying value.</param>
+            <param name="getterMethodName">Method name used to obtain the underlying value.</param>
+            <param name="alternateMethodName">Alternate method name used to obtain the underlying value.</param>
+            <returns>Value of type <typeparamref name="TResult"/>.</returns>
+            <remarks>Used to get an underlying value of wrapping classes like the ones provided by MiniProfiler.</remarks>
+            <exception cref="T:System.ArgumentNullException"><paramref name="object"/> is null.</exception>
+            <exception cref="T:System.InvalidOperationException"><paramref name="getterMethodName"/> is not defined on <paramref name="object"/>.</exception>
+            <exception cref="T:System.NullReferenceException"><paramref name="object"/>' getter method returned null or an unexpected value.</exception>
+        </member>
+        <member name="M:Peachpie.Library.MySql.MySqlExtensions.AsMySqlCommand(System.Data.IDbCommand)">
+            <summary>
+            Casts or unwraps given <see cref="T:System.Data.IDbCommand"/> to <see cref="T:MySqlConnector.MySqlCommand"/>.
+            </summary>
+            <returns><see cref="T:System.Data.IDbCommand"/> might be wrapped into another class (usually DB profiler class like MiniProfiler).</returns>
+        </member>
+        <member name="M:Peachpie.Library.MySql.MySqlExtensions.AsMySqlDataReader(System.Data.IDataReader)">
+            <summary>
+            Casts or unwraps given <see cref="T:System.Data.IDbCommand"/> to <see cref="T:MySqlConnector.MySqlCommand"/>.
+            </summary>
+            <returns><see cref="T:System.Data.IDbCommand"/> might be wrapped into another class (usually DB profiler class like MiniProfiler).</returns>
+        </member>
+        <member name="M:Peachpie.Library.MySql.MySqlExtensions.AsMySqlConnection(System.Data.IDbConnection)">
+            <summary>
+            Casts or unwraps given <see cref="T:System.Data.IDbConnection"/> to <see cref="T:MySqlConnector.MySqlConnection"/>.
+            </summary>
+            <returns><see cref="T:System.Data.IDbConnection"/> might be wrapped into another class (usually DB profiler class like MiniProfiler).</returns>
+        </member>
+        <member name="M:Peachpie.Library.MySql.MySqlExtensions.LastInsertedId(System.Data.IDbCommand)">
+            <summary>
+            Returns the last insert ID from the MySqlCommand, eventually using the underlying MySqlCommand of another IDbCommand.
+            </summary>
+            <param name="command">Generic <see cref="T:System.Data.IDbCommand"/> to work with</param>
+            <returns>Last insert ID</returns>
+        </member>
+        <member name="M:Peachpie.Library.MySql.MySqlExtensions.GetColumnSchema(System.Data.IDataReader)">
+            <summary>
+            Returns metadata about the columns in the result set.
+            </summary>
+            <returns>A <see cref="T:System.Collections.ObjectModel.ReadOnlyCollection`1"/> containing metadata about the result set.</returns>
+        </member>
+        <member name="T:Peachpie.Library.MySql.MySqli.Constants">
+            <summary>
+            MySqli PHP constants.
+            </summary>
+        </member>
+        <member name="F:Peachpie.Library.MySql.MySqli.Constants.MYSQLI_OPT_CONNECT_TIMEOUT">
+            <summary>
+            Connect timeout in seconds.
+            </summary>
+        </member>
+        <member name="F:Peachpie.Library.MySql.MySqli.Constants.MYSQLI_OPT_SSL_VERIFY_SERVER_CERT">
+            <summary>
+            Option whether to verify SSL cert.
+            </summary>
+        </member>
+        <member name="F:Peachpie.Library.MySql.MySqli.Constants.MYSQLI_SERVER_PUBLIC_KEY">
+            <summary>
+            Option for RSA public key file used with the SHA-256 based authentication.
+            </summary>
+        </member>
+        <member name="F:Peachpie.Library.MySql.MySqli.Constants.MYSQLI_CLIENT_SSL">
+            <summary>
+            Use SSL (encrypted protocol). This option should not be set by application programs; it is set internally in the MySQL client library
+            </summary>
+        </member>
+        <member name="F:Peachpie.Library.MySql.MySqli.Constants.MYSQLI_CLIENT_COMPRESS">
+            <summary>
+            Use compression protocol.
+            </summary>
+        </member>
+        <member name="F:Peachpie.Library.MySql.MySqli.Constants.MYSQLI_CLIENT_INTERACTIVE">
+            <summary>
+            Allow interactive_timeout seconds (instead of wait_timeout seconds) of inactivity before closing the connection.
+            The client's session wait_timeout variable will be set to the value of the session interactive_timeout variable.
+            </summary>
+        </member>
+        <member name="F:Peachpie.Library.MySql.MySqli.Constants.MYSQLI_CLIENT_IGNORE_SPACE">
+            <summary>
+            Allow spaces after function names. Makes all functions names reserved words.
+            </summary>
+        </member>
+        <member name="F:Peachpie.Library.MySql.MySqli.Constants.MYSQLI_STORE_RESULT">
+            <summary>
+            For using buffered resultsets.
+            </summary>
+        </member>
+        <member name="F:Peachpie.Library.MySql.MySqli.Constants.MYSQLI_USE_RESULT">
+            <summary>
+            For using unbuffered resultsets.
+            </summary>
+        </member>
+        <member name="F:Peachpie.Library.MySql.MySqli.Constants.MYSQLI_ASSOC">
+            <summary>
+            Add items keyed by column names.
+            </summary>
+        </member>
+        <member name="F:Peachpie.Library.MySql.MySqli.Constants.MYSQLI_NUM">
+            <summary>
+            Add items keyed by column indices.
+            </summary>
+        </member>
+        <member name="F:Peachpie.Library.MySql.MySqli.Constants.MYSQLI_BOTH">
+            <summary>
+            Add both items keyed by column names and items keyd by column indices.
+            </summary>
+        </member>
+        <member name="F:Peachpie.Library.MySql.MySqli.Constants.MYSQLI_SET_CHARSET_NAME">
+            <summary></summary>
+        </member>
+        <member name="F:Peachpie.Library.MySql.MySqli.Constants.MYSQLI_REPORT_OFF">
+            <summary>
+            Turns reporting off.
+            </summary>
+        </member>
+        <member name="F:Peachpie.Library.MySql.MySqli.Constants.MYSQLI_REPORT_ERROR">
+            <summary>
+            Report errors from mysqli function calls.
+            </summary>
+        </member>
+        <member name="F:Peachpie.Library.MySql.MySqli.Constants.MYSQLI_REPORT_STRICT">
+            <summary>
+            Throw a <see cref="T:Peachpie.Library.MySql.MySqli.mysqli_sql_exception"/> for errors instead of warnings.
+            </summary>
+        </member>
+        <member name="F:Peachpie.Library.MySql.MySqli.Constants.MYSQLI_REPORT_INDEX">
+            <summary>
+            Report if no index or bad index was used in a query.
+            </summary>
+        </member>
+        <member name="F:Peachpie.Library.MySql.MySqli.Constants.MYSQLI_REPORT_ALL">
+            <summary>
+            Set all options on (report all).
+            </summary>
+        </member>
+        <member name="T:Peachpie.Library.MySql.MySqli.Functions">
+            <summary>
+            MySqli procedural style API.
+            </summary>
+        </member>
+        <member name="M:Peachpie.Library.MySql.MySqli.Functions.mysqli_init">
+            <summary>
+            Initializes MySQLi and returns a resource for use with mysqli_real_connect().
+            </summary>
+        </member>
+        <member name="M:Peachpie.Library.MySql.MySqli.Functions.mysqli_ping(Peachpie.Library.MySql.MySqli.mysqli)">
+            <summary>
+            Pings a server connection, or tries to reconnect if the connection has gone down.
+            </summary>
+        </member>
+        <member name="M:Peachpie.Library.MySql.MySqli.Functions.mysqli_close(Peachpie.Library.MySql.MySqli.mysqli)">
+            <summary>
+            Closes a previously opened database connection.
+            </summary>
+        </member>
+        <member name="M:Peachpie.Library.MySql.MySqli.Functions.mysqli_real_connect(Pchp.Core.Context,Peachpie.Library.MySql.MySqli.mysqli,System.String,System.String,System.String,System.String,System.Int32,System.String,System.Int32)">
+            <summary>
+            Opens a connection to a mysql server
+            </summary>
+        </member>
+        <member name="M:Peachpie.Library.MySql.MySqli.Functions.mysqli_connect(Pchp.Core.Context,System.String,System.String,System.String,System.String,System.Int32,System.String,System.Int32)">
+            <summary>
+            Opens a connection to a mysql server
+            </summary>
+        </member>
+        <member name="M:Peachpie.Library.MySql.MySqli.Functions.mysqli_connect(Pchp.Core.Context,System.Data.IDbConnection)">
+            <summary>
+            Creates a connection resource using an existing <see cref="T:System.Data.IDbConnection"/> instance.
+            </summary>
+            <exception cref="T:System.ArgumentNullException">Provided instance is <c>null</c>.</exception>
+        </member>
+        <member name="M:Peachpie.Library.MySql.MySqli.Functions.mysqli_escape_string(Peachpie.Library.MySql.MySqli.mysqli,Pchp.Core.PhpString)">
+            <summary>
+            Escapes special characters in a string for use in an SQL statement, taking into account the current charset of the connection.
+            </summary>
+        </member>
+        <member name="M:Peachpie.Library.MySql.MySqli.Functions.mysqli_real_escape_string(Peachpie.Library.MySql.MySqli.mysqli,Pchp.Core.PhpString)">
+            <summary>
+            Escapes special characters in a string for use in an SQL statement, taking into account the current charset of the connection.
+            </summary>
+        </member>
+        <member name="M:Peachpie.Library.MySql.MySqli.Functions.mysqli_affected_rows(Peachpie.Library.MySql.MySqli.mysqli)">
+            <summary>
+            Gets the number of affected rows in a previous MySQL operation.
+            </summary>
+        </member>
+        <member name="M:Peachpie.Library.MySql.MySqli.Functions.mysqli_error(Peachpie.Library.MySql.MySqli.mysqli)">
+            <summary>
+            Returns a string description of the last error.
+            </summary>
+        </member>
+        <member name="M:Peachpie.Library.MySql.MySqli.Functions.mysqli_connect_error(Pchp.Core.Context,Peachpie.Library.MySql.MySqli.mysqli)">
+            <summary>
+            The connection error message. Otherwise <c>null</c>.
+            </summary>
+        </member>
+        <member name="M:Peachpie.Library.MySql.MySqli.Functions.mysqli_connect_errno(Pchp.Core.Context,Peachpie.Library.MySql.MySqli.mysqli)">
+            <summary>
+            Returns the error code from last connect call.
+            </summary>
+        </member>
+        <member name="M:Peachpie.Library.MySql.MySqli.Functions.mysqli_errno(Peachpie.Library.MySql.MySqli.mysqli)">
+            <summary>
+            Returns the error code for the most recent function call.
+            </summary>
+        </member>
+        <member name="M:Peachpie.Library.MySql.MySqli.Functions.mysqli_set_charset(Peachpie.Library.MySql.MySqli.mysqli,System.String)">
+            <summary>
+            Sets the default client character set.
+            </summary>
+        </member>
+        <member name="M:Peachpie.Library.MySql.MySqli.Functions.mysqli_get_server_info(Peachpie.Library.MySql.MySqli.mysqli)">
+            <summary>
+            Returns the version of the MySQL server.
+            </summary>
+        </member>
+        <member name="M:Peachpie.Library.MySql.MySqli.Functions.mysqli_get_host_info(Peachpie.Library.MySql.MySqli.mysqli)">
+            <summary>
+            Returns a string representing the type of connection used.
+            </summary>
+        </member>
+        <member name="M:Peachpie.Library.MySql.MySqli.Functions.mysqli_get_server_version(Peachpie.Library.MySql.MySqli.mysqli)">
+            <summary>
+            Returns the version of the MySQL server as an integer.
+            </summary>
+        </member>
+        <member name="M:Peachpie.Library.MySql.MySqli.Functions.mysqli_get_client_info(Peachpie.Library.MySql.MySqli.mysqli)">
+            <summary>
+            Get MySQL client info.
+            </summary>
+        </member>
+        <member name="M:Peachpie.Library.MySql.MySqli.Functions.mysqli_get_client_version(Peachpie.Library.MySql.MySqli.mysqli)">
+            <summary>
+            Returns the MySQL client version as an integer.
+            </summary>
+        </member>
+        <member name="M:Peachpie.Library.MySql.MySqli.Functions.mysqli_client_encoding(Peachpie.Library.MySql.MySqli.mysqli)">
+            <summary>
+            Returns the default character set for the database connection.
+            </summary>
+        </member>
+        <member name="M:Peachpie.Library.MySql.MySqli.Functions.mysqli_character_set_name(Peachpie.Library.MySql.MySqli.mysqli)">
+            <summary>
+            Returns the default character set for the database connection.
+            </summary>
+        </member>
+        <member name="M:Peachpie.Library.MySql.MySqli.Functions.mysqli_more_results(Peachpie.Library.MySql.MySqli.mysqli)">
+            <summary>
+            Check if there are any more query results from a multi query.
+            </summary>
+        </member>
+        <member name="M:Peachpie.Library.MySql.MySqli.Functions.mysqli_next_result(Peachpie.Library.MySql.MySqli.mysqli)">
+            <summary>
+            Prepare next result from multi_query.
+            </summary>
+        </member>
+        <member name="M:Peachpie.Library.MySql.MySqli.Functions.mysqli_thread_id(Peachpie.Library.MySql.MySqli.mysqli)">
+            <summary>
+            Returns the thread ID for the current connection.
+            </summary>
+        </member>
+        <member name="M:Peachpie.Library.MySql.MySqli.Functions.mysqli_select_db(Peachpie.Library.MySql.MySqli.mysqli,System.String)">
+            <summary>
+            Selects the default database for database queries.
+            </summary>
+        </member>
+        <member name="M:Peachpie.Library.MySql.MySqli.Functions.mysqli_query(Peachpie.Library.MySql.MySqli.mysqli,Pchp.Core.PhpString,System.Int32)">
+            <summary>
+            Performs a query on the database.
+            </summary>
+        </member>
+        <member name="M:Peachpie.Library.MySql.MySqli.Functions.mysqli_field_count(Peachpie.Library.MySql.MySqli.mysqli)">
+            <summary>
+            Returns the number of columns for the most recent query on the connection.
+            </summary>
+        </member>
+        <member name="M:Peachpie.Library.MySql.MySqli.Functions.mysqli_insert_id(Peachpie.Library.MySql.MySqli.mysqli)">
+            <summary>
+            Returns the auto generated id used in the latest query.
+            </summary>
+        </member>
+        <member name="M:Peachpie.Library.MySql.MySqli.Functions.mysqli_options(Peachpie.Library.MySql.MySqli.mysqli,System.Int32,Pchp.Core.PhpValue)">
+            <summary>
+            Used to set extra connect options and affect behavior for a connection.
+            </summary>
+        </member>
+        <member name="M:Peachpie.Library.MySql.MySqli.Functions.mysqli_ssl_set(Peachpie.Library.MySql.MySqli.mysqli,System.String,System.String,System.String,System.String,System.String)">
+            <summary>
+            Used for establishing secure connections using SSL
+            </summary>
+            <returns>Always true.</returns>
+        </member>
+        <member name="M:Peachpie.Library.MySql.MySqli.Functions.mysqli_prepare(Peachpie.Library.MySql.MySqli.mysqli,System.String)">
+            <summary>
+            Prepare an SQL statement for execution.
+            </summary>
+        </member>
+        <member name="M:Peachpie.Library.MySql.MySqli.Functions.mysqli_stmt_prepare(Peachpie.Library.MySql.MySqli.mysqli_stmt,System.String)">
+            <summary>
+            Prepare an SQL statement for execution.
+            </summary>
+        </member>
+        <member name="M:Peachpie.Library.MySql.MySqli.Functions.mysqli_stmt_bind_param(Peachpie.Library.MySql.MySqli.mysqli_stmt,System.String,Pchp.Core.PhpAlias[])">
+            <summary>
+            Binds variables to a prepared statement as parameters.
+            </summary>
+        </member>
+        <member name="M:Peachpie.Library.MySql.MySqli.Functions.mysqli_stmt_send_long_data(Peachpie.Library.MySql.MySqli.mysqli_stmt,System.Int32,Pchp.Core.PhpString)">
+            <summary>
+            Send data in blocks.
+            </summary>
+        </member>
+        <member name="M:Peachpie.Library.MySql.MySqli.Functions.mysqli_execute(Peachpie.Library.MySql.MySqli.mysqli_stmt)">
+            <summary>
+            Executes a prepared Query.
+            Alias for <see cref="M:Peachpie.Library.MySql.MySqli.Functions.mysqli_stmt_execute(Peachpie.Library.MySql.MySqli.mysqli_stmt)"/>.
+            </summary>
+        </member>
+        <member name="M:Peachpie.Library.MySql.MySqli.Functions.mysqli_stmt_execute(Peachpie.Library.MySql.MySqli.mysqli_stmt)">
+            <summary>
+            Executes a prepared Query.
+            </summary>
+        </member>
+        <member name="M:Peachpie.Library.MySql.MySqli.Functions.mysqli_stmt_init(Peachpie.Library.MySql.MySqli.mysqli)">
+            <summary>
+            Initializes a statement and returns an object for use with mysqli_stmt_prepare.
+            </summary>
+        </member>
+        <member name="M:Peachpie.Library.MySql.MySqli.Functions.mysqli_stmt_close(Peachpie.Library.MySql.MySqli.mysqli_stmt)">
+            <summary>
+            Closes a prepared statement.
+            </summary>
+        </member>
+        <member name="M:Peachpie.Library.MySql.MySqli.Functions.mysqli_stmt_insert_id(Peachpie.Library.MySql.MySqli.mysqli_stmt)">
+            <summary>
+            Get the ID generated from the previous INSERT operation.
+            </summary>
+        </member>
+        <member name="M:Peachpie.Library.MySql.MySqli.Functions.mysqli_stmt_affected_rows(Peachpie.Library.MySql.MySqli.mysqli_stmt)">
+            <summary>
+            Returns the total number of rows changed, deleted, or inserted by the last executed statement .
+            </summary>
+        </member>
+        <member name="M:Peachpie.Library.MySql.MySqli.Functions.mysqli_stmt_data_seek(Peachpie.Library.MySql.MySqli.mysqli_stmt,System.Int32)">
+            <summary>
+            Seeks to an arbitrary row in statement result set.
+            </summary>
+        </member>
+        <member name="M:Peachpie.Library.MySql.MySqli.Functions.mysqli_stmt_get_result(Peachpie.Library.MySql.MySqli.mysqli_stmt)">
+            <summary>
+            Gets a result set from a prepared statement.
+            </summary>
+        </member>
+        <member name="M:Peachpie.Library.MySql.MySqli.Functions.mysqli_fetch_assoc(Peachpie.Library.MySql.MySqli.mysqli_result)">
+            <summary>
+            Fetch a result row as an associative array.
+            </summary>
+            <param name="result">A result set identifier.</param>
+            <returns>
+            Returns an associative array of strings representing the fetched row in the result set,
+            where each key in the array represents the name of one of the result set's columns
+            or <c>NULL</c> if there are no more rows in resultset. 
+            
+            If two or more columns of the result have the same field names, the last column will take precedence.
+            To access the other column(s) of the same name, you either need to access the result with
+            numeric indices by using mysqli_fetch_row() or add alias names.
+            </returns>
+        </member>
+        <member name="M:Peachpie.Library.MySql.MySqli.Functions.mysqli_fetch_array(Peachpie.Library.MySql.MySqli.mysqli_result,System.Int32)">
+            <summary>
+            Fetch a result row as an associative, a numeric array, or both.
+            </summary>
+        </member>
+        <member name="M:Peachpie.Library.MySql.MySqli.Functions.mysqli_fetch_row(Peachpie.Library.MySql.MySqli.mysqli_result)">
+            <summary>
+            Get a result row as an enumerated array.
+            </summary>
+        </member>
+        <member name="M:Peachpie.Library.MySql.MySqli.Functions.mysqli_fetch_object(Peachpie.Library.MySql.MySqli.mysqli_result,System.String,Pchp.Core.PhpArray)">
+            <summary>
+            Returns the current row of a result set as an object.
+            </summary>
+        </member>
+        <member name="M:Peachpie.Library.MySql.MySqli.Functions.mysqli_fetch_column(Peachpie.Library.MySql.MySqli.mysqli_result,System.Int32)">
+            <summary>
+            Fetches single scalar value from the result set.
+            </summary>
+        </member>
+        <member name="M:Peachpie.Library.MySql.MySqli.Functions.mysqli_fetch_fields(Peachpie.Library.MySql.MySqli.mysqli_result)">
+            <summary>
+            Returns an array of objects representing the fields in a result set.
+            </summary>
+        </member>
+        <member name="M:Peachpie.Library.MySql.MySqli.Functions.mysqli_fetch_field(Peachpie.Library.MySql.MySqli.mysqli_result)">
+            <summary>
+            Returns the next field in the result set.
+            </summary>
+        </member>
+        <member name="M:Peachpie.Library.MySql.MySqli.Functions.mysqli_fetch_field_direct(Peachpie.Library.MySql.MySqli.mysqli_result,System.Int32)">
+            <summary>
+            Fetch meta-data for a single field.
+            </summary>
+        </member>
+        <member name="M:Peachpie.Library.MySql.MySqli.Functions.mysqli_num_fields(Peachpie.Library.MySql.MySqli.mysqli_result)">
+            <summary>
+            Get the number of fields in a result.
+            </summary>
+        </member>
+        <member name="M:Peachpie.Library.MySql.MySqli.Functions.mysqli_field_tell(Peachpie.Library.MySql.MySqli.mysqli_result)">
+            <summary>
+            Get current field offset of a result pointer..
+            </summary>
+        </member>
+        <member name="M:Peachpie.Library.MySql.MySqli.Functions.mysqli_num_rows(Peachpie.Library.MySql.MySqli.mysqli_result)">
+            <summary>
+            Gets the number of rows in a result.
+            </summary>
+        </member>
+        <member name="M:Peachpie.Library.MySql.MySqli.Functions.mysqli_data_seek(Peachpie.Library.MySql.MySqli.mysqli_result,System.Int32)">
+            <summary>
+            Adjusts the result pointer to an arbitrary row in the result.
+            </summary>
+        </member>
+        <member name="M:Peachpie.Library.MySql.MySqli.Functions.mysqli_field_seek(Peachpie.Library.MySql.MySqli.mysqli_result,System.Int32)">
+            <summary>
+            Returns the current row of a result set as an object.
+            </summary>
+        </member>
+        <member name="M:Peachpie.Library.MySql.MySqli.Functions.mysqli_free_result(Peachpie.Library.MySql.MySqli.mysqli_result)">
+            <summary>
+            Frees the memory associated with a result.
+            Alias to <see cref="M:Peachpie.Library.MySql.MySqli.mysqli_result.close"/>
+            </summary>
+        </member>
+        <member name="M:Peachpie.Library.MySql.MySqli.Functions.mysqli_thread_safe">
+            <summary>
+            Returns whether thread safety is given or not.
+            </summary>
+        </member>
+        <member name="M:Peachpie.Library.MySql.MySqli.Functions.mysqli_report(Pchp.Core.Context,Peachpie.Library.MySql.MySqli.ReportMode)">
+            <summary>
+            Sets mysqli error reporting mode.
+            </summary>
+        </member>
+        <member name="T:Peachpie.Library.MySql.MySqli.mysqli">
+            <summary>
+            Represents a connection between PHP and a MySQL database.
+            </summary>
+        </member>
+        <member name="M:Peachpie.Library.MySql.MySqli.mysqli.VersionAsInteger(System.Version)">
+            <summary>
+            A number that represents given version in format: main_version*10000 + minor_version *100 + sub_version.
+            </summary>
+            
+        </member>
+        <member name="M:Peachpie.Library.MySql.MySqli.mysqli.#ctor">
+            <summary>
+            Empty ctor.
+            </summary>
+        </member>
+        <member name="M:Peachpie.Library.MySql.MySqli.mysqli.#ctor(Pchp.Core.Context,System.String,System.String,System.String,System.String,System.Int32,System.String,System.Int32)">
+            <summary>
+            Open a new connection to the MySQL server.
+            </summary>
+        </member>
+        <member name="M:Peachpie.Library.MySql.MySqli.mysqli.#ctor(Pchp.Core.Context,System.Data.IDbConnection)">
+            <summary>
+            Initializes <see cref="T:Peachpie.Library.MySql.MySqli.mysqli"/> object with existing <see cref="T:System.Data.IDbConnection"/>.
+            </summary>
+        </member>
+        <member name="P:Peachpie.Library.MySql.MySqli.mysqli.affected_rows">
+            <summary>
+            Gets the number of affected rows in a previous MySQL operation.
+            </summary>
+        </member>
+        <member name="P:Peachpie.Library.MySql.MySqli.mysqli.connect_errno">
+            <summary>
+            The connection error number or <c>0</c>.
+            </summary>
+        </member>
+        <member name="P:Peachpie.Library.MySql.MySqli.mysqli.connect_error">
+            <summary>
+            The connection error message. Otherwise <c>null</c>.
+            </summary>
+        </member>
+        <member name="P:Peachpie.Library.MySql.MySqli.mysqli.errno">
+            <summary>
+            Returns the error code for the most recent function call.
+            </summary>
+        </member>
+        <member name="P:Peachpie.Library.MySql.MySqli.mysqli.error">
+            <summary>
+            Returns a string description of the last error.
+            </summary>
+        </member>
+        <member name="P:Peachpie.Library.MySql.MySqli.mysqli.field_count">
+            <summary>
+            Returns the number of columns for the most recent query.
+            </summary>
+        </member>
+        <member name="P:Peachpie.Library.MySql.MySqli.mysqli.client_info">
+            <summary>
+            Get MySQL client info.
+            </summary>
+        </member>
+        <member name="P:Peachpie.Library.MySql.MySqli.mysqli.client_version">
+            <summary>
+            Returns the MySQL client version as an integer.
+            </summary>
+        </member>
+        <member name="P:Peachpie.Library.MySql.MySqli.mysqli.host_info">
+            <summary>
+            Returns a string representing the type of connection used.
+            </summary>
+        </member>
+        <member name="P:Peachpie.Library.MySql.MySqli.mysqli.server_info">
+            <summary>
+            Returns the version of the MySQL server.
+            </summary>
+        </member>
+        <member name="P:Peachpie.Library.MySql.MySqli.mysqli.server_version">
+            <summary>
+            Returns the version of the MySQL server as an integer.
+            </summary>
+            <remarks>
+            The form of this version number is main_version * 10000 + minor_version * 100 + sub_version (i.e. version 4.1.0 is 40100).
+            </remarks>
+        </member>
+        <member name="P:Peachpie.Library.MySql.MySqli.mysqli.insert_id">
+            <summary>
+            Returns the auto generated id used in the latest query.
+            </summary>
+        </member>
+        <member name="P:Peachpie.Library.MySql.MySqli.mysqli.thread_id">
+            <summary>
+            Returns the thread ID for the current connection.
+            </summary>
+        </member>
+        <member name="M:Peachpie.Library.MySql.MySqli.mysqli.__construct(Pchp.Core.Context,System.String,System.String,System.String,System.String,System.Int32,System.String,System.Int32)">
+            <summary>
+            Open a new connection to the MySQL server.
+            </summary>
+        </member>
+        <member name="M:Peachpie.Library.MySql.MySqli.mysqli.character_set_name">
+            <summary>
+            Returns the default character set for the database connection.
+            </summary>
+        </member>
+        <member name="M:Peachpie.Library.MySql.MySqli.mysqli.close">
+            <summary>
+            Closes a previously opened database connection.
+            </summary>
+        </member>
+        <member name="M:Peachpie.Library.MySql.MySqli.mysqli.init">
+            <summary>Initializes MySQLi and returns a resource for use with mysqli_real_connect()</summary>
+        </member>
+        <member name="M:Peachpie.Library.MySql.MySqli.mysqli.more_results">
+            <summary>
+            Check if there are any more query results from a multi query.
+            </summary>
+        </member>
+        <member name="M:Peachpie.Library.MySql.MySqli.mysqli.multi_query(Pchp.Core.PhpString)">
+            <summary>
+            Performs a query on the database.
+            </summary>
+        </member>
+        <member name="M:Peachpie.Library.MySql.MySqli.mysqli.next_result">
+            <summary>
+            Prepare next result from multi_query
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Peachpie.Library.MySql.MySqli.mysqli.options(System.Int32,Pchp.Core.PhpValue)">
+            <summary>
+            Set options.
+            </summary>
+        </member>
+        <member name="M:Peachpie.Library.MySql.MySqli.mysqli.ping">
+            <summary>
+            Pings a server connection, or tries to reconnect if the connection has gone down.
+            </summary>
+        </member>
+        <member name="M:Peachpie.Library.MySql.MySqli.mysqli.prepare(System.String)">
+            <summary>
+            Prepare an SQL statement for execution.
+            </summary>
+        </member>
+        <member name="M:Peachpie.Library.MySql.MySqli.mysqli.query(Pchp.Core.PhpString,System.Int32)">
+            <summary>
+            Performs a query on the database.
+            </summary>
+            <returns>
+            Returns FALSE on failure.
+            For successful SELECT, SHOW, DESCRIBE or EXPLAIN queries mysqli_query() will return a mysqli_result object.
+            For other successful queries mysqli_query() will return TRUE</returns>
+        </member>
+        <member name="M:Peachpie.Library.MySql.MySqli.mysqli.real_connect(Pchp.Core.Context,System.String,System.String,System.String,System.String,System.Int32,System.String,System.Int32)">
+            <summary>
+            Opens a connection to a mysql server.
+            </summary>
+        </member>
+        <member name="M:Peachpie.Library.MySql.MySqli.mysqli.escape_string(Pchp.Core.PhpString)">
+            <summary>
+            Escapes special characters in a string for use in an SQL statement, taking into account the current charset of the connection.
+            </summary>
+        </member>
+        <member name="M:Peachpie.Library.MySql.MySqli.mysqli.real_escape_string(Pchp.Core.PhpString)">
+            <summary>
+            Escapes special characters in a string for use in an SQL statement, taking into account the current charset of the connection.
+            </summary>
+        </member>
+        <member name="M:Peachpie.Library.MySql.MySqli.mysqli.select_db(System.String)">
+            <summary>
+            Selects the default database for database queries.
+            </summary>
+        </member>
+        <member name="M:Peachpie.Library.MySql.MySqli.mysqli.set_charset(System.String)">
+            <summary>
+            Sets the default client character set,
+            </summary>
+        </member>
+        <member name="M:Peachpie.Library.MySql.MySqli.mysqli.ssl_set(System.String,System.String,System.String,System.String,System.String)">
+            <summary>
+            Used for establishing secure connections using SSL
+            </summary>
+            <param name="key">The path name to the key file.</param>
+            <param name="cert">The path name to the certificate file.</param>
+            <param name="ca">The path name to the certificate authority file.</param>
+            <param name="capath"></param>
+            <param name="cipher"></param>
+            <returns>Always true.</returns>
+        </member>
+        <member name="M:Peachpie.Library.MySql.MySqli.mysqli.stmt_init">
+            <summary>
+            Initializes a statement and returns an object for use with mysqli_stmt_prepare.
+            </summary>
+        </member>
+        <member name="M:Peachpie.Library.MySql.MySqli.mysqli.thread_safe">
+            <summary>
+            Returns whether thread safety is given or not.
+            </summary>
+        </member>
+        <member name="M:Peachpie.Library.MySql.MySqli.MySqliConnectionManager.GetInstance(Pchp.Core.Context)">
+            <summary>
+            Gets the manager singleton within runtime context.
+            </summary>
+        </member>
+        <member name="P:Peachpie.Library.MySql.MySqli.MySqliConnectionManager.ReportMode">
+            <summary>
+            The error handling mode.
+            </summary>
+        </member>
+        <member name="T:Peachpie.Library.MySql.MySqli.ReportMode">
+            <summary>
+            MYSQLI_REPORT_*** constants.
+            </summary>
+        </member>
+        <member name="F:Peachpie.Library.MySql.MySqli.ReportMode.Off">
+            <summary><see cref="F:Peachpie.Library.MySql.MySqli.Constants.MYSQLI_REPORT_OFF"/></summary>
+        </member>
+        <member name="F:Peachpie.Library.MySql.MySqli.ReportMode.Error">
+            <summary><see cref="F:Peachpie.Library.MySql.MySqli.Constants.MYSQLI_REPORT_ERROR"/></summary>
+        </member>
+        <member name="F:Peachpie.Library.MySql.MySqli.ReportMode.Strict">
+            <summary><see cref="F:Peachpie.Library.MySql.MySqli.Constants.MYSQLI_REPORT_STRICT"/></summary>
+        </member>
+        <member name="F:Peachpie.Library.MySql.MySqli.ReportMode.Index">
+            <summary><see cref="F:Peachpie.Library.MySql.MySqli.Constants.MYSQLI_REPORT_INDEX"/></summary>
+        </member>
+        <member name="F:Peachpie.Library.MySql.MySqli.ReportMode.All">
+            <summary><see cref="F:Peachpie.Library.MySql.MySqli.Constants.MYSQLI_REPORT_ALL"/></summary>
+        </member>
+        <member name="F:Peachpie.Library.MySql.MySqli.ReportMode.Default">
+            <summary>Default error handling flags.</summary>
+        </member>
+        <member name="T:Peachpie.Library.MySql.MySqli.mysqli_result">
+            <summary>
+            Represents the result set obtained from a query against the database.
+            </summary>
+        </member>
+        <member name="P:Peachpie.Library.MySql.MySqli.mysqli_result.current_field">
+            <summary>
+            Get current field offset of a result pointer.
+            </summary>
+        </member>
+        <member name="P:Peachpie.Library.MySql.MySqli.mysqli_result.field_count">
+            <summary>
+            Get the number of fields in a result.
+            </summary>
+        </member>
+        <member name="P:Peachpie.Library.MySql.MySqli.mysqli_result.num_rows">
+            <summary>
+            Gets the number of rows in a result.
+            </summary>
+        </member>
+        <member name="M:Peachpie.Library.MySql.MySqli.mysqli_result.data_seek(System.Int32)">
+            <summary>
+            Adjusts the result pointer to an arbitrary row in the result.
+            </summary>
+        </member>
+        <member name="M:Peachpie.Library.MySql.MySqli.mysqli_result.fetch_array(System.Int32)">
+            <summary>
+            Fetch a result row as an associative, a numeric array, or both.
+            </summary>
+        </member>
+        <member name="M:Peachpie.Library.MySql.MySqli.mysqli_result.fetch_assoc">
+            <summary>
+            Fetch a result row as an associative array.
+            </summary>
+        </member>
+        <member name="M:Peachpie.Library.MySql.MySqli.mysqli_result.fetch_column(System.Int32)">
+            <summary>
+            Fetch single scalar value from the result set.
+            </summary>
+        </member>
+        <member name="M:Peachpie.Library.MySql.MySqli.mysqli_result.fetch_field_direct(System.Int32)">
+            <summary>
+            Fetch meta-data for a single field.
+            </summary>
+        </member>
+        <member name="M:Peachpie.Library.MySql.MySqli.mysqli_result.fetch_field">
+            <summary>
+            Returns the next field in the result set.
+            </summary>
+        </member>
+        <member name="M:Peachpie.Library.MySql.MySqli.mysqli_result.fetch_fields">
+            <summary>
+            Returns an array of objects representing the fields in a result set.
+            </summary>
+        </member>
+        <member name="M:Peachpie.Library.MySql.MySqli.mysqli_result.fetch_object(System.String,Pchp.Core.PhpArray)">
+            <summary>
+            Returns the current row of a result set as an object.
+            </summary>
+        </member>
+        <member name="M:Peachpie.Library.MySql.MySqli.mysqli_result.fetch_row">
+            <summary>
+            Get a result row as an enumerated array.
+            </summary>
+        </member>
+        <member name="M:Peachpie.Library.MySql.MySqli.mysqli_result.field_seek(System.Int32)">
+            <summary>
+            Set result pointer to a specified field offset.
+            </summary>
+        </member>
+        <member name="M:Peachpie.Library.MySql.MySqli.mysqli_result.free">
+            <summary>
+            Alias to <see cref="M:Peachpie.Library.MySql.MySqli.mysqli_result.close"/>.
+            </summary>
+        </member>
+        <member name="M:Peachpie.Library.MySql.MySqli.mysqli_result.free_result">
+            <summary>
+            Alias to <see cref="M:Peachpie.Library.MySql.MySqli.mysqli_result.close"/>.
+            </summary>
+        </member>
+        <member name="M:Peachpie.Library.MySql.MySqli.mysqli_result.close">
+            <summary>
+            Frees the memory associated with a result.
+            </summary>
+        </member>
+        <member name="T:Peachpie.Library.MySql.MySqli.mysqli_sql_exception">
+            <summary>
+            The mysqli exception handling class.
+            </summary>
+        </member>
+        <member name="M:Peachpie.Library.MySql.MySqli.mysqli_sql_exception.#ctor">
+            <summary>
+            Constructs the object without initialization.
+            </summary>
+        </member>
+        <member name="M:Peachpie.Library.MySql.MySqli.mysqli_sql_exception.#ctor(System.String,System.Int64,Pchp.Library.Spl.Throwable)">
+            <summary>
+            Constructs the object.
+            </summary>
+        </member>
+        <member name="T:Peachpie.Library.MySql.MySqli.mysqli_stmt">
+            <summary>
+            Represents a prepared statement.
+            </summary>
+        </member>
+        <member name="F:Peachpie.Library.MySql.MySqli.mysqli_stmt.BoundType.Integer">
+            <summary>
+            corresponding variable has type integer
+            </summary>
+        </member>
+        <member name="F:Peachpie.Library.MySql.MySqli.mysqli_stmt.BoundType.Double">
+            <summary>
+            corresponding variable has type double
+            </summary>
+        </member>
+        <member name="F:Peachpie.Library.MySql.MySqli.mysqli_stmt.BoundType.String">
+            <summary>
+            corresponding variable has type string
+            </summary>
+        </member>
+        <member name="F:Peachpie.Library.MySql.MySqli.mysqli_stmt.BoundType.Blob">
+            <summary>
+            corresponding variable is a blob and will be sent in packets
+            </summary>
+        </member>
+        <member name="P:Peachpie.Library.MySql.MySqli.mysqli_stmt.Connection">
+            <summary>
+            Associated <see cref="T:Peachpie.Library.MySql.MySqli.mysqli"/> connection.
+            </summary>
+        </member>
+        <member name="P:Peachpie.Library.MySql.MySqli.mysqli_stmt.Command">
+            <summary>
+            Prepared command.
+            </summary>
+        </member>
+        <member name="P:Peachpie.Library.MySql.MySqli.mysqli_stmt.ResultResource">
+            <summary>
+            Result of the command execute command.
+            </summary>
+        </member>
+        <member name="F:Peachpie.Library.MySql.MySqli.mysqli_stmt._bound_params">
+            <summary>
+            Lazily bound params.
+            </summary>
+        </member>
+        <member name="F:Peachpie.Library.MySql.MySqli.mysqli_stmt._bound_params_type">
+            <summary>
+            Lazily bound params type.
+            </summary>
+        </member>
+        <member name="M:Peachpie.Library.MySql.MySqli.mysqli_stmt.#ctor(Peachpie.Library.MySql.MySqli.mysqli)">
+            <summary>
+            Constructs the object.
+            </summary>
+        </member>
+        <member name="M:Peachpie.Library.MySql.MySqli.mysqli_stmt.#ctor(Peachpie.Library.MySql.MySqli.mysqli,System.String)">
+            <summary>
+            Constructs the object.
+            </summary>
+        </member>
+        <member name="P:Peachpie.Library.MySql.MySqli.mysqli_stmt.affected_rows">
+            <summary>
+            Returns the total number of rows changed, deleted, or inserted by the last executed statement.
+            </summary>
+        </member>
+        <member name="P:Peachpie.Library.MySql.MySqli.mysqli_stmt.insert_id">
+            <summary>
+            Get the ID generated from the previous INSERT operation.
+            </summary>
+        </member>
+        <member name="M:Peachpie.Library.MySql.MySqli.mysqli_stmt.__construct(Peachpie.Library.MySql.MySqli.mysqli,System.String)">
+            <summary>
+            Constructs the object.
+            </summary>
+        </member>
+        <member name="M:Peachpie.Library.MySql.MySqli.mysqli_stmt.bind_param(System.String,Pchp.Core.PhpAlias[])">
+            <summary>
+            Binds variables to a prepared statement as parameters.
+            </summary>
+        </member>
+        <member name="M:Peachpie.Library.MySql.MySqli.mysqli_stmt.send_long_data(System.Int32,Pchp.Core.PhpString)">
+            <summary>
+            Send data in blocks.
+            </summary>
+        </member>
+        <member name="M:Peachpie.Library.MySql.MySqli.mysqli_stmt.close">
+            <summary>
+            Closes a prepared statement.
+            </summary>
+        </member>
+        <member name="M:Peachpie.Library.MySql.MySqli.mysqli_stmt.data_seek(System.Int32)">
+            <summary>
+            Seeks to an arbitrary row in statement result set.
+            </summary>
+            <param name="offset">Must be between zero and the total number of rows minus one.</param>
+        </member>
+        <member name="M:Peachpie.Library.MySql.MySqli.mysqli_stmt.execute">
+            <summary>
+            Executes a prepared Query.
+            </summary>
+        </member>
+        <member name="M:Peachpie.Library.MySql.MySqli.mysqli_stmt.get_result">
+            <summary>
+            Gets a result set from a prepared statement.
+            </summary>
+        </member>
+        <member name="M:Peachpie.Library.MySql.MySqli.mysqli_stmt.prepare(System.String)">
+            <summary>
+            Prepare an SQL statement for execution.
+            </summary>
+            <returns>Returns TRUE on success or FALSE on failure.</returns>
+        </member>
+        <member name="T:Peachpie.Library.MySql.MySqli.mysqli_warning">
+            <summary>
+            Represents a MySQL warning.
+            </summary>
+        </member>
+        <member name="M:Peachpie.Library.MySql.MySqlResultResource.#ctor(Pchp.Library.Database.ConnectionResource,System.Data.IDataReader,System.Boolean)">
+            <summary>
+            Creates an instance of a result resource.
+            </summary>
+            <param name="connection">Database connection.</param>
+            <param name="reader">Data reader from which to load results.</param>
+            <param name="convertTypes">Whether to convert resulting values to PHP types.</param>
+            <exception cref="T:System.ArgumentNullException">Argument is a <B>null</B> reference.</exception>
+        </member>
+        <member name="M:Peachpie.Library.MySql.MySqlResultResource.GetValues(System.String[],System.Boolean)">
+            <summary>
+            Gets row values.
+            </summary>
+            <param name="dataTypes">Column type names.</param>
+            <param name="convertTypes">Whether to convert value to PHP types.</param>
+            <returns>Row data.</returns>
+        </member>
+        <member name="P:Peachpie.Library.MySql.MySqlResultResource.ColumnSchema">
+            <summary>
+            The elements are of type <see cref="T:MySqlConnector.MySqlDbColumn"/>.
+            </summary>
+        </member>
+        <member name="M:Peachpie.Library.MySql.MySqlResultResource.GetCustomData">
+            <summary>
+            Collect additional information about current row of Reader.
+            </summary>
+        </member>
+        <member name="M:Peachpie.Library.MySql.MySqlResultResource.ConvertDbValue(System.String,System.Object)">
+            <summary>
+            Converts a value of a specified MySQL DB type to PHP value.
+            </summary>
+            <param name="dataType">MySQL DB data type.</param>
+            <param name="sqlValue">The value.</param>
+            <returns>PHP value.</returns>
+        </member>
+        <member name="M:Peachpie.Library.MySql.MySqlResultResource.MapFieldTypeName(System.String)">
+            <summary>
+            Maps MySQL .NET Connector's type name to the one displayed by PHP.
+            </summary>
+            <param name="typeName">MySQL .NET Connector's name.</param>
+            <returns>PHP name.</returns>
+        </member>
+    </members>
+</doc>

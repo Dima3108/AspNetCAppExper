@@ -11,6 +11,27 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Reference Include="ICSharpCode.SharpZipLib">
+      <HintPath>W:\7ZipSDK\original sharpziplib\SharpZipLib-master\SharpZipLib-master\src\ICSharpCode.SharpZipLib\bin\Debug\netstandard2\ICSharpCode.SharpZipLib.dll</HintPath>
+    </Reference>
+    <Reference Include="Peachpie.Library">
+      <HintPath>W:\GITHub\peachpie-1.1.4\peachpie-1.1.4\src\Peachpie.App\bin\Debug\net50\Peachpie.Library.dll</HintPath>
+    </Reference>
+    <Reference Include="Peachpie.Library.Graphics">
+      <HintPath>W:\GITHub\peachpie-1.1.4\peachpie-1.1.4\src\Peachpie.App\bin\Debug\net50\Peachpie.Library.Graphics.dll</HintPath>
+    </Reference>
+    <Reference Include="Peachpie.Library.MySql">
+      <HintPath>W:\GITHub\peachpie-1.1.4\peachpie-1.1.4\src\Peachpie.App\bin\Debug\net50\Peachpie.Library.MySql.dll</HintPath>
+    </Reference>
+    <Reference Include="Peachpie.Library.Network">
+      <HintPath>W:\GITHub\peachpie-1.1.4\peachpie-1.1.4\src\Peachpie.App\bin\Debug\net50\Peachpie.Library.Network.dll</HintPath>
+    </Reference>
+    <Reference Include="Peachpie.Runtime">
+      <HintPath>W:\GITHub\peachpie-1.1.4\peachpie-1.1.4\src\Peachpie.App\bin\Debug\net50\Peachpie.Runtime.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+
+  <ItemGroup>
     <Content Update="Data\users.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>

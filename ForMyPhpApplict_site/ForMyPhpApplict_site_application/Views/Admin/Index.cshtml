@@ -5,4 +5,10 @@
     <label for="f_r" class="form-control-file">load files</label>
     <input type="file" class="form-control-file" multiple  id="f_r" name="files" />
     <button type="submit" class="form-control btn btn-info">Отправить</button>
+
 </form>
+<div>
+    <form asp-controller="Admin" method="post" asp-action="GetBackup">
+        <button type="submit">Скачать резервную копию</button>
+    </form>
+</div>

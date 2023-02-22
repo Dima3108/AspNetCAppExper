@@ -9,6 +9,9 @@ using System.Web;
 using Microsoft.AspNetCore;
 using ForMyPhpApplict_site_application.Data;
 using Microsoft.AspNetCore.Authorization;
+using System.IO.Compression;
+using ICSharpCode.SharpZipLib.Tar;
+using ICSharpCode.SharpZipLib.GZip;
 namespace ForMyPhpApplict_site_application.Controllers
 {
     [Authorize]
@@ -48,6 +51,55 @@ namespace ForMyPhpApplict_site_application.Controllers
                return Redirect("Error");
             }
             
+        }
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public IActionResult GetBackup()
+        {
+            var dir = Path.Combine(BasePath.RootPath + "/" + BasePath.UserFalesPath);
+            using(Stream cesh_drive=System.IO. File.OpenWrite("1backup.tar.gzip"))
+            {
+                using(GZipOutputStream ostr=new GZipOutputStream(cesh_drive,4096))
+                {
+                    using(TarArchive archive = TarArchive.CreateOutputTarArchive(ostr))
+                    {
+                        archive.RootPath = dir;
+                        archive.AsciiTranslate = true;
+                        TarEntry tarEntry = TarEntry.CreateEntryFromFile(dir);
+                        
+                        archive.WriteEntry(tarEntry, false);
+                        string[] files = Directory.GetFiles(dir);
+                        foreach(var file in files)
+                        {
+                            Console.WriteLine("add file:" + file);
+                            tarEntry = TarEntry.CreateEntryFromFile(file);
+                            archive.WriteEntry(tarEntry, true);
+                        }
+                        //ostr.Flush();
+                        Console.WriteLine("close arhive");
+                        archive.Close();
+                    }
+                    //ostr.Flush();
+                    
+                }
+                if (cesh_drive.CanWrite == true)
+                {
+                    cesh_drive.Flush();
+                    cesh_drive.Close();
+                }
+            }
+            FileStreamResult r = null;
+            using(Stream s = System.IO.File.OpenRead("1backup.tar.gzip"))
+            {
+                Console.WriteLine("read file"); 
+                return File(s, "application/gzip", "1backup.tar.gzip");
+
+                // 
+
+            }
+            Console.WriteLine("delete file");
+System.IO.File.Delete("1backup.tar.gzip");
+             return r;
         }
     }
 }

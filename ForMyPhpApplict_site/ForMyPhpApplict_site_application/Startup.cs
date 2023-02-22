@@ -50,6 +50,7 @@ namespace ForMyPhpApplict_site_application
         options.LoginPath = "/Login/";
     });
             services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
+            
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -64,32 +65,46 @@ namespace ForMyPhpApplict_site_application
             {
                 app.UseExceptionHandler("/Error");
             }
-app.UseAuthentication();
-            app.UseAuthorization();
-            app.UseFileServer(new FileServerOptions
-            {
-                FileProvider = new PhysicalFileProvider(
-                   Path.Combine(env.ContentRootPath,"html_content")
-                   
-                    ),
-                RequestPath="/htmlcontent",
-                EnableDirectoryBrowsing=true
-                
-            }) ;
+           
+            
             var cookiePolicyOptions = new CookiePolicyOptions
             {
                 MinimumSameSitePolicy = SameSiteMode.Strict,
             };
-            app.UseCookiePolicy(cookiePolicyOptions);
+            var f_p= new PhysicalFileProvider(
+                   Path.Combine(env.ContentRootPath, "html_content")
+
+                    );
+            
+app.UseFileServer(new FileServerOptions
+            {
+                FileProvider =f_p,
+                RequestPath="/htmlcontent",
+                EnableDirectoryBrowsing=true
+                ,
+                StaticFileOptions={
+                    OnPrepareResponse = ctx =>
+                    {
+                        ctx.Context.Response.Headers.Append("charset","utf-8");
+                        ctx.Context.Response.Headers.Append("Content-Type","text/html; charset=utf-8");
+                       // ctx.Context.Response.Headers.Append( "Cache-Control", $"public, max-age={TimeSpan.FromSeconds(TimeSpan.FromMinutes(5).TotalSeconds)}");
+                    }
+                    
+                }
+
+            }) ;
             app.UseStaticFiles();
-            
+             app.UseAuthentication();
+            app.UseAuthorization();
+ app.UseCookiePolicy(cookiePolicyOptions);
             app.UseRouting();
-            
+           
             app.UseMvc(opt =>
             {
                 opt.MapRoute(default, "{controller=home}/{action=Index}/{id?}");
                 
             });
+            app.UseMiddleware<MiddleWare.PhpFileDetectMiddleware>();
           /*  app.UseEndpoints(endpoints =>
             {
                 endpoints.MapRazorPages();
