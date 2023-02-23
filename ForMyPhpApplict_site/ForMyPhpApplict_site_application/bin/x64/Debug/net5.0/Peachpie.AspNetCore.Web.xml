@@ -1,0 +1,412 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Peachpie.AspNetCore.Web</name>
+    </assembly>
+    <members>
+        <member name="T:Peachpie.AspNetCore.Web.HttpContextExtension">
+            <summary>
+            Provides methods for <see cref="T:Microsoft.AspNetCore.Http.HttpContext"/>.
+            </summary>
+        </member>
+        <member name="M:Peachpie.AspNetCore.Web.HttpContextExtension.GetDefaultRootPath(Microsoft.AspNetCore.Hosting.IHostingEnvironment)">
+            <summary>
+            Gets default root path.
+            </summary>
+        </member>
+        <member name="M:Peachpie.AspNetCore.Web.HttpContextExtension.GetDefaultRootPath(Microsoft.AspNetCore.Hosting.IWebHostEnvironment)">
+            <summary>
+            Gets default root path.
+            </summary>
+        </member>
+        <member name="M:Peachpie.AspNetCore.Web.HttpContextExtension.GetHttpContext(Pchp.Core.Context)">
+            <summary>
+            Gets <see cref="T:Microsoft.AspNetCore.Http.HttpContext"/> associated with given Web <see cref="T:Pchp.Core.Context"/>.
+            </summary>
+            <exception cref="T:System.ArgumentException">Given context is not a web context.</exception>
+        </member>
+        <member name="M:Peachpie.AspNetCore.Web.HttpContextExtension.GetOrCreateContext">
+            <summary>
+            Gets context associated with current <see cref="T:Microsoft.AspNetCore.Http.HttpContext"/>.
+            </summary>
+            <exception cref="T:System.NotSupportedException">Thrown in case <see cref="T:Microsoft.AspNetCore.Http.IHttpContextAccessor"/> is not registered
+            or a current <see cref="T:Microsoft.AspNetCore.Http.HttpContext"/> cannot be obtained.</exception>
+        </member>
+        <member name="M:Peachpie.AspNetCore.Web.HttpContextExtension.GetOrCreateContext(Microsoft.AspNetCore.Http.HttpContext)">
+            <summary>
+            Gets existing context associated with given <see cref="T:Microsoft.AspNetCore.Http.HttpContext"/> or creates new one with default settings.
+            </summary>
+        </member>
+        <member name="M:Peachpie.AspNetCore.Web.HttpContextHelpers.TryParseSameSite(System.String,Microsoft.AspNetCore.Http.SameSiteMode@)">
+            <summary>
+            Parses samesite option value.
+            </summary>
+            <param name="samesite">One of: None|Lax|Strict. Case insensitive.</param>
+            <param name="mode">Parsed value.</param>
+            <returns>Whether the value was parsed.</returns>
+        </member>
+        <member name="T:Peachpie.AspNetCore.Web.IPhpOptions">
+            <summary>
+            Configurable options for a PHP request.
+            </summary>
+        </member>
+        <member name="P:Peachpie.AspNetCore.Web.IPhpOptions.StringEncoding">
+            <summary>
+            Encoding to be used for<br/>
+            - the conversion between Unicode string and byte string.<br/>
+            - outputting Unicode string to response stream.<br/>
+            Recommended value is <see cref="P:System.Text.Encoding.UTF8"/>.
+            </summary>
+        </member>
+        <member name="P:Peachpie.AspNetCore.Web.IPhpOptions.RootPath">
+            <summary>
+            Application's root directory.
+            All the scripts are resolved relatively to this path.
+            </summary>
+        </member>
+        <member name="P:Peachpie.AspNetCore.Web.IPhpOptions.Session">
+            <summary>
+            Gets session configuration.
+            </summary>
+            <remarks>
+            Can be <c>null</c> in case the application is not built with the session extension (<c>Peachpie.Library</c>).
+            </remarks>
+        </member>
+        <member name="E:Peachpie.AspNetCore.Web.IPhpOptions.RequestStart">
+            <summary>
+            Allows additional configuration of the request,
+            right before the requested script is executed.
+            </summary>
+        </member>
+        <member name="P:Peachpie.AspNetCore.Web.IPhpOptions.LoggerCategory">
+            <summary>
+            Name the logger category. Default is <c>"PHP"</c>.
+            </summary>
+        </member>
+        <member name="T:Peachpie.AspNetCore.Web.PhpHandlerMiddleware">
+            <summary>
+            ASP.NET Core application middleware handling requests to compiled PHP scripts.
+            </summary>
+        </member>
+        <member name="P:Peachpie.AspNetCore.Web.PhpHandlerMiddleware.PhpOptions.LoggerCategory">
+            <inheritdoc/>
+        </member>
+        <member name="F:Peachpie.AspNetCore.Web.PhpHandlerMiddleware.s_loggerregistered">
+            <summary>flag we have already registered ILogger into PhpException.OnError</summary>
+        </member>
+        <member name="M:Peachpie.AspNetCore.Web.PhpHandlerMiddleware.LoadScriptAssemblies(Peachpie.AspNetCore.Web.PhpHandlerMiddleware.PhpOptions)">
+            <summary>
+            Loads and reflects assemblies containing compiled PHP scripts.
+            </summary>
+        </member>
+        <member name="M:Peachpie.AspNetCore.Web.PhpHandlerMiddleware.NormalizeRootPath(System.String)">
+            <summary>
+            Normalize slashes and ensures the path ends with slash.
+            </summary>
+        </member>
+        <member name="M:Peachpie.AspNetCore.Web.PhpHandlerMiddleware.OnContextCreated(Peachpie.AspNetCore.Web.RequestContextCore)">
+            <summary>
+            Handles new context.
+            </summary>
+        </member>
+        <member name="M:Peachpie.AspNetCore.Web.PhpHandlerMiddleware.GetRequestTimeout(Pchp.Core.Context)">
+            <summary>
+            Gets the global request time limit.
+            </summary>
+        </member>
+        <member name="T:Peachpie.AspNetCore.Web.PhpHandlerConfiguration">
+            <summary>
+            Middleware configuration.
+            </summary>
+        </member>
+        <member name="P:Peachpie.AspNetCore.Web.PhpHandlerConfiguration.PathPrefix">
+            <summary>
+            Prefix of request paths to be processed by the middleware.
+            Can be <c>default</c> (empty) which means the middleware handled all requested PHP scripts.
+            </summary>
+        </member>
+        <member name="P:Peachpie.AspNetCore.Web.PhpHandlerConfiguration.ConfigureContext">
+            <summary>
+            Configure context and options callback.
+            Can be <c>null</c>.
+            </summary>
+        </member>
+        <member name="P:Peachpie.AspNetCore.Web.PhpHandlerConfiguration.LegacyOptions">
+            <summary>
+            Old options object to be applied to the middleware options.
+            Can be <c>null</c>.
+            </summary>
+        </member>
+        <member name="P:Peachpie.AspNetCore.Web.PhpHandlerConfiguration.RootPath">
+            <summary>
+            Gets or sets physical path used as root of the PHP scripts.
+            </summary>
+        </member>
+        <member name="T:Peachpie.AspNetCore.Web.RequestCompletionReason">
+            <summary>
+            Request end reason.
+            </summary>
+        </member>
+        <member name="T:Peachpie.AspNetCore.Web.RequestContextCore">
+            <summary>
+            Runtime context for ASP.NET Core request.
+            </summary>
+        </member>
+        <member name="P:Peachpie.AspNetCore.Web.RequestContextCore.DebugDisplay">
+            <summary>Debug display string.</summary>
+        </member>
+        <member name="P:Peachpie.AspNetCore.Web.RequestContextCore.Pchp#Core#IHttpPhpContext#HeadersSent">
+            <summary>Gets value indicating HTTP headers were already sent.</summary>
+        </member>
+        <member name="M:Peachpie.AspNetCore.Web.RequestContextCore.Pchp#Core#IHttpPhpContext#GetHeaders">
+            <summary>Enumerates HTTP headers in current response.</summary>
+        </member>
+        <member name="P:Peachpie.AspNetCore.Web.RequestContextCore.StatusCode">
+            <summary>
+            Gets or sets HTTP response status code.
+            </summary>
+        </member>
+        <member name="P:Peachpie.AspNetCore.Web.RequestContextCore.Pchp#Core#IHttpPhpContext#InputStream">
+            <summary>
+            Stream with contents of the incoming HTTP entity body.
+            </summary>
+        </member>
+        <member name="P:Peachpie.AspNetCore.Web.RequestContextCore.MaxRequestSize">
+            <summary>
+            Gets max request size (upload size, post size) in bytes.
+            Gets <c>0</c> if limit is not set.
+            </summary>
+        </member>
+        <member name="P:Peachpie.AspNetCore.Web.RequestContextCore.IsClientConnected">
+            <summary>
+            Whether the underlaying connection is alive.
+            </summary>
+        </member>
+        <member name="P:Peachpie.AspNetCore.Web.RequestContextCore.Pchp#Core#IHttpPhpContext#SessionHandler">
+            <summary>
+            Gets or sets session handler for current context.
+            </summary>
+        </member>
+        <member name="P:Peachpie.AspNetCore.Web.RequestContextCore.Pchp#Core#IHttpPhpContext#SessionState">
+            <summary>
+            Gets or sets session state.
+            </summary>
+        </member>
+        <member name="P:Peachpie.AspNetCore.Web.RequestContextCore.RequestCompletionSource">
+            <summary>
+            Event signaling the request processing has been finished or cancelled.
+            </summary>
+            <remarks>
+            End may occur when request finishes its processing or when event explicitly requested by user's code (See <see cref="M:Pchp.Core.IHttpPhpContext.Flush(System.Boolean)"/>).
+            </remarks>
+        </member>
+        <member name="F:Peachpie.AspNetCore.Web.RequestContextCore._requestLimitTimer">
+            <summary>
+            Internal timer used to signalize the request has timeouted.
+            </summary>
+        </member>
+        <member name="M:Peachpie.AspNetCore.Web.RequestContextCore.TrySetTimeLimit(System.TimeSpan)">
+            <summary>
+            Set the time limit of the request, from now. Any pending time limit will be cancelled.
+            After the specified time span, <see cref="P:Peachpie.AspNetCore.Web.RequestContextCore.RequestCompletionSource"/> will be signaled with the state <see cref="F:Peachpie.AspNetCore.Web.RequestCompletionReason.Timeout"/>.
+            </summary>
+            <param name="span">
+            Time span of the time limit.
+            Use <see cref="F:System.Threading.Timeout.InfiniteTimeSpan"/> (or <c>-1</c> milliseconds) to cancel the pending time limit.
+            </param>
+        </member>
+        <member name="M:Peachpie.AspNetCore.Web.RequestContextCore.ApplyExecutionTimeout(System.TimeSpan)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Peachpie.AspNetCore.Web.RequestContextCore.ProcessScript(Pchp.Core.Context.ScriptInfo,System.String)">
+            <summary>
+            Performs the request lifecycle, invokes given entry script and cleanups the context.
+            </summary>
+            <param name="script">Entry script.</param>
+            <param name="path_info">The <c>PATH_INFO</c> component.</param>
+        </member>
+        <member name="M:Peachpie.AspNetCore.Web.RequestContextCore.Dispose">
+            <summary>
+            Disposes request resources.
+            </summary>
+        </member>
+        <member name="P:Peachpie.AspNetCore.Web.RequestContextCore.ServerApi">
+            <summary>
+            Gets server type interface name.
+            </summary>
+        </member>
+        <member name="P:Peachpie.AspNetCore.Web.RequestContextCore.ServerSoftware">
+            <summary>
+            Name of the server software as it appears in <c>$_SERVER[SERVER_SOFTWARE]</c> variable.
+            </summary>
+        </member>
+        <member name="F:Peachpie.AspNetCore.Web.RequestContextCore.s_XPoweredBy">
+            <summary>
+            Informational string exposing technology powering the web request and version.
+            </summary>
+        </member>
+        <member name="P:Peachpie.AspNetCore.Web.RequestContextCore.HttpContextItemKey">
+            <summary>
+            Unique key of item within <see cref="P:Microsoft.AspNetCore.Http.HttpContext.Items"/> associated with this <see cref="T:Pchp.Core.Context"/>.
+            </summary>
+        </member>
+        <member name="P:Peachpie.AspNetCore.Web.RequestContextCore.HttpContext">
+            <summary>
+            Reference to current <see cref="P:Peachpie.AspNetCore.Web.RequestContextCore.HttpContext"/>.
+            Cannot be <c>null</c>.
+            </summary>
+        </member>
+        <member name="M:Peachpie.AspNetCore.Web.RequestContextCore.TryGetFromHttpContext(Microsoft.AspNetCore.Http.HttpContext)">
+            <summary>
+            Gets (non disposed) context associated to given <see cref="P:Peachpie.AspNetCore.Web.RequestContextCore.HttpContext"/>.
+            </summary>
+        </member>
+        <member name="M:Peachpie.AspNetCore.Web.RequestContextCore.InitServerVariable">
+            <summary>
+            Loads $_SERVER from <see cref="F:Peachpie.AspNetCore.Web.RequestContextCore._httpctx"/>.
+            </summary>
+        </member>
+        <member name="T:Peachpie.AspNetCore.Web.ResponseOutput.DefaultTextWriter">
+            <summary>
+            <see cref="T:System.IO.TextWriter"/> implementation passing text to underlying response stream in given encoding.
+            </summary>
+        </member>
+        <member name="P:Peachpie.AspNetCore.Web.ResponseOutput.DefaultTextWriter.FormatProvider">
+            <summary>
+            Invariant number format provider.
+            </summary>
+        </member>
+        <member name="M:Peachpie.AspNetCore.Web.ResponseOutput.DefaultTextWriter.Write(System.Byte[],System.Int32)">
+            <summary>
+            Writes a sequence of bytes into the underlying stream.
+            </summary>
+        </member>
+        <member name="P:Peachpie.AspNetCore.Web.ResponseOutput.PipeTextWriter.FormatProvider">
+            <summary>
+            Invariant number format provider.
+            </summary>
+        </member>
+        <member name="T:Peachpie.AspNetCore.Web.Session.AspNetCoreSessionHandler">
+            <summary>
+            Session handler for ASP.NET Core.
+            </summary>
+        </member>
+        <member name="M:Peachpie.AspNetCore.Web.Session.AspNetCoreSessionHandler.GetSessionName(Pchp.Core.IHttpPhpContext)">
+            <summary>
+            Gets the session name.
+            </summary>
+        </member>
+        <member name="M:Peachpie.AspNetCore.Web.Session.AspNetCoreSessionHandler.SetSessionName(Pchp.Core.IHttpPhpContext,System.String)">
+            <summary>
+            Sets the session name.
+            </summary>
+        </member>
+        <member name="M:Peachpie.AspNetCore.Web.Session.AspNetCoreSessionHandler.IsEnabled(Pchp.Core.IHttpPhpContext)">
+            <summary>
+            Checks if sessions were configured.
+            </summary>
+        </member>
+        <member name="M:Peachpie.AspNetCore.Web.Session.AspNetCoreSessionHandler.Load(Pchp.Core.IHttpPhpContext)">
+            <summary>
+            Called when sessions are started.
+            </summary>
+        </member>
+        <member name="M:Peachpie.AspNetCore.Web.Session.AspNetCoreSessionHandler.StartSession(Pchp.Core.Context,Pchp.Core.IHttpPhpContext)">
+            <summary>
+            Initiates the session.
+            </summary>
+        </member>
+        <member name="M:Peachpie.AspNetCore.Web.Session.AspNetCoreSessionHandler.CloseSession(Pchp.Core.Context,Pchp.Core.IHttpPhpContext,System.Boolean)">
+            <summary>
+            Close the session (either abandon or persist).
+            </summary>
+        </member>
+        <member name="T:Peachpie.AspNetCore.Web.Session.SharedSession">
+            <summary>
+            <see cref="T:Microsoft.AspNetCore.Http.ISession"/> implementation getting value from both PHP and AspNetCore session states.
+            </summary>
+        </member>
+        <member name="T:Microsoft.Extensions.DependencyInjection.HttpServiceCollectionExtensions">
+            <summary>
+            Extension methods for configuring HttpContext services.
+            </summary>
+        </member>
+        <member name="M:Microsoft.Extensions.DependencyInjection.HttpServiceCollectionExtensions.AddPhp(Microsoft.Extensions.DependencyInjection.IServiceCollection,System.Action{Peachpie.AspNetCore.Web.IPhpOptions})">
+            <summary>
+            Configures PHP services and configuration options.<br/>
+            Adds <see cref="T:Microsoft.AspNetCore.Http.IHttpContextAccessor"/>.<br/>
+            Allows current <see cref="T:Pchp.Core.Context"/> to be obtained from current ExecutionContext through <see cref="P:Pchp.Core.Utilities.ContextExtensions.CurrentContext"/>.<br/>
+            </summary>
+            <param name="services">The <see cref="T:Microsoft.Extensions.DependencyInjection.IServiceCollection"/>.</param>
+            <param name="configureOptions">Delegate configuring the options. Can be <c>null</c>.</param>
+            <returns>The service collection.</returns>
+        </member>
+        <member name="M:Microsoft.Extensions.DependencyInjection.HttpServiceCollectionExtensions.ConfigurePhp(Microsoft.Extensions.DependencyInjection.IServiceCollection,System.Action{Peachpie.AspNetCore.Web.IPhpOptions})">
+            <summary>
+            Configures PHP configuration options.<br/>
+            </summary>
+        </member>
+        <member name="M:Microsoft.Extensions.DependencyInjection.HttpServiceCollectionExtensions.AddPeachpie(Microsoft.Extensions.DependencyInjection.IServiceCollection)">
+            <summary>
+            Adds a default implementation for the <see cref="T:Microsoft.AspNetCore.Http.IHttpContextAccessor"/> service
+            and configures PHP services.
+            </summary>
+            <param name="services">The <see cref="T:Microsoft.Extensions.DependencyInjection.IServiceCollection"/>.</param>
+            <returns>The service collection.</returns>
+        </member>
+        <member name="M:Microsoft.AspNetCore.Builder.PhpRequestDelegateExtension.UsePhp(Microsoft.AspNetCore.Builder.IApplicationBuilder,Microsoft.AspNetCore.Builder.PhpRequestOptions)">
+            <summary>
+            Installs request handler to compiled PHP scripts.
+            </summary>
+        </member>
+        <member name="M:Microsoft.AspNetCore.Builder.PhpRequestDelegateExtension.UsePhp(Microsoft.AspNetCore.Builder.IApplicationBuilder)">
+            <summary>
+            Installs middleware to handle all compiled PHP scripts.
+            </summary>
+        </member>
+        <member name="M:Microsoft.AspNetCore.Builder.PhpRequestDelegateExtension.UsePhp(Microsoft.AspNetCore.Builder.IApplicationBuilder,Microsoft.AspNetCore.Http.PathString,System.Action{Pchp.Core.Context},System.String)">
+            <summary>
+            Installs middleware to handle compiled PHP scripts.
+            </summary>
+            <param name="builder">Application builder on which the middleware ins installed.</param>
+            <param name="prefix">
+            Optional path prefix.
+            Only requests prefixed with this path segment(s) will be processed by this middleware.
+            The prefix can be empty of <c>default</c> in which case all requested PHP scripts will be handled.
+            </param>
+            <param name="configureContext">Optional callback allowing to setup PHP request context of handled scripts.</param>
+            <param name="rootPath">
+            Physical path on local system to be treated as the root of the application.
+            All the compiled script files will be translated to be relative to this root path.
+            If not specified, the web host's default root path is used (wwwroot by default).
+            </param>
+        </member>
+        <member name="T:Microsoft.AspNetCore.Builder.PhpRequestOptions">
+            <summary>
+            PHP scripts hosting options.
+            </summary>
+        </member>
+        <member name="P:Microsoft.AspNetCore.Builder.PhpRequestOptions.ScriptAssembliesName">
+            <summary>
+            Set of assemblies name containing compiled PHP scripts to be sideloaded.
+            </summary>
+        </member>
+        <member name="P:Microsoft.AspNetCore.Builder.PhpRequestOptions.StringEncoding">
+            <summary>
+            Encoding to be used for
+            - the conversion between Unicode string and byte string.
+            - outputting Unicode string to response stream.
+            </summary>
+        </member>
+        <member name="P:Microsoft.AspNetCore.Builder.PhpRequestOptions.RootPath">
+            <summary>
+            Application root directory. All the scripts will be relative to this path.
+            </summary>
+        </member>
+        <member name="P:Microsoft.AspNetCore.Builder.PhpRequestOptions.BeforeRequest">
+            <summary>
+            Event raised before processing the request within newly created <see cref="T:Pchp.Core.Context"/>.
+            </summary>
+        </member>
+    </members>
+</doc>

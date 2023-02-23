@@ -1,0 +1,669 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Peachpie.Library.Scripting</name>
+    </assembly>
+    <members>
+        <member name="T:Peachpie.Library.Scripting.Script">
+            <summary>
+            Script representing a compiled submission.
+            </summary>
+        </member>
+        <member name="F:Peachpie.Library.Scripting.Script._previousSubmissions">
+            <summary>
+            Set of dependency submissions.
+            Can be empty.
+            These scripts are expected to be evaluated when running this script.
+            Cannot be <c>null</c>.
+            </summary>
+        </member>
+        <member name="F:Peachpie.Library.Scripting.Script._entryPoint">
+            <summary>
+            The entry method of the submissions global code.
+            </summary>
+        </member>
+        <member name="F:Peachpie.Library.Scripting.Script._image">
+            <summary>
+            Submission assembly image.
+            </summary>
+        </member>
+        <member name="F:Peachpie.Library.Scripting.Script._assemblyName">
+            <summary>
+            Submission assembly name.
+            </summary>
+        </member>
+        <member name="F:Peachpie.Library.Scripting.Script._script">
+            <summary>
+            In case of valid submission, <c>&lt;Script&gt;</c> type representing the submissions global code.
+            </summary>
+        </member>
+        <member name="P:Peachpie.Library.Scripting.Script.DependingSubmissions">
+            <summary>
+            References to scripts that precedes this one.
+            Current script requires these to be evaluated first.
+            </summary>
+        </member>
+        <member name="P:Peachpie.Library.Scripting.Script.Image">
+            <summary>
+            Gets the assembly content.
+            </summary>
+        </member>
+        <member name="P:Peachpie.Library.Scripting.Script.AssemblyName">
+            <summary>
+            Gets the script assembly name.
+            </summary>
+        </member>
+        <member name="M:Peachpie.Library.Scripting.Script.CollectDependencies(System.Reflection.Assembly,Peachpie.Library.Scripting.PhpCompilationFactory,System.Collections.Generic.IEnumerable{Peachpie.Library.Scripting.Script})">
+            <summary>
+            Collects scripts which declarations were used directly in the compiled assembly.
+            These scripts are dependencies to the assembly so they must be evaluated first in order to re-use <paramref name="assembly"/> in future.
+            </summary>
+            <param name="assembly">Compiled assembly.</param>
+            <param name="builder">Assembly factory.</param>
+            <param name="previousSubmissions">All scripts referenced by the assembly compilation.</param>
+            <returns></returns>
+        </member>
+        <member name="M:Peachpie.Library.Scripting.Script.Create(Pchp.Core.Context.ScriptOptions,System.String,Peachpie.Library.Scripting.PhpCompilationFactory,System.Collections.Generic.IEnumerable{Peachpie.Library.Scripting.Script})">
+            <summary>
+            Compiles <paramref name="code"/> and creates script.
+            </summary>
+            <param name="options">Compilation options.</param>
+            <param name="code">Code to be compiled.</param>
+            <param name="builder">Assembly builder.</param>
+            <param name="previousSubmissions">Enumeration of scripts that were evaluated within current context. New submission may reference them.</param>
+            <returns>New script representing the compiled code.</returns>
+        </member>
+        <member name="M:Peachpie.Library.Scripting.Script.CreateInvalid(System.Collections.Immutable.ImmutableArray{Microsoft.CodeAnalysis.Diagnostic})">
+            <summary>
+            Initializes an invalid script that throws diagnostics upon invoking.
+            </summary>
+        </member>
+        <member name="M:Peachpie.Library.Scripting.Script.HasErrors(System.Collections.Generic.IEnumerable{Microsoft.CodeAnalysis.Diagnostic})">
+            <summary>
+            Checks if given collection contains fatal errors.
+            </summary>
+        </member>
+        <member name="M:Peachpie.Library.Scripting.Script.GetGlobalRoutineHandle(System.String)">
+            <summary>
+            Resolves global function handle(s).
+            </summary>
+        </member>
+        <member name="M:Peachpie.Library.Scripting.Highlight.Config.GetSet(Pchp.Core.Context,Pchp.Core.IPhpConfigurationService,System.String,Pchp.Core.PhpValue,Pchp.Library.StandardPhpOptions.IniAction)">
+            <summary>
+            Gets or sets a value of a legacy configuration option.
+            </summary>
+        </member>
+        <member name="M:Peachpie.Library.Scripting.Highlight.Config.RegisterLegacyOptions">
+            <summary>
+            Registers legacy ini-options.
+            </summary>
+        </member>
+        <member name="M:Peachpie.Library.Scripting.Highlight.highlight_string(Pchp.Core.Context,System.String,System.Boolean)">
+            <summary>
+            Outputs or returns html code for a highlighted version of the given PHP code.
+            </summary>
+        </member>
+        <member name="M:Peachpie.Library.Scripting.Highlight.highlight_file(Pchp.Core.Context,System.String,System.Boolean)">
+            <summary>
+            Syntax highlighting of a file.
+            </summary>
+        </member>
+        <member name="M:Peachpie.Library.Scripting.Highlight.show_source(Pchp.Core.Context,System.String,System.Boolean)">
+            <summary>
+            Alias of <see cref="M:Peachpie.Library.Scripting.Highlight.highlight_file(Pchp.Core.Context,System.String,System.Boolean)"/>().
+            </summary>
+        </member>
+        <member name="M:Peachpie.Library.Scripting.PhpCompilationFactoryBase.MetadataReferences">
+            <summary>
+            Collect references we have to pass to the compilation.
+            </summary>
+        </member>
+        <member name="F:Peachpie.Library.Scripting.PhpCompilationFactoryBase._assemblies">
+            <summary>
+            Set of simple assembly names (submissions) loaded by the factory.
+            </summary>
+        </member>
+        <member name="F:Peachpie.Library.Scripting.PhpFunctions._lambdaFuncName">
+            <summary>
+            CLR name of the lambda function also internal PHP name if <c>__FUNCTION__</c> is used inside.
+            </summary>
+        </member>
+        <member name="F:Peachpie.Library.Scripting.PhpFunctions._lambdaFormatString">
+            <summary>
+            Name of the lambda when registered in <see cref="T:Pchp.Core.Context"/>.
+            </summary>
+        </member>
+        <member name="M:Peachpie.Library.Scripting.PhpFunctions.create_function(Pchp.Core.Context,System.String,System.String)">
+            <summary>
+            Creates an anonymous function from the parameters passed, and returns a unique name for it.
+            </summary>
+            <param name="ctx">Runtime context.</param>
+            <param name="args">The function arguments.</param>
+            <param name="code">the function body.</param>
+            <returns>Returns a unique function name as a string, or <c>FALSE</c> on error.</returns>
+        </member>
+        <member name="T:Peachpie.Library.Scripting.ScriptingContext">
+            <summary>
+            Data associated with <see cref="T:Pchp.Core.Context"/>.
+            </summary>
+        </member>
+        <member name="M:Peachpie.Library.Scripting.ScriptingContext.EnsureContext(Pchp.Core.Context)">
+            <summary>
+            Gets data associated with given context.
+            </summary>
+        </member>
+        <member name="P:Peachpie.Library.Scripting.ScriptingContext.Submissions">
+            <summary>
+            Set of submissions already evaluated within the context.
+            </summary>
+        </member>
+        <member name="P:Peachpie.Library.Scripting.ScriptingContext.LastLambdaIndex">
+            <summary>
+            Index of function created with <see cref="M:Peachpie.Library.Scripting.PhpFunctions.create_function(Pchp.Core.Context,System.String,System.String)"/>.
+            </summary>
+        </member>
+        <member name="M:Peachpie.Library.Scripting.Standard.php_strip_whitespace(Pchp.Core.Context,System.String)">
+            <summary>
+            Return source with stripped comments and whitespace.
+            </summary>
+            <returns>The stripped source code will be returned on success, or an empty string on failure.</returns>
+        </member>
+        <member name="T:Peachpie.Library.Scripting.PhpToken">
+            <summary>
+            Represents a token returned by <see cref="M:Peachpie.Library.Scripting.PhpToken.tokenize(System.String,System.Int32)"/>.
+            </summary>
+        </member>
+        <member name="P:Peachpie.Library.Scripting.PhpToken.id">
+            <summary>One of the T_* constants, or an ASCII codepoint representing a single-char token.</summary>
+        </member>
+        <member name="P:Peachpie.Library.Scripting.PhpToken.text">
+            <summary>The textual content of the token.</summary>
+        </member>
+        <member name="P:Peachpie.Library.Scripting.PhpToken.line">
+            <summary>The line number (1-based) of the token.</summary>
+        </member>
+        <member name="P:Peachpie.Library.Scripting.PhpToken.pos">
+            <summary>The position (0-based) in the tokenized string.</summary>
+        </member>
+        <member name="M:Peachpie.Library.Scripting.PhpToken.__construct(System.Int32,System.String,System.Int32,System.Int32)">
+            <summary>
+            Initializes the object.
+            </summary>
+        </member>
+        <member name="M:Peachpie.Library.Scripting.PhpToken.getTokenName">
+            <summary>
+            Returns the name of the token or <c>NULL</c>.
+            </summary>
+        </member>
+        <member name="M:Peachpie.Library.Scripting.PhpToken.is(Pchp.Core.PhpValue)">
+            <summary>
+            Tells whether the token is of given kind.
+            </summary>
+        </member>
+        <member name="M:Peachpie.Library.Scripting.PhpToken.isIgnorable">
+            <summary>
+            Tells whether the token would be ignored by the PHP parser.
+            </summary>
+        </member>
+        <member name="M:Peachpie.Library.Scripting.PhpToken.__toString">
+            <summary>
+            Gets the textual content of the token.
+            </summary>
+        </member>
+        <member name="M:Peachpie.Library.Scripting.PhpToken.ToString">
+            <summary>
+            Gets the textual content of the token.
+            </summary>
+        </member>
+        <member name="M:Peachpie.Library.Scripting.PhpToken.tokenize(System.String,System.Int32)">
+            <summary>
+            Returns an array of PhpToken objects.
+            </summary>
+        </member>
+        <member name="F:Peachpie.Library.Scripting.Tokenizer.T_ABSTRACT">
+            <summary>abstract Class Abstraction</summary>
+        </member>
+        <member name="F:Peachpie.Library.Scripting.Tokenizer.T_AND_EQUAL">
+            <summary>&amp;=	assignment operators</summary>
+        </member>
+        <member name="F:Peachpie.Library.Scripting.Tokenizer.T_ARRAY">
+            <summary>array() array(), array syntax</summary>
+        </member>
+        <member name="F:Peachpie.Library.Scripting.Tokenizer.T_ARRAY_CAST">
+            <summary>array) type-casting</summary>
+        </member>
+        <member name="F:Peachpie.Library.Scripting.Tokenizer.T_AS">
+            <summary>as	foreach</summary>
+        </member>
+        <member name="F:Peachpie.Library.Scripting.Tokenizer.T_BOOLEAN_AND">
+            <summary>&amp;&amp;	logical operators</summary>
+        </member>
+        <member name="F:Peachpie.Library.Scripting.Tokenizer.T_BOOLEAN_OR">
+            <summary>||	logical operators</summary>
+        </member>
+        <member name="F:Peachpie.Library.Scripting.Tokenizer.T_BOOL_CAST">
+            <summary>bool) or(boolean) type-casting</summary>
+        </member>
+        <member name="F:Peachpie.Library.Scripting.Tokenizer.T_BREAK">
+            <summary>break	break</summary>
+        </member>
+        <member name="F:Peachpie.Library.Scripting.Tokenizer.T_CALLABLE">
+            <summary>callable    callable</summary>
+        </member>
+        <member name="F:Peachpie.Library.Scripting.Tokenizer.T_CASE">
+            <summary>case	switch</summary>
+        </member>
+        <member name="F:Peachpie.Library.Scripting.Tokenizer.T_CATCH">
+            <summary>catch	Exceptions</summary>
+        </member>
+        <member name="F:Peachpie.Library.Scripting.Tokenizer.T_CLASS">
+            <summary>class classes and objects</summary>
+        </member>
+        <member name="F:Peachpie.Library.Scripting.Tokenizer.T_CLASS_C">
+            <summary>__CLASS__   magic constants</summary>
+        </member>
+        <member name="F:Peachpie.Library.Scripting.Tokenizer.T_CLONE">
+            <summary>clone   classes and objects</summary>
+        </member>
+        <member name="F:Peachpie.Library.Scripting.Tokenizer.T_CLOSE_TAG">
+            <summary>?> or %>	escaping from HTML</summary>
+        </member>
+        <member name="F:Peachpie.Library.Scripting.Tokenizer.T_COALESCE">
+            <summary>??	comparison operators(available since PHP 7.0.0)</summary>
+        </member>
+        <member name="F:Peachpie.Library.Scripting.Tokenizer.T_COMMENT">
+            <summary>// or #, and /* */	comments</summary>
+        </member>
+        <member name="F:Peachpie.Library.Scripting.Tokenizer.T_CONCAT_EQUAL">
+            <summary>.=	assignment operators</summary>
+        </member>
+        <member name="F:Peachpie.Library.Scripting.Tokenizer.T_CONST">
+            <summary>const   class constants</summary>
+        </member>
+        <member name="F:Peachpie.Library.Scripting.Tokenizer.T_CONSTANT_ENCAPSED_STRING">
+            <summary>"foo" or 'bar'	string syntax</summary>
+        </member>
+        <member name="F:Peachpie.Library.Scripting.Tokenizer.T_CONTINUE">
+            <summary>continue	continue</summary>
+        </member>
+        <member name="F:Peachpie.Library.Scripting.Tokenizer.T_CURLY_OPEN">
+            <summary>{$	complex variable parsed syntax</summary>
+        </member>
+        <member name="F:Peachpie.Library.Scripting.Tokenizer.T_DEC">
+            <summary>--	incrementing/decrementing operators</summary>
+        </member>
+        <member name="F:Peachpie.Library.Scripting.Tokenizer.T_DECLARE">
+            <summary>declare declare</summary>
+        </member>
+        <member name="F:Peachpie.Library.Scripting.Tokenizer.T_DEFAULT">
+            <summary>default	switch</summary>
+        </member>
+        <member name="F:Peachpie.Library.Scripting.Tokenizer.T_DIR">
+            <summary>__DIR__ magic constants(available since PHP 5.3.0)</summary>
+        </member>
+        <member name="F:Peachpie.Library.Scripting.Tokenizer.T_DIV_EQUAL">
+            <summary>/=	assignment operators</summary>
+        </member>
+        <member name="F:Peachpie.Library.Scripting.Tokenizer.T_DNUMBER">
+            <summary>0.12, etc.floating point numbers</summary>
+        </member>
+        <member name="F:Peachpie.Library.Scripting.Tokenizer.T_DOC_COMMENT">
+            <summary>/** */	PHPDoc style comments</summary>
+        </member>
+        <member name="F:Peachpie.Library.Scripting.Tokenizer.T_DO">
+            <summary>do	do..while</summary>
+        </member>
+        <member name="F:Peachpie.Library.Scripting.Tokenizer.T_DOLLAR_OPEN_CURLY_BRACES">
+            <summary>${	complex variable parsed syntax</summary>
+        </member>
+        <member name="F:Peachpie.Library.Scripting.Tokenizer.T_DOUBLE_ARROW">
+            <summary>=>	array syntax</summary>
+        </member>
+        <member name="F:Peachpie.Library.Scripting.Tokenizer.T_DOUBLE_CAST">
+            <summary>real), (double) or(float) type-casting</summary>
+        </member>
+        <member name="F:Peachpie.Library.Scripting.Tokenizer.T_DOUBLE_COLON">
+            <summary>::	see T_PAAMAYIM_NEKUDOTAYIM below</summary>
+        </member>
+        <member name="F:Peachpie.Library.Scripting.Tokenizer.T_ECHO">
+            <summary>echo    echo</summary>
+        </member>
+        <member name="F:Peachpie.Library.Scripting.Tokenizer.T_ELLIPSIS">
+            <summary>...	function arguments (available since PHP 5.6.0)</summary>
+        </member>
+        <member name="F:Peachpie.Library.Scripting.Tokenizer.T_ELSE">
+            <summary>else	else</summary>
+        </member>
+        <member name="F:Peachpie.Library.Scripting.Tokenizer.T_ELSEIF">
+            <summary>elseif  elseif</summary>
+        </member>
+        <member name="F:Peachpie.Library.Scripting.Tokenizer.T_EMPTY">
+            <summary>empty empty()</summary>
+        </member>
+        <member name="F:Peachpie.Library.Scripting.Tokenizer.T_ENCAPSED_AND_WHITESPACE">
+            <summary>" $a"	constant part of string with variables</summary>
+        </member>
+        <member name="F:Peachpie.Library.Scripting.Tokenizer.T_ENDDECLARE">
+            <summary>enddeclare declare, alternative syntax</summary>
+        </member>
+        <member name="F:Peachpie.Library.Scripting.Tokenizer.T_ENDFOR">
+            <summary>endfor	for, alternative syntax</summary>
+        </member>
+        <member name="F:Peachpie.Library.Scripting.Tokenizer.T_ENDFOREACH">
+            <summary>endforeach	foreach, alternative syntax</summary>
+        </member>
+        <member name="F:Peachpie.Library.Scripting.Tokenizer.T_ENDIF">
+            <summary>endif	if, alternative syntax</summary>
+        </member>
+        <member name="F:Peachpie.Library.Scripting.Tokenizer.T_ENDSWITCH">
+            <summary>endswitch	switch, alternative syntax</summary>
+        </member>
+        <member name="F:Peachpie.Library.Scripting.Tokenizer.T_ENDWHILE">
+            <summary>endwhile	while, alternative syntax</summary>
+        </member>
+        <member name="F:Peachpie.Library.Scripting.Tokenizer.T_END_HEREDOC">
+            <summary>heredoc syntax</summary>
+        </member>
+        <member name="F:Peachpie.Library.Scripting.Tokenizer.T_EVAL">
+            <summary>eval()  eval()</summary>
+        </member>
+        <member name="F:Peachpie.Library.Scripting.Tokenizer.T_EXIT">
+            <summary>exit or die exit(), die()</summary>
+        </member>
+        <member name="F:Peachpie.Library.Scripting.Tokenizer.T_EXTENDS">
+            <summary>extends extends, classes and objects</summary>
+        </member>
+        <member name="F:Peachpie.Library.Scripting.Tokenizer.T_FILE">
+            <summary>__FILE__ magic constants</summary>
+        </member>
+        <member name="F:Peachpie.Library.Scripting.Tokenizer.T_FINAL">
+            <summary>final Final Keyword</summary>
+        </member>
+        <member name="F:Peachpie.Library.Scripting.Tokenizer.T_FINALLY">
+            <summary>finally	Exceptions(available since PHP 5.5.0)</summary>
+        </member>
+        <member name="F:Peachpie.Library.Scripting.Tokenizer.T_FOR">
+            <summary>for	for</summary>
+        </member>
+        <member name="F:Peachpie.Library.Scripting.Tokenizer.T_FOREACH">
+            <summary>foreach	foreach</summary>
+        </member>
+        <member name="F:Peachpie.Library.Scripting.Tokenizer.T_FUNCTION">
+            <summary>function</summary>
+        </member>
+        <member name="F:Peachpie.Library.Scripting.Tokenizer.T_FN">
+            <summary>"fn" keyword</summary>
+        </member>
+        <member name="F:Peachpie.Library.Scripting.Tokenizer.T_FUNC_C">
+            <summary>__FUNCTION__ magic constants</summary>
+        </member>
+        <member name="F:Peachpie.Library.Scripting.Tokenizer.T_GLOBAL">
+            <summary>global variable scope</summary>
+        </member>
+        <member name="F:Peachpie.Library.Scripting.Tokenizer.T_GOTO">
+            <summary>goto	goto (available since PHP 5.3.0)</summary>
+        </member>
+        <member name="F:Peachpie.Library.Scripting.Tokenizer.T_HALT_COMPILER">
+            <summary>__halt_compiler()   __halt_compiler(available since PHP 5.1.0)</summary>
+        </member>
+        <member name="F:Peachpie.Library.Scripting.Tokenizer.T_IF">
+            <summary>if	if</summary>
+        </member>
+        <member name="F:Peachpie.Library.Scripting.Tokenizer.T_IMPLEMENTS">
+            <summary>implements  Object Interfaces</summary>
+        </member>
+        <member name="F:Peachpie.Library.Scripting.Tokenizer.T_INC">
+            <summary>++	incrementing/decrementing operators</summary>
+        </member>
+        <member name="F:Peachpie.Library.Scripting.Tokenizer.T_INCLUDE">
+            <summary>include()   include</summary>
+        </member>
+        <member name="F:Peachpie.Library.Scripting.Tokenizer.T_INCLUDE_ONCE">
+            <summary>include_once()  include_once</summary>
+        </member>
+        <member name="F:Peachpie.Library.Scripting.Tokenizer.T_INLINE_HTML">
+            <summary>text outside PHP</summary>
+        </member>
+        <member name="F:Peachpie.Library.Scripting.Tokenizer.T_INSTANCEOF">
+            <summary>instanceof type operators</summary>
+        </member>
+        <member name="F:Peachpie.Library.Scripting.Tokenizer.T_INSTEADOF">
+            <summary>insteadof Traits(available since PHP 5.4.0)</summary>
+        </member>
+        <member name="F:Peachpie.Library.Scripting.Tokenizer.T_INT_CAST">
+            <summary>int) or(integer)  type-casting</summary>
+        </member>
+        <member name="F:Peachpie.Library.Scripting.Tokenizer.T_INTERFACE">
+            <summary>interface Object Interfaces</summary>
+        </member>
+        <member name="F:Peachpie.Library.Scripting.Tokenizer.T_ISSET">
+            <summary>isset() isset()</summary>
+        </member>
+        <member name="F:Peachpie.Library.Scripting.Tokenizer.T_IS_EQUAL">
+            <summary>==	comparison operators</summary>
+        </member>
+        <member name="F:Peachpie.Library.Scripting.Tokenizer.T_IS_GREATER_OR_EQUAL">
+            <summary>>=	comparison operators</summary>
+        </member>
+        <member name="F:Peachpie.Library.Scripting.Tokenizer.T_IS_IDENTICAL">
+            <summary>===	comparison operators</summary>
+        </member>
+        <member name="F:Peachpie.Library.Scripting.Tokenizer.T_IS_NOT_EQUAL">
+            <summary>!= or&lt;&gt; comparison operators</summary>
+        </member>
+        <member name="F:Peachpie.Library.Scripting.Tokenizer.T_IS_NOT_IDENTICAL">
+            <summary>!==	comparison operators</summary>
+        </member>
+        <member name="F:Peachpie.Library.Scripting.Tokenizer.T_IS_SMALLER_OR_EQUAL">
+            <summary>&lt;=	comparison operators</summary>
+        </member>
+        <member name="F:Peachpie.Library.Scripting.Tokenizer.T_SPACESHIP">
+            <summary>&lt;=&gt;	comparison operators(available since PHP 7.0.0)</summary>
+        </member>
+        <member name="F:Peachpie.Library.Scripting.Tokenizer.T_LINE">
+            <summary>__LINE__    magic constants</summary>
+        </member>
+        <member name="F:Peachpie.Library.Scripting.Tokenizer.T_LIST">
+            <summary>list()  list()</summary>
+        </member>
+        <member name="F:Peachpie.Library.Scripting.Tokenizer.T_LNUMBER">
+            <summary>123, 012, 0x1ac, etc.integers</summary>
+        </member>
+        <member name="F:Peachpie.Library.Scripting.Tokenizer.T_LOGICAL_AND">
+            <summary>and logical operators</summary>
+        </member>
+        <member name="F:Peachpie.Library.Scripting.Tokenizer.T_LOGICAL_OR">
+            <summary>or logical operators</summary>
+        </member>
+        <member name="F:Peachpie.Library.Scripting.Tokenizer.T_LOGICAL_XOR">
+            <summary>xor logical operators</summary>
+        </member>
+        <member name="F:Peachpie.Library.Scripting.Tokenizer.T_METHOD_C">
+            <summary>__METHOD__ magic constants</summary>
+        </member>
+        <member name="F:Peachpie.Library.Scripting.Tokenizer.T_MINUS_EQUAL">
+            <summary>-=	assignment operators</summary>
+        </member>
+        <member name="F:Peachpie.Library.Scripting.Tokenizer.T_MOD_EQUAL">
+            <summary>%=	assignment operators</summary>
+        </member>
+        <member name="F:Peachpie.Library.Scripting.Tokenizer.T_MUL_EQUAL">
+            <summary>*=	assignment operators</summary>
+        </member>
+        <member name="F:Peachpie.Library.Scripting.Tokenizer.T_NAMESPACE">
+            <summary>namespace namespaces (available since PHP 5.3.0)</summary>
+        </member>
+        <member name="F:Peachpie.Library.Scripting.Tokenizer.T_NS_C">
+            <summary>__NAMESPACE__   namespaces(available since PHP 5.3.0)</summary>
+        </member>
+        <member name="F:Peachpie.Library.Scripting.Tokenizer.T_NS_SEPARATOR">
+            <summary>\	namespaces(available since PHP 5.3.0)</summary>
+        </member>
+        <member name="F:Peachpie.Library.Scripting.Tokenizer.T_NEW">
+            <summary>new classes and objects</summary>
+        </member>
+        <member name="F:Peachpie.Library.Scripting.Tokenizer.T_NUM_STRING">
+            <summary>"$a[0]"	numeric array index inside string</summary>
+        </member>
+        <member name="F:Peachpie.Library.Scripting.Tokenizer.T_OBJECT_CAST">
+            <summary>object)    type-casting</summary>
+        </member>
+        <member name="F:Peachpie.Library.Scripting.Tokenizer.T_OBJECT_OPERATOR">
+            <summary>-&gt;	classes and objects</summary>
+        </member>
+        <member name="F:Peachpie.Library.Scripting.Tokenizer.T_OPEN_TAG">
+            <summary>&lt;?php, &lt;? or &lt;%	escaping from HTML</summary>
+        </member>
+        <member name="F:Peachpie.Library.Scripting.Tokenizer.T_OPEN_TAG_WITH_ECHO">
+            <summary>&lt;?= or &lt;%=	escaping from HTML</summary>
+        </member>
+        <member name="F:Peachpie.Library.Scripting.Tokenizer.T_OR_EQUAL">
+            <summary>|=	assignment operators</summary>
+        </member>
+        <member name="F:Peachpie.Library.Scripting.Tokenizer.T_PAAMAYIM_NEKUDOTAYIM">
+            <summary>::	::. Also defined as T_DOUBLE_COLON.</summary>
+        </member>
+        <member name="F:Peachpie.Library.Scripting.Tokenizer.T_PLUS_EQUAL">
+            <summary>+=	assignment operators</summary>
+        </member>
+        <member name="F:Peachpie.Library.Scripting.Tokenizer.T_POW">
+            <summary>**	arithmetic operators (available since PHP 5.6.0)</summary>
+        </member>
+        <member name="F:Peachpie.Library.Scripting.Tokenizer.T_POW_EQUAL">
+            <summary>**=	assignment operators(available since PHP 5.6.0)</summary>
+        </member>
+        <member name="F:Peachpie.Library.Scripting.Tokenizer.T_COALESCE_EQUAL">
+            <summary>'??=' operator (PHP 7.4)</summary>
+        </member>
+        <member name="F:Peachpie.Library.Scripting.Tokenizer.T_PRINT">
+            <summary>print() print</summary>
+        </member>
+        <member name="F:Peachpie.Library.Scripting.Tokenizer.T_PRIVATE">
+            <summary>private classes and objects</summary>
+        </member>
+        <member name="F:Peachpie.Library.Scripting.Tokenizer.T_PUBLIC">
+            <summary>public classes and objects</summary>
+        </member>
+        <member name="F:Peachpie.Library.Scripting.Tokenizer.T_PROTECTED">
+            <summary>protected classes and objects</summary>
+        </member>
+        <member name="F:Peachpie.Library.Scripting.Tokenizer.T_REQUIRE">
+            <summary>require()   require</summary>
+        </member>
+        <member name="F:Peachpie.Library.Scripting.Tokenizer.T_REQUIRE_ONCE">
+            <summary>require_once()  require_once</summary>
+        </member>
+        <member name="F:Peachpie.Library.Scripting.Tokenizer.T_RETURN">
+            <summary>return	returning values</summary>
+        </member>
+        <member name="F:Peachpie.Library.Scripting.Tokenizer.T_SL">
+            <summary>&lt;&lt;	bitwise operators</summary>
+        </member>
+        <member name="F:Peachpie.Library.Scripting.Tokenizer.T_SL_EQUAL">
+            <summary>&lt;&lt;=	assignment operators</summary>
+        </member>
+        <member name="F:Peachpie.Library.Scripting.Tokenizer.T_SR">
+            <summary>>>	bitwise operators</summary>
+        </member>
+        <member name="F:Peachpie.Library.Scripting.Tokenizer.T_SR_EQUAL">
+            <summary>>>=	assignment operators</summary>
+        </member>
+        <member name="F:Peachpie.Library.Scripting.Tokenizer.T_START_HEREDOC">
+            <summary>&lt;&lt;&lt;	heredoc syntax</summary>
+        </member>
+        <member name="F:Peachpie.Library.Scripting.Tokenizer.T_STATIC">
+            <summary>static variable scope</summary>
+        </member>
+        <member name="F:Peachpie.Library.Scripting.Tokenizer.T_STRING">
+            <summary>parent, self, etc.	identifiers, e.g.keywords like parent and self, function names, class names and more are matched.See also T_CONSTANT_ENCAPSED_STRING.</summary>
+        </member>
+        <member name="F:Peachpie.Library.Scripting.Tokenizer.T_STRING_CAST">
+            <summary>(string) type-casting</summary>
+        </member>
+        <member name="F:Peachpie.Library.Scripting.Tokenizer.T_STRING_VARNAME">
+            <summary>"${a	complex variable parsed syntax</summary>
+        </member>
+        <member name="F:Peachpie.Library.Scripting.Tokenizer.T_SWITCH">
+            <summary>switch	switch</summary>
+        </member>
+        <member name="F:Peachpie.Library.Scripting.Tokenizer.T_THROW">
+            <summary>throw	Exceptions</summary>
+        </member>
+        <member name="F:Peachpie.Library.Scripting.Tokenizer.T_TRAIT">
+            <summary>trait Traits (available since PHP 5.4.0)</summary>
+        </member>
+        <member name="F:Peachpie.Library.Scripting.Tokenizer.T_TRAIT_C">
+            <summary>__TRAIT__   __TRAIT__(available since PHP 5.4.0)</summary>
+        </member>
+        <member name="F:Peachpie.Library.Scripting.Tokenizer.T_TRY">
+            <summary>try	Exceptions</summary>
+        </member>
+        <member name="F:Peachpie.Library.Scripting.Tokenizer.T_UNSET">
+            <summary>unset() unset()</summary>
+        </member>
+        <member name="F:Peachpie.Library.Scripting.Tokenizer.T_UNSET_CAST">
+            <summary>unset) type-casting</summary>
+        </member>
+        <member name="F:Peachpie.Library.Scripting.Tokenizer.T_USE">
+            <summary>use namespaces(available since PHP 5.3.0)</summary>
+        </member>
+        <member name="F:Peachpie.Library.Scripting.Tokenizer.T_VAR">
+            <summary>var classes and objects</summary>
+        </member>
+        <member name="F:Peachpie.Library.Scripting.Tokenizer.T_VARIABLE">
+            <summary>$foo variables</summary>
+        </member>
+        <member name="F:Peachpie.Library.Scripting.Tokenizer.T_WHILE">
+            <summary>while	while, do..while</summary>
+        </member>
+        <member name="F:Peachpie.Library.Scripting.Tokenizer.T_WHITESPACE">
+            <summary>\t \r\n</summary>
+        </member>
+        <member name="F:Peachpie.Library.Scripting.Tokenizer.T_XOR_EQUAL">
+            <summary>^=	assignment operators</summary>
+        </member>
+        <member name="F:Peachpie.Library.Scripting.Tokenizer.T_YIELD">
+            <summary>yield   generators(available since PHP 5.5.0)</summary>
+        </member>
+        <member name="F:Peachpie.Library.Scripting.Tokenizer.T_YIELD_FROM">
+            <summary>yield from generators(available since PHP 7.0.0)</summary>
+        </member>
+        <member name="F:Peachpie.Library.Scripting.Tokenizer.T_MATCH">
+            <summary>match (available since PHP 8.0.0)</summary>
+        </member>
+        <member name="F:Peachpie.Library.Scripting.Tokenizer.T_NULLSAFE_OBJECT_OPERATOR">
+            <summary>?-> (available since PHP 8.0.0)</summary>
+        </member>
+        <member name="F:Peachpie.Library.Scripting.Tokenizer.T_ATTRIBUTE">
+            <summary>#[ (available since PHP 8.0.0)</summary>
+        </member>
+        <member name="F:Peachpie.Library.Scripting.Tokenizer.T_BAD_CHARACTER">
+            <summary>
+            Not used.
+            Our lexer does not report T_BAD_CHARACTER on long script (&gt; Int32.MaxValue characters)
+            </summary>
+        </member>
+        <member name="F:Peachpie.Library.Scripting.Tokenizer.TOKEN_PARSE">
+            <summary>
+            Recognises the ability to use reserved words in specific contexts.
+            </summary>
+        </member>
+        <member name="M:Peachpie.Library.Scripting.Tokenizer.token_name(System.Int32)">
+            <summary>
+            Get the symbolic name of a given PHP token.
+            </summary>
+        </member>
+        <member name="M:Peachpie.Library.Scripting.Tokenizer.token_get_all(System.String,System.Int32)">
+            <summary>
+            Split given source into PHP tokens.
+            </summary>
+            <param name="source">The PHP source to parse.</param>
+            <param name="flags"></param>
+            <returns>
+            An array of token identifiers.
+            Each individual token identifier is either a single character (i.e.: ;, ., >, !, etc...),
+            or a three element array containing the token index in element 0, the string content of the original token in element 1 and the line number in element 2.
+            </returns>
+        </member>
+    </members>
+</doc>

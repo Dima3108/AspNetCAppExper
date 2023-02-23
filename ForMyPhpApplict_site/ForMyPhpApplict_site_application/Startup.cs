@@ -18,6 +18,8 @@ using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
+using Peachpie.AspNetCore.Web;
+using Peachpie.Runtime;
 namespace ForMyPhpApplict_site_application
 {
     public class Startup
@@ -34,6 +36,13 @@ namespace ForMyPhpApplict_site_application
         public void ConfigureServices(IServiceCollection services)
         {
             //services.AddRazorPages();
+            services.AddDistributedMemoryCache();
+
+            services.AddSession(options =>
+            {
+                options.IdleTimeout = TimeSpan.FromMinutes(30);
+                //options.Cookie.HttpOnly = true;
+            });
             services.AddMvc(opt =>
             {
                 opt.EnableEndpointRouting = false;
@@ -50,7 +59,7 @@ namespace ForMyPhpApplict_site_application
         options.LoginPath = "/Login/";
     });
             services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
-            
+            services.AddPhp();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -65,21 +74,22 @@ namespace ForMyPhpApplict_site_application
             {
                 app.UseExceptionHandler("/Error");
             }
-           
+            app.UseSession();
             
             var cookiePolicyOptions = new CookiePolicyOptions
             {
                 MinimumSameSitePolicy = SameSiteMode.Strict,
             };
+           // app.UsePhp("/",rootPath:Path.Combine(BasePath.RootPath+"/",BasePath.UserFalesPath));
             var f_p= new PhysicalFileProvider(
-                   Path.Combine(env.ContentRootPath, "html_content")
+                   Path.Combine(env.ContentRootPath,BasePath.UserFalesPath)
 
                     );
             
 app.UseFileServer(new FileServerOptions
             {
                 FileProvider =f_p,
-                RequestPath="/htmlcontent",
+                RequestPath="/"+BasePath.UserFalesPath,
                 EnableDirectoryBrowsing=true
                 ,
                 StaticFileOptions={
@@ -99,12 +109,14 @@ app.UseFileServer(new FileServerOptions
  app.UseCookiePolicy(cookiePolicyOptions);
             app.UseRouting();
            
+            app.UseDefaultFiles();
             app.UseMvc(opt =>
             {
                 opt.MapRoute(default, "{controller=home}/{action=Index}/{id?}");
                 
             });
-            app.UseMiddleware<MiddleWare.PhpFileDetectMiddleware>();
+            //app.UseMiddleware<MiddleWare.PhpFileDetectMiddleware>();
+           
           /*  app.UseEndpoints(endpoints =>
             {
                 endpoints.MapRazorPages();

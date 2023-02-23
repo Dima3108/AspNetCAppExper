@@ -1,0 +1,558 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Peachpie.Library.MsSql</name>
+    </assembly>
+    <members>
+        <member name="T:Peachpie.Library.MsSql.MsSql">
+            <summary>
+            Implements PHP functions provided by MSSQL extension.
+            </summary>
+        </member>
+        <member name="T:Peachpie.Library.MsSql.MsSql.QueryResultKeys">
+            <summary>
+            Query result array format.
+            </summary>
+        </member>
+        <member name="F:Peachpie.Library.MsSql.MsSql.QueryResultKeys.ColumnNames">
+            <summary>
+            Add items keyed by column names.
+            </summary>
+        </member>
+        <member name="F:Peachpie.Library.MsSql.MsSql.QueryResultKeys.Numbers">
+            <summary>
+            Add items keyed by column indices.
+            </summary>
+        </member>
+        <member name="F:Peachpie.Library.MsSql.MsSql.QueryResultKeys.Both">
+            <summary>
+            Add both items keyed by column names and items keyd by column indices.
+            </summary>
+        </member>
+        <member name="F:Peachpie.Library.MsSql.MsSql.MSSQL_ASSOC">
+            <summary>Add items keyed by column names.</summary>
+        </member>
+        <member name="F:Peachpie.Library.MsSql.MsSql.MSSQL_NUM">
+            <summary>Add items keyed by column indices.</summary>
+        </member>
+        <member name="F:Peachpie.Library.MsSql.MsSql.MSSQL_BOTH">
+            <summary>Add both items keyed by column names and items keyd by column indices.</summary>
+        </member>
+        <member name="T:Peachpie.Library.MsSql.MsSql.VariableType">
+            <summary>
+            Types of variables bound to stored procedure parameters.
+            </summary>
+        </member>
+        <member name="F:Peachpie.Library.MsSql.MsSql.VariableType.Bit">
+            <summary></summary>
+        </member>
+        <member name="F:Peachpie.Library.MsSql.MsSql.VariableType.Text">
+            <summary></summary>
+        </member>
+        <member name="F:Peachpie.Library.MsSql.MsSql.VariableType.VarChar">
+            <summary></summary>
+        </member>
+        <member name="F:Peachpie.Library.MsSql.MsSql.VariableType.Char">
+            <summary></summary>
+        </member>
+        <member name="F:Peachpie.Library.MsSql.MsSql.VariableType.Int8">
+            <summary></summary>
+        </member>
+        <member name="F:Peachpie.Library.MsSql.MsSql.VariableType.Int16">
+            <summary></summary>
+        </member>
+        <member name="F:Peachpie.Library.MsSql.MsSql.VariableType.Int32">
+            <summary></summary>
+        </member>
+        <member name="F:Peachpie.Library.MsSql.MsSql.VariableType.Float">
+            <summary></summary>
+        </member>
+        <member name="F:Peachpie.Library.MsSql.MsSql.VariableType.Double">
+            <summary></summary>
+        </member>
+        <member name="F:Peachpie.Library.MsSql.MsSql.VariableType.FloatN">
+            <summary></summary>
+        </member>
+        <member name="F:Peachpie.Library.MsSql.MsSql.SQLBIT">
+            <summary></summary>
+        </member>
+        <member name="F:Peachpie.Library.MsSql.MsSql.SQLTEXT">
+            <summary></summary>
+        </member>
+        <member name="F:Peachpie.Library.MsSql.MsSql.SQLVARCHAR">
+            <summary></summary>
+        </member>
+        <member name="F:Peachpie.Library.MsSql.MsSql.SQLCHAR">
+            <summary></summary>
+        </member>
+        <member name="F:Peachpie.Library.MsSql.MsSql.SQLINT1">
+            <summary></summary>
+        </member>
+        <member name="F:Peachpie.Library.MsSql.MsSql.SQLINT2">
+            <summary></summary>
+        </member>
+        <member name="F:Peachpie.Library.MsSql.MsSql.SQLINT4">
+            <summary></summary>
+        </member>
+        <member name="F:Peachpie.Library.MsSql.MsSql.SQLFLT4">
+            <summary></summary>
+        </member>
+        <member name="F:Peachpie.Library.MsSql.MsSql.SQLFLT8">
+            <summary></summary>
+        </member>
+        <member name="F:Peachpie.Library.MsSql.MsSql.SQLFLTN">
+            <summary></summary>
+        </member>
+        <member name="M:Peachpie.Library.MsSql.MsSql.LastConnection(Pchp.Core.Context)">
+            <summary>
+            Gets last active connection.
+            </summary>
+        </member>
+        <member name="M:Peachpie.Library.MsSql.MsSql.mssql_close(Pchp.Core.Context,Pchp.Core.PhpResource)">
+            <summary>
+            Closes a specified connection.
+            </summary>
+            <param name="ctx">PHP context.</param>
+            <param name="linkIdentifier">The connection resource.</param>
+            <returns><B>true</B> on success, <B>false</B> on failure.</returns>
+        </member>
+        <member name="M:Peachpie.Library.MsSql.MsSql.mssql_connect(Pchp.Core.Context,System.String,System.String,System.String,System.Boolean)">
+            <summary>
+            Establishes a connection to SQL server using a specified server, user, and password and default flags.
+            </summary>
+            <param name="ctx">PHP context.</param>
+            <param name="server">Server (host). A <b>null</b> reference means the default value.</param>
+            <param name="user">User name. A <b>null</b> reference means the default value.</param>
+            <param name="password">Password. A <b>null</b> reference means the default value.</param>
+            <param name="newLink">Whether to create a new link.</param>
+            <returns>
+            Resource representing the connection or a <B>null</B> reference (<B>false</B> in PHP) on failure.
+            </returns>
+            <remarks>
+            Default values are taken from the configuration.
+            </remarks>		
+        </member>
+        <member name="M:Peachpie.Library.MsSql.MsSql.mssql_pconnect(Pchp.Core.Context,System.String,System.String,System.String,System.Boolean)">
+            <summary>
+            Establishes a connection to SQL server using a specified server, user, and password and default flags.
+            </summary>
+            <param name="ctx">PHP context.</param>
+            <param name="server">Server (host). A <b>null</b> reference means the default value.</param>
+            <param name="user">User name. A <b>null</b> reference means the default value.</param>
+            <param name="password">Password. A <b>null</b> reference means the default value.</param>
+            <param name="newLink">Whether to create a new link.</param>
+            <returns>
+            Resource representing the connection or a <B>null</B> reference (<B>false</B> in PHP) on failure.
+            </returns>
+            <remarks>
+            Default values are taken from the configuration.
+            Creates a non-persistent connection. Persistent connections are not supported.
+            </remarks>		
+        </member>
+        <member name="M:Peachpie.Library.MsSql.MsSql.mssql_free_result(Pchp.Core.PhpResource)">
+            <summary>
+            Releases a resource representing a query result.
+            </summary>
+            <param name="resultHandle">Query result resource.</param>
+            <returns><B>true</B> on success, <B>false</B> on failure (invalid resource).</returns>
+        </member>
+        <member name="M:Peachpie.Library.MsSql.MsSql.mssql_select_db(Pchp.Core.Context,System.String,Pchp.Core.PhpResource)">
+            <summary>
+            Selects the current DB for a specified connection.
+            </summary>
+            <param name="ctx">PHP context.</param>
+            <param name="databaseName">Name of the database.</param>
+            <param name="linkIdentifier">Connection resource.</param>
+            <returns><B>true</B> on success, <B>false</B> on failure.</returns>
+        </member>
+        <member name="M:Peachpie.Library.MsSql.MsSql.mssql_query(Pchp.Core.Context,System.String,Pchp.Core.PhpResource,System.Int32)">
+            <summary>
+            Sends a query to the current database associated with a specified connection.
+            </summary>
+            <param name="ctx">PHP context.</param>
+            <param name="query">Query.</param>
+            <param name="linkIdentifier">Connection resource.</param>
+            <param name="batchSize">Connection resource.</param>
+            <returns>Query resource or a <B>null</B> reference (<B>null</B> in PHP) on failure.</returns>
+        </member>
+        <member name="M:Peachpie.Library.MsSql.MsSql.mssql_fetch_row(Pchp.Core.PhpResource)">
+            <summary>
+            Get a result row as an integer indexed array. 
+            </summary>
+            <param name="resultHandle">Query result resource.</param>
+            <returns>Array indexed by integers starting from 0 containing values of the current row.</returns>
+        </member>
+        <member name="M:Peachpie.Library.MsSql.MsSql.mssql_fetch_assoc(Pchp.Core.PhpResource)">
+            <summary>
+            Get a result row as an associative array. 
+            </summary>
+            <param name="resultHandle">Query result resource.</param>
+            <returns>Array indexed by column names containing values of the current row.</returns>			
+        </member>
+        <member name="M:Peachpie.Library.MsSql.MsSql.mssql_fetch_array(Pchp.Core.PhpResource,Peachpie.Library.MsSql.MsSql.QueryResultKeys)">
+            <summary>
+            Get a result row as an array with a specified key format. 
+            </summary>
+            <param name="resultHandle">Query result resource.</param>
+            <param name="resultType">Type(s) of keys in the resulting array.</param>
+            <returns>
+            Array containing values of the rows indexed by column keys and/or column indices depending 
+            on value of <paramref name="resultType"/>.
+            </returns>
+        </member>
+        <member name="M:Peachpie.Library.MsSql.MsSql.mssql_fetch_object(Pchp.Core.PhpResource)">
+            <summary>
+            Get a result row as an object. 
+            </summary>
+            <param name="resultHandle">Query result resource.</param>
+            <returns>
+            Object whose fields contain values from the current row. 
+            Field names corresponds to the column names.
+            </returns>
+        </member>
+        <member name="M:Peachpie.Library.MsSql.MsSql.mssql_rows_affected(Pchp.Core.Context,Pchp.Core.PhpResource)">
+            <summary>
+            Get a number of affected rows in the previous operation.
+            </summary>
+            <param name="ctx">PHP context.</param>
+            <param name="linkIdentifier">Connection resource.</param>
+            <returns>The number of affected rows or -1 if the last operation failed or the connection is invalid.</returns>
+        </member>
+        <member name="M:Peachpie.Library.MsSql.MsSql.mssql_num_fields(Pchp.Core.PhpResource)">
+            <summary>
+            Get number of columns (fields) in a specified result.
+            </summary>
+            <param name="resultHandle">Query result resource.</param>
+            <returns>Number of columns in the specified result or 0 if the result resource is invalid.</returns>
+        </member>
+        <member name="M:Peachpie.Library.MsSql.MsSql.mssql_num_rows(Pchp.Core.PhpResource)">
+            <summary>
+            Get number of rows in a specified result.
+            </summary>
+            <param name="resultHandle">Query result resource.</param>
+            <returns>Number of rows in the specified result or 0 if the result resource is invalid.</returns>
+        </member>
+        <member name="M:Peachpie.Library.MsSql.MsSql.mssql_get_last_message(Pchp.Core.Context)">
+            <summary>
+            Gets last error message.
+            </summary>
+            <returns>The message sent by server.</returns>
+        </member>
+        <member name="M:Peachpie.Library.MsSql.MsSql.mssql_min_error_severity(System.Int32)">
+            <summary>
+            Sets a threshold for displaying errors sent by server. Not supported.
+            </summary>
+            <param name="severity">Severity threshold.</param>
+        </member>
+        <member name="M:Peachpie.Library.MsSql.MsSql.mssql_min_message_severity(System.Int32)">
+            <summary>
+            Sets a threshold for displaying messages sent by server. Not supported.
+            </summary>
+            <param name="severity">Severity threshold.</param>
+        </member>
+        <member name="M:Peachpie.Library.MsSql.MsSql.mssql_result(Pchp.Core.Context,Pchp.Core.PhpResource,System.Int32,Pchp.Core.PhpValue)">
+            <summary>
+            Gets a contents of a specified cell from a specified query result resource.
+            </summary>
+            <param name="ctx">PHP context.</param>
+            <param name="resultHandle">Query result resource.</param>
+            <param name="rowIndex">Row index.</param>
+            <param name="field">Column (field) integer index or string name.</param>
+            <returns>The value of the cell or <B>false</B> on failure (invalid resource or row index).</returns>
+        </member>
+        <member name="M:Peachpie.Library.MsSql.MsSql.mssql_next_result(Pchp.Core.PhpResource)">
+            <summary>
+            Fetches the next result set if the query returned multiple result sets.
+            </summary>
+            <param name="resultHandle">Query result resource.</param>
+            <returns>Whether the next result set is available.</returns>
+        </member>
+        <member name="M:Peachpie.Library.MsSql.MsSql.mssql_field_name(Pchp.Core.PhpResource)">
+            <summary>
+            Gets a name of the current column (field) in a result. 
+            </summary>
+            <param name="resultHandle">Query result resource.</param>
+            <returns>Name of the column or a <B>null</B> reference on failure (invalid resource or column index).</returns>
+        </member>
+        <member name="M:Peachpie.Library.MsSql.MsSql.mssql_field_name(Pchp.Core.PhpResource,System.Int32)">
+            <summary>
+            Gets a name of a specified column (field) in a result. 
+            </summary>
+            <param name="resultHandle">Query result resource.</param>
+            <param name="fieldIndex">Column (field) index.</param>
+            <returns>Name of the column or a <B>null</B> reference on failure (invalid resource or column index).</returns>
+        </member>
+        <member name="M:Peachpie.Library.MsSql.MsSql.mssql_field_type(Pchp.Core.PhpResource)">
+            <summary>
+            Gets a type of the current column (field) in a result. 
+            </summary>
+            <param name="resultHandle">Query result resource.</param>
+            <returns>MSSQL type translated to PHP terminology.</returns>
+            <remarks>
+            Possible values are: TODO.
+            </remarks>   
+        </member>
+        <member name="M:Peachpie.Library.MsSql.MsSql.mssql_field_type(Pchp.Core.PhpResource,System.Int32)">
+            <summary>
+            Gets a type of a specified column (field) in a result. 
+            </summary>
+            <param name="resultHandle">Query result resource.</param>
+            <param name="fieldIndex">Column index.</param>
+            <returns>MSSQL type translated to PHP terminology.</returns>
+            <remarks>
+            Possible values are: TODO.
+            </remarks>   
+        </member>
+        <member name="M:Peachpie.Library.MsSql.MsSql.mssql_field_length(Pchp.Core.PhpResource)">
+            <summary>
+            Gets a length of the current column (field) in a result. 
+            </summary>
+            <param name="resultHandle">Query result resource.</param>
+            <returns>Length of the column or a -1 on failure (invalid resource or column index).</returns>
+        </member>
+        <member name="M:Peachpie.Library.MsSql.MsSql.mssql_field_length(Pchp.Core.PhpResource,System.Int32)">
+            <summary>
+            Gets a length of a specified column (field) in a result. 
+            </summary>
+            <param name="resultHandle">Query result resource.</param>
+            <param name="fieldIndex">Column index.</param>
+            <returns>Length of the column or a -1 on failure (invalid resource or column index).</returns>
+        </member>
+        <member name="M:Peachpie.Library.MsSql.MsSql.mssql_field_seek(Pchp.Core.PhpResource,System.Int32)">
+            <summary>
+            Sets the result resource's current column (field) offset.
+            </summary>
+            <param name="resultHandle">Query result resource.</param>
+            <param name="fieldOffset">New column offset.</param>
+            <returns><B>true</B> on success, <B>false</B> on failure (invalid resource or column offset).</returns>
+        </member>
+        <member name="M:Peachpie.Library.MsSql.MsSql.mssql_data_seek(Pchp.Core.PhpResource,System.Int32)">
+            <summary>
+            Sets the result resource's current row index.
+            </summary>
+            <param name="resultHandle">Query result resource.</param>
+            <param name="rowIndex">New row index.</param>
+            <returns><B>true</B> on success, <B>false</B> on failure (invalid resource or row index).</returns>
+        </member>
+        <member name="M:Peachpie.Library.MsSql.MsSql.mssql_fetch_field(Pchp.Core.PhpResource,System.Int32)">
+            <summary>
+            Gets a PHP object whose properties describes a specified field.
+            </summary>
+            <param name="resultHandle">Query result resource.</param>
+            <param name="fieldIndex">Field index.</param>
+            <returns>The PHP object.</returns>
+        </member>
+        <member name="M:Peachpie.Library.MsSql.MsSql.mssql_fetch_batch(Pchp.Core.PhpResource)">
+            <summary>
+            Not supported.
+            </summary>
+        </member>
+        <member name="M:Peachpie.Library.MsSql.MsSql.mssql_init(Pchp.Core.Context,System.String,Pchp.Core.PhpResource)">
+            <summary>
+            Initializes a stored procedure of a given name.
+            </summary>
+            <param name="ctx">PHP context.</param>
+            <param name="procedureName">Name of the stored procedure.</param>
+            <param name="linkIdentifier">Connection resource.</param>
+            <returns>Statement resource representing the procedure.</returns>
+        </member>
+        <member name="M:Peachpie.Library.MsSql.MsSql.mssql_free_statement(Pchp.Core.PhpResource)">
+            <summary>
+            Releases a resource representing a statement.
+            </summary>
+            <param name="statement">Statement resource.</param>
+            <returns><B>true</B> on success, <B>false</B> on failure (invalid resource).</returns>
+        </member>
+        <member name="M:Peachpie.Library.MsSql.MsSql.mssql_bind(Pchp.Core.PhpResource,System.String,Pchp.Core.PhpAlias,Peachpie.Library.MsSql.MsSql.VariableType,System.Boolean,System.Boolean,System.Int32)">
+            <summary>
+            Binds a PHP variable to an SQL parameter of a statement.
+            </summary>
+            <param name="statement">Statement resource.</param>
+            <param name="parameterName">Parameter name starting with '@' character.</param>
+            <param name="variable">PHP variable to bind to the parameter.</param>
+            <param name="type">SQL type of the parameter.</param>
+            <param name="isOutput">Whether the parameter is an output parameter.</param>
+            <param name="isNullable">Whether the parameter accepts <B>null</B> values.</param>
+            <param name="maxLength">Maximum size of input data.</param>
+            <returns>Whether binding succeeded.</returns>
+        </member>
+        <member name="M:Peachpie.Library.MsSql.MsSql.mssql_execute(Pchp.Core.PhpResource,System.Boolean)">
+            <summary>
+            Executes a specified stored procedure statement.
+            </summary>
+            <param name="statement">Statement resource (stored procedure).</param>
+            <param name="skipResults">Whether to retrieve and return procedure output.</param>
+            <returns>
+            Result resource containing procedure output, 
+            <B>true</B> if the procedure succeeded yet doesn't return any value, or
+            <B>false</B> on failure.
+            </returns>
+        </member>
+        <member name="M:Peachpie.Library.MsSql.MsSql.mssql_guid_string(System.Byte[],System.Boolean)">
+            <summary>
+            Converts 16 bytes to a string representation of a GUID.
+            </summary>
+            <param name="binary">Binary representation of a GUID.</param>
+            <param name="shortFormat">Whether to return a short format.</param>
+            <returns>String representation of a GUID.</returns>
+        </member>
+        <member name="F:Peachpie.Library.MsSql.MsSqlConfiguration.Timeout">
+            <summary>
+            Request timeout in seconds. Non-positive value means no timeout.
+            </summary>
+        </member>
+        <member name="F:Peachpie.Library.MsSql.MsSqlConfiguration.ConnectTimeout">
+            <summary>
+            Connect timeout in seconds. Non-positive value means no timeout.
+            </summary>
+        </member>
+        <member name="F:Peachpie.Library.MsSql.MsSqlConfiguration.BatchSize">
+            <summary>
+            Limit on size of a batch. Non-positive value means no limit.
+            </summary>
+        </member>
+        <member name="F:Peachpie.Library.MsSql.MsSqlConfiguration.MaxConnections">
+            <summary>
+            Maximum number of connections per request. Negative value means no limit.
+            </summary>
+        </member>
+        <member name="F:Peachpie.Library.MsSql.MsSqlConfiguration.NTAuthentication">
+            <summary>
+            Use NT authentication when connecting to the server.
+            </summary>
+        </member>
+        <member name="M:Peachpie.Library.MsSql.MsSqlConfiguration.GetSet(Pchp.Core.Context,Pchp.Core.IPhpConfigurationService,System.String,Pchp.Core.PhpValue,Pchp.Library.StandardPhpOptions.IniAction)">
+            <summary>
+            Gets or sets a value of a legacy configuration option.
+            </summary>
+        </member>
+        <member name="M:Peachpie.Library.MsSql.MsSqlConfiguration.RegisterLegacyOptions">
+            <summary>
+            Registers legacy ini-options.
+            </summary>
+        </member>
+        <member name="F:Peachpie.Library.MsSql.SqlConnectionManager.FailConnectErrorMessage">
+            <summary>
+            Last failed connect attempt error message.
+            </summary>
+        </member>
+        <member name="M:Peachpie.Library.MsSql.SqlConnectionManager.GetInstance(Pchp.Core.Context)">
+            <summary>
+            Gets the manager singleton within runtime context.
+            </summary>
+        </member>
+        <member name="T:Peachpie.Library.MsSql.PhpSqlDbConnection">
+            <summary>
+            SQL connection resource.
+            </summary>
+        </member>
+        <member name="P:Peachpie.Library.MsSql.PhpSqlDbConnection.ActiveConnection">
+            <summary>
+            Gets underlying connection.
+            </summary>
+        </member>
+        <member name="M:Peachpie.Library.MsSql.PhpSqlDbConnection.#ctor(Peachpie.Library.MsSql.SqlConnectionManager,System.String)">
+            <summary>
+            Creates a new connection resource.
+            </summary>
+            <param name="manager">Containing connection manager.</param>
+            <param name="connectionString">Connection string.</param>
+        </member>
+        <member name="M:Peachpie.Library.MsSql.PhpSqlDbConnection.GetResult(System.Data.IDataReader,System.Boolean)">
+            <summary>
+            Gets a query result resource.
+            </summary>
+            <param name="reader">Data reader to be used for result resource population.</param>
+            <param name="convertTypes">Whether to convert data types to PHP ones.</param>
+            <returns>Result resource holding all resulting data of the query.</returns>
+        </member>
+        <member name="M:Peachpie.Library.MsSql.PhpSqlDbConnection.CreateCommand(System.String,System.Data.CommandType)">
+            <summary>
+            Command factory.
+            </summary>
+        </member>
+        <member name="T:Peachpie.Library.MsSql.PhpSqlDbProcedure">
+            <summary>
+            Represents a stored procedure statement.
+            </summary>
+        </member>
+        <member name="P:Peachpie.Library.MsSql.PhpSqlDbProcedure.ProcedureName">
+            <summary>
+            Procedure name.
+            </summary>
+        </member>
+        <member name="M:Peachpie.Library.MsSql.PhpSqlDbProcedure.#ctor(Pchp.Library.Database.ConnectionResource,System.String)">
+            <summary>
+            Creates a stored procedure statement.
+            </summary>
+            <param name="connection">Database connection.</param>
+            <param name="procedureName">Procedure name.</param>
+            <exception cref="T:System.ArgumentNullException">Argument is a <B>null</B> reference.</exception>
+        </member>
+        <member name="M:Peachpie.Library.MsSql.PhpSqlDbProcedure.Execute(System.Boolean,System.Boolean@)">
+            <summary>
+            Executes the procedure.
+            </summary>
+            <param name="skipResults">Whether to load the results.</param>
+            <param name="success">Whether the execution succeeded.</param>
+            <returns>Results or a <B>null</B> reference if results are not loaded or an error occured.</returns>
+        </member>
+        <member name="T:Peachpie.Library.MsSql.PhpSqlDbResult">
+            <summary>
+            Represents a result of a SQL command.
+            </summary>
+        </member>
+        <member name="P:Peachpie.Library.MsSql.PhpSqlDbResult.BatchSize">
+            <summary>
+            Limit on size of a batch. Non-positive values means no limit.
+            </summary>
+        </member>
+        <member name="M:Peachpie.Library.MsSql.PhpSqlDbResult.#ctor(Pchp.Library.Database.ConnectionResource,System.Data.IDataReader,System.Boolean)">
+            <summary>
+            Creates an instance of a result resource.
+            </summary>
+            <param name="connection">Database connection.</param>
+            <param name="reader">Data reader from which to load results.</param>
+            <param name="convertTypes">Whether to convert resulting values to PHP types.</param>
+            <exception cref="T:System.ArgumentNullException">Argument is a <B>null</B> reference.</exception>
+        </member>
+        <member name="M:Peachpie.Library.MsSql.PhpSqlDbResult.GetNames(System.Int32)">
+            <summary>
+            Gets an array of column names.
+            </summary>
+            <returns>
+            Array of column names. If a column doesn't have a name (it is calculated), 
+            it is assigned "computed{number}" name.
+            </returns>
+        </member>
+        <member name="M:Peachpie.Library.MsSql.PhpSqlDbResult.GetValues(System.String[],System.Boolean)">
+            <summary>
+            Gets row values.
+            </summary>
+            <param name="dataTypes">Column type names.</param>
+            <param name="convertTypes">Whether to convert value to PHP types.</param>
+            <returns>Row data.</returns>
+        </member>
+        <member name="M:Peachpie.Library.MsSql.PhpSqlDbResult.ConvertDbValue(System.Object)">
+            <summary>
+            Converts a value from database to PHP value.
+            </summary>
+            <param name="dbValue">Database value.</param>
+            <returns>PHP value.</returns>
+        </member>
+        <member name="M:Peachpie.Library.MsSql.PhpSqlDbResult.MapFieldTypeName(System.String)">
+            <summary>
+            Maps database type name to the one displayed by PHP.
+            </summary>
+            <param name="typeName">Database name.</param>
+            <returns>PHP name.</returns>
+        </member>
+        <member name="M:Peachpie.Library.MsSql.PhpSqlDbResult.IsNumericType(System.String)">
+            <summary>
+            Determines whether a type of a specified PHP name is a numeric type.
+            </summary>
+            <param name="phpName">PHP type name.</param>
+            <returns>Whether the type is numeric ("int", "numeric", or "real").</returns>
+        </member>
+    </members>
+</doc>

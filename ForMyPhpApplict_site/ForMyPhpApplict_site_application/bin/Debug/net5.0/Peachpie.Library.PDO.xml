@@ -1,0 +1,1714 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Peachpie.Library.PDO</name>
+    </assembly>
+    <members>
+        <member name="T:Peachpie.Library.PDO.ErrorCodes">
+            <summary>
+              A strongly-typed resource class, for looking up localized strings, etc.
+            </summary>
+        </member>
+        <member name="P:Peachpie.Library.PDO.ErrorCodes.ResourceManager">
+            <summary>
+              Returns the cached ResourceManager instance used by this class.
+            </summary>
+        </member>
+        <member name="P:Peachpie.Library.PDO.ErrorCodes.Culture">
+            <summary>
+              Overrides the current thread's CurrentUICulture property for all
+              resource lookups using this strongly typed resource class.
+            </summary>
+        </member>
+        <member name="P:Peachpie.Library.PDO.ErrorCodes.HY000">
+            <summary>
+              Looks up a localized string similar to General error.
+            </summary>
+        </member>
+        <member name="P:Peachpie.Library.PDO.ErrorCodes.IM001">
+            <summary>
+              Looks up a localized string similar to Driver does not support this function.
+            </summary>
+        </member>
+        <member name="T:Peachpie.Library.PDO.ExtensionMethodDelegate">
+            <summary>
+            Delegate of extension methods added to PDO
+            </summary>
+            <param name="pdo">The pdo instance.</param>
+            <param name="args">The arguments when method is called.</param>
+            <returns>Method return value</returns>
+        </member>
+        <member name="T:Peachpie.Library.PDO.PDO">
+            <summary>
+            Represents a connection between PHP and a database server
+            </summary>
+            <seealso cref="T:Pchp.Core.PhpResource" />
+        </member>
+        <member name="T:Peachpie.Library.PDO.PDO.PDO_ATTR">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:Peachpie.Library.PDO.PDO.PDO_ATTR.ATTR_AUTOCOMMIT">
+            <summary>
+            use to turn on or off auto-commit mode
+            </summary>
+        </member>
+        <member name="F:Peachpie.Library.PDO.PDO.PDO_ATTR.ATTR_PREFETCH">
+            <summary>
+            configure the prefetch size for drivers that support it. Size is in KB
+            </summary>
+        </member>
+        <member name="F:Peachpie.Library.PDO.PDO.PDO_ATTR.ATTR_TIMEOUT">
+            <summary>
+            connection timeout in seconds
+            </summary>
+        </member>
+        <member name="F:Peachpie.Library.PDO.PDO.PDO_ATTR.ATTR_ERRMODE">
+            <summary>
+            control how errors are handled
+            </summary>
+        </member>
+        <member name="F:Peachpie.Library.PDO.PDO.PDO_ATTR.ATTR_SERVER_VERSION">
+            <summary>
+            database server version
+            </summary>
+        </member>
+        <member name="F:Peachpie.Library.PDO.PDO.PDO_ATTR.ATTR_CLIENT_VERSION">
+            <summary>
+            client library version
+            </summary>
+        </member>
+        <member name="F:Peachpie.Library.PDO.PDO.PDO_ATTR.ATTR_SERVER_INFO">
+            <summary>
+            server information
+            </summary>
+        </member>
+        <member name="F:Peachpie.Library.PDO.PDO.PDO_ATTR.ATTR_CONNECTION_STATUS">
+            <summary>
+            connection status
+            </summary>
+        </member>
+        <member name="F:Peachpie.Library.PDO.PDO.PDO_ATTR.ATTR_CASE">
+            <summary>
+            control case folding for portability
+            </summary>
+        </member>
+        <member name="F:Peachpie.Library.PDO.PDO.PDO_ATTR.ATTR_CURSOR_NAME">
+            <summary>
+            name a cursor for use in "WHERE CURRENT OF &lt;name&gt;" 
+            </summary>
+        </member>
+        <member name="F:Peachpie.Library.PDO.PDO.PDO_ATTR.ATTR_CURSOR">
+            <summary>
+            cursor type
+            </summary>
+        </member>
+        <member name="F:Peachpie.Library.PDO.PDO.PDO_ATTR.ATTR_DRIVER_NAME">
+            <summary>
+            name of the driver (as used in the constructor) 
+            </summary>
+        </member>
+        <member name="F:Peachpie.Library.PDO.PDO.PDO_ATTR.ATTR_ORACLE_NULLS">
+            <summary>
+            convert empty strings to NULL
+            </summary>
+        </member>
+        <member name="F:Peachpie.Library.PDO.PDO.PDO_ATTR.ATTR_PERSISTENT">
+            <summary>
+            pconnect style connection
+            </summary>
+        </member>
+        <member name="F:Peachpie.Library.PDO.PDO.PDO_ATTR.ATTR_STATEMENT_CLASS">
+            <summary>
+            array(classname, array(ctor_args)) to specify the class of the constructed statement
+            </summary>
+        </member>
+        <member name="F:Peachpie.Library.PDO.PDO.PDO_ATTR.ATTR_FETCH_CATALOG_NAMES">
+            <summary>
+            include the catalog/db name names in the column names, where available
+            </summary>
+        </member>
+        <member name="F:Peachpie.Library.PDO.PDO.PDO_ATTR.ATTR_FETCH_TABLE_NAMES">
+            <summary>
+            include table names in the column names, where available
+            </summary>
+        </member>
+        <member name="F:Peachpie.Library.PDO.PDO.PDO_ATTR.ATTR_STRINGIFY_FETCHES">
+            <summary>
+            converts integer/float types to strings during fetch
+            </summary>
+        </member>
+        <member name="F:Peachpie.Library.PDO.PDO.PDO_ATTR.ATTR_MAX_COLUMN_LEN">
+            <summary>
+            make database calculate maximum length of data found in a column
+            </summary>
+        </member>
+        <member name="F:Peachpie.Library.PDO.PDO.PDO_ATTR.ATTR_DEFAULT_FETCH_MODE">
+            <summary>
+            Set the default fetch mode
+            </summary>
+        </member>
+        <member name="F:Peachpie.Library.PDO.PDO.PDO_ATTR.ATTR_EMULATE_PREPARES">
+            <summary>
+            use query emulation rather than native
+            </summary>
+        </member>
+        <member name="F:Peachpie.Library.PDO.PDO.PDO_ATTR.DEFAULT_STR_PARAM">
+            <summary>default string parameter type</summary>
+        </member>
+        <member name="F:Peachpie.Library.PDO.PDO.PDO_ATTR.ATTR_DRIVER_SPECIFIC">
+            <summary>
+            this defines the start of the range for driver specific options
+            </summary>
+        </member>
+        <member name="F:Peachpie.Library.PDO.PDO.ATTR_AUTOCOMMIT">
+            <summary>
+            use to turn on or off auto-commit mode
+            </summary>
+        </member>
+        <member name="F:Peachpie.Library.PDO.PDO.ATTR_PREFETCH">
+            <summary>
+            configure the prefetch size for drivers that support it. Size is in KB
+            </summary>
+        </member>
+        <member name="F:Peachpie.Library.PDO.PDO.ATTR_TIMEOUT">
+            <summary>
+            connection timeout in seconds
+            </summary>
+        </member>
+        <member name="F:Peachpie.Library.PDO.PDO.ATTR_ERRMODE">
+            <summary>
+            control how errors are handled
+            </summary>
+        </member>
+        <member name="F:Peachpie.Library.PDO.PDO.ATTR_SERVER_VERSION">
+            <summary>
+            database server version
+            </summary>
+        </member>
+        <member name="F:Peachpie.Library.PDO.PDO.ATTR_CLIENT_VERSION">
+            <summary>
+            client library version
+            </summary>
+        </member>
+        <member name="F:Peachpie.Library.PDO.PDO.ATTR_SERVER_INFO">
+            <summary>
+            server information
+            </summary>
+        </member>
+        <member name="F:Peachpie.Library.PDO.PDO.ATTR_CONNECTION_STATUS">
+            <summary>
+            connection status
+            </summary>
+        </member>
+        <member name="F:Peachpie.Library.PDO.PDO.ATTR_CASE">
+            <summary>
+            control case folding for portability
+            </summary>
+        </member>
+        <member name="F:Peachpie.Library.PDO.PDO.ATTR_CURSOR_NAME">
+            <summary>
+            name a cursor for use in "WHERE CURRENT OF &lt;name&gt;" 
+            </summary>
+        </member>
+        <member name="F:Peachpie.Library.PDO.PDO.ATTR_CURSOR">
+            <summary>
+            cursor type
+            </summary>
+        </member>
+        <member name="F:Peachpie.Library.PDO.PDO.ATTR_DRIVER_NAME">
+            <summary>
+            name of the driver (as used in the constructor) 
+            </summary>
+        </member>
+        <member name="F:Peachpie.Library.PDO.PDO.ATTR_ORACLE_NULLS">
+            <summary>
+            convert empty strings to NULL
+            </summary>
+        </member>
+        <member name="F:Peachpie.Library.PDO.PDO.ATTR_PERSISTENT">
+            <summary>
+            pconnect style connection
+            </summary>
+        </member>
+        <member name="F:Peachpie.Library.PDO.PDO.ATTR_STATEMENT_CLASS">
+            <summary>
+            array(classname, array(ctor_args)) to specify the class of the constructed statement
+            </summary>
+        </member>
+        <member name="F:Peachpie.Library.PDO.PDO.ATTR_FETCH_CATALOG_NAMES">
+            <summary>
+            include the catalog/db name names in the column names, where available
+            </summary>
+        </member>
+        <member name="F:Peachpie.Library.PDO.PDO.ATTR_FETCH_TABLE_NAMES">
+            <summary>
+            include table names in the column names, where available
+            </summary>
+        </member>
+        <member name="F:Peachpie.Library.PDO.PDO.ATTR_STRINGIFY_FETCHES">
+            <summary>
+            converts integer/float types to strings during fetch
+            </summary>
+        </member>
+        <member name="F:Peachpie.Library.PDO.PDO.ATTR_MAX_COLUMN_LEN">
+            <summary>
+            make database calculate maximum length of data found in a column
+            </summary>
+        </member>
+        <member name="F:Peachpie.Library.PDO.PDO.ATTR_DEFAULT_FETCH_MODE">
+            <summary>
+            Set the default fetch mode
+            </summary>
+        </member>
+        <member name="F:Peachpie.Library.PDO.PDO.ATTR_EMULATE_PREPARES">
+            <summary>
+            use query emulation rather than native
+            </summary>
+        </member>
+        <member name="F:Peachpie.Library.PDO.PDO.ATTR_DEFAULT_STR_PARAM">
+            <summary>
+            default string parameter type, this can be one of <see cref="F:Peachpie.Library.PDO.PDO.PARAM_STR_NATL"/> and <see cref="F:Peachpie.Library.PDO.PDO.PARAM_STR_CHAR"/>.
+            </summary>
+        </member>
+        <member name="F:Peachpie.Library.PDO.PDO.ATTR_DRIVER_SPECIFIC">
+            <summary>
+            this defines the start of the range for driver specific options
+            </summary>
+        </member>
+        <member name="T:Peachpie.Library.PDO.PDO.MYSQL_ATTR">
+            <summary>MySql specific attributes.</summary>
+        </member>
+        <member name="F:Peachpie.Library.PDO.PDO.MYSQL_ATTR.USE_BUFFERED_QUERY">
+            <summary></summary>
+        </member>
+        <member name="F:Peachpie.Library.PDO.PDO.MYSQL_ATTR.LOCAL_INFILE">
+            <summary></summary>
+        </member>
+        <member name="F:Peachpie.Library.PDO.PDO.MYSQL_ATTR.INIT_COMMAND">
+            <summary></summary>
+        </member>
+        <member name="F:Peachpie.Library.PDO.PDO.MYSQL_ATTR.COMPRESS">
+            <summary></summary>
+        </member>
+        <member name="F:Peachpie.Library.PDO.PDO.MYSQL_ATTR.DIRECT_QUERY">
+            <summary></summary>
+        </member>
+        <member name="F:Peachpie.Library.PDO.PDO.MYSQL_ATTR.FOUND_ROWS">
+            <summary></summary>
+        </member>
+        <member name="F:Peachpie.Library.PDO.PDO.MYSQL_ATTR.IGNORE_SPACE">
+            <summary></summary>
+        </member>
+        <member name="F:Peachpie.Library.PDO.PDO.MYSQL_ATTR.SSL_KEY">
+            <summary></summary>
+        </member>
+        <member name="F:Peachpie.Library.PDO.PDO.MYSQL_ATTR.SSL_CERT">
+            <summary></summary>
+        </member>
+        <member name="F:Peachpie.Library.PDO.PDO.MYSQL_ATTR.SSL_CA">
+            <summary></summary>
+        </member>
+        <member name="F:Peachpie.Library.PDO.PDO.MYSQL_ATTR.SSL_CAPATH">
+            <summary></summary>
+        </member>
+        <member name="F:Peachpie.Library.PDO.PDO.MYSQL_ATTR.SSL_CIPHER">
+            <summary></summary>
+        </member>
+        <member name="F:Peachpie.Library.PDO.PDO.MYSQL_ATTR.SERVER_PUBLIC_KEY">
+            <summary></summary>
+        </member>
+        <member name="F:Peachpie.Library.PDO.PDO.MYSQL_ATTR.MULTI_STATEMENTS">
+            <summary></summary>
+        </member>
+        <member name="F:Peachpie.Library.PDO.PDO.MYSQL_ATTR.SSL_VERIFY_SERVER_CERT">
+            <summary></summary>
+        </member>
+        <member name="F:Peachpie.Library.PDO.PDO.MYSQL_ATTR_USE_BUFFERED_QUERY">
+            <summary></summary>
+        </member>
+        <member name="F:Peachpie.Library.PDO.PDO.MYSQL_ATTR_LOCAL_INFILE">
+            <summary></summary>
+        </member>
+        <member name="F:Peachpie.Library.PDO.PDO.MYSQL_ATTR_INIT_COMMAND">
+            <summary></summary>
+        </member>
+        <member name="F:Peachpie.Library.PDO.PDO.MYSQL_ATTR_COMPRESS">
+            <summary></summary>
+        </member>
+        <member name="F:Peachpie.Library.PDO.PDO.MYSQL_ATTR_DIRECT_QUERY">
+            <summary></summary>
+        </member>
+        <member name="F:Peachpie.Library.PDO.PDO.MYSQL_ATTR_FOUND_ROWS">
+            <summary></summary>
+        </member>
+        <member name="F:Peachpie.Library.PDO.PDO.MYSQL_ATTR_IGNORE_SPACE">
+            <summary></summary>
+        </member>
+        <member name="F:Peachpie.Library.PDO.PDO.MYSQL_ATTR_SSL_KEY">
+            <summary></summary>
+        </member>
+        <member name="F:Peachpie.Library.PDO.PDO.MYSQL_ATTR_SSL_CERT">
+            <summary></summary>
+        </member>
+        <member name="F:Peachpie.Library.PDO.PDO.MYSQL_ATTR_SSL_CA">
+            <summary></summary>
+        </member>
+        <member name="F:Peachpie.Library.PDO.PDO.MYSQL_ATTR_SSL_CAPATH">
+            <summary></summary>
+        </member>
+        <member name="F:Peachpie.Library.PDO.PDO.MYSQL_ATTR_SSL_CIPHER">
+            <summary></summary>
+        </member>
+        <member name="F:Peachpie.Library.PDO.PDO.MYSQL_ATTR_SERVER_PUBLIC_KEY">
+            <summary></summary>
+        </member>
+        <member name="F:Peachpie.Library.PDO.PDO.MYSQL_ATTR_MULTI_STATEMENTS">
+            <summary></summary>
+        </member>
+        <member name="F:Peachpie.Library.PDO.PDO.MYSQL_ATTR_SSL_VERIFY_SERVER_CERT">
+            <summary></summary>
+        </member>
+        <member name="T:Peachpie.Library.PDO.PDO.SQLITE_ATTR">
+            <summary></summary>
+        </member>
+        <member name="F:Peachpie.Library.PDO.PDO.SQLITE_ATTR.OPEN_FLAGS">
+            <summary></summary>
+        </member>
+        <member name="F:Peachpie.Library.PDO.PDO.SQLITE_ATTR.READONLY_STATEMENT">
+            <summary></summary>
+        </member>
+        <member name="F:Peachpie.Library.PDO.PDO.SQLITE_ATTR.EXTENDED_RESULT_CODES">
+            <summary></summary>
+        </member>
+        <member name="F:Peachpie.Library.PDO.PDO.SQLITE_ATTR_OPEN_FLAGS">
+            <summary></summary>
+        </member>
+        <member name="F:Peachpie.Library.PDO.PDO.SQLITE_ATTR_READONLY_STATEMENT">
+            <summary></summary>
+        </member>
+        <member name="F:Peachpie.Library.PDO.PDO.SQLITE_ATTR_EXTENDED_RESULT_CODES">
+            <summary></summary>
+        </member>
+        <member name="T:Peachpie.Library.PDO.PDO.SQLSRV_ATTR">
+            <summary></summary>
+        </member>
+        <member name="F:Peachpie.Library.PDO.PDO.SQLSRV_ATTR.ENCODING">
+            <summary></summary>
+        </member>
+        <member name="F:Peachpie.Library.PDO.PDO.SQLSRV_ATTR.ENCODING_DEFAULT">
+            <summary></summary>
+        </member>
+        <member name="F:Peachpie.Library.PDO.PDO.SQLSRV_ATTR.ENCODING_BINARY">
+            <summary></summary>
+        </member>
+        <member name="F:Peachpie.Library.PDO.PDO.SQLSRV_ATTR.ENCODING_SYSTEM">
+            <summary></summary>
+        </member>
+        <member name="F:Peachpie.Library.PDO.PDO.SQLSRV_ATTR.ENCODING_UTF8">
+            <summary></summary>
+        </member>
+        <member name="F:Peachpie.Library.PDO.PDO.SQLSRV_ATTR.CURSOR_SCROLL_TYPE">
+            <summary></summary>
+        </member>
+        <member name="F:Peachpie.Library.PDO.PDO.SQLSRV_ATTR.DIRECT_QUERY">
+            <summary></summary>
+        </member>
+        <member name="F:Peachpie.Library.PDO.PDO.SQLSRV_ATTR.FETCHES_NUMERIC_TYPE">
+            <summary></summary>
+        </member>
+        <member name="F:Peachpie.Library.PDO.PDO.SQLSRV_ATTR.QUERY_TIMEOUT">
+            <summary></summary>
+        </member>
+        <member name="F:Peachpie.Library.PDO.PDO.SQLSRV_ATTR.PARAM_OUT_DEFAULT_SIZE">
+            <summary></summary>
+        </member>
+        <member name="F:Peachpie.Library.PDO.PDO.SQLSRV_ENCODING_DEFAULT">
+            <summary></summary>
+        </member>
+        <member name="F:Peachpie.Library.PDO.PDO.SQLSRV_ENCODING_BINARY">
+            <summary></summary>
+        </member>
+        <member name="F:Peachpie.Library.PDO.PDO.SQLSRV_ENCODING_SYSTEM">
+            <summary></summary>
+        </member>
+        <member name="F:Peachpie.Library.PDO.PDO.SQLSRV_ENCODING_UTF8">
+            <summary></summary>
+        </member>
+        <member name="F:Peachpie.Library.PDO.PDO.SQLSRV_ATTR_ENCODING">
+            <summary></summary>
+        </member>
+        <member name="F:Peachpie.Library.PDO.PDO.SQLSRV_ATTR_QUERY_TIMEOUT">
+            <summary></summary>
+        </member>
+        <member name="F:Peachpie.Library.PDO.PDO.SQLSRV_ATTR_DIRECT_QUERY">
+            <summary></summary>
+        </member>
+        <member name="F:Peachpie.Library.PDO.PDO.SQLSRV_ATTR_CURSOR_SCROLL_TYPE">
+            <summary></summary>
+        </member>
+        <member name="F:Peachpie.Library.PDO.PDO.SQLSRV_ATTR_FETCHES_NUMERIC_TYPE">
+            <summary></summary>
+        </member>
+        <member name="F:Peachpie.Library.PDO.PDO.SQLSRV_PARAM_OUT_DEFAULT_SIZE">
+            <summary></summary>
+        </member>
+        <member name="F:Peachpie.Library.PDO.PDO._lazyAttributes">
+            <summary>
+            Lazily initialized set of explicitly set attributes.
+            If not specified, the attributed has its default value.
+            </summary>
+        </member>
+        <member name="M:Peachpie.Library.PDO.PDO.GetOrCreateAttributes">
+            <summary>
+            Lazily initializes <see cref="F:Peachpie.Library.PDO.PDO._lazyAttributes"/>.
+            </summary>
+        </member>
+        <member name="F:Peachpie.Library.PDO.PDO._oracle_nulls">
+            <summary>
+            "Oracle" handling of NULL and empty strings.
+            </summary>
+        </member>
+        <member name="P:Peachpie.Library.PDO.PDO.Stringify">
+            <summary>
+            <c>ATTR_STRINGIFY_FETCHES</c> option.
+            Instructs the ResultResource to convert values to strings.
+            </summary>
+        </member>
+        <member name="M:Peachpie.Library.PDO.PDO.getAttribute(Peachpie.Library.PDO.PDO.PDO_ATTR)">
+            <summary>
+            Retrieve a database connection attribute
+            </summary>
+            <param name="attribute">The attribute.</param>
+            <returns>A successful call returns the value of the requested PDO attribute. An unsuccessful call returns <c>null</c>.</returns>
+        </member>
+        <member name="M:Peachpie.Library.PDO.PDO.setAttribute(Peachpie.Library.PDO.PDO.PDO_ATTR,Pchp.Core.PhpValue)">
+            <summary>
+            Set an attribute.
+            </summary>
+            <param name="attribute">The attribute.</param>
+            <param name="value">The value.</param>
+            <returns></returns>
+        </member>
+        <member name="T:Peachpie.Library.PDO.PDO.PDO_CASE">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:Peachpie.Library.PDO.PDO.PDO_CASE.CASE_LOWER">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:Peachpie.Library.PDO.PDO.PDO_CASE.CASE_NATURAL">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:Peachpie.Library.PDO.PDO.PDO_CASE.CASE_UPPER">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:Peachpie.Library.PDO.PDO.CASE_LOWER">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:Peachpie.Library.PDO.PDO.CASE_NATURAL">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:Peachpie.Library.PDO.PDO.CASE_UPPER">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:Peachpie.Library.PDO.PDO._ctx">
+            <summary>Runtime context. Cannot be <c>null</c>.</summary>
+            <remarks>"_ctx" is a special name recognized by compiler. Will be reused by inherited classes.</remarks>
+        </member>
+        <member name="P:Peachpie.Library.PDO.PDO.Connection">
+            <summary>
+            Gets the native connection instance
+            </summary>
+        </member>
+        <member name="M:Peachpie.Library.PDO.PDO.#ctor(Pchp.Core.Context)">
+            <summary>
+            Empty constructor.
+            </summary>
+        </member>
+        <member name="M:Peachpie.Library.PDO.PDO.#ctor(Pchp.Core.Context,System.String,System.String,System.String,Pchp.Core.PhpArray)">
+            <summary>
+            Creates a <see cref="T:Peachpie.Library.PDO.PDO"/> instance to represent a connection to the requested database.
+            </summary>
+            <param name="ctx">The php context.</param>
+            <param name="dsn">The Data Source Name.</param>
+            <param name="username">The user name for the DSN string.</param>
+            <param name="password">The password for the DSN string.</param>
+            <param name="options">A key=&gt;value array of driver-specific connection options.</param>
+        </member>
+        <member name="M:Peachpie.Library.PDO.PDO.__construct(System.String,System.String,System.String,Pchp.Core.PhpArray)">
+            <summary>
+            Creates a PDO instance representing a connection to a database
+            </summary>
+            <param name="dsn">The DSN.</param>
+            <param name="username">The username.</param>
+            <param name="password">The password.</param>
+            <param name="options">The options.</param>
+        </member>
+        <member name="M:Peachpie.Library.PDO.PDO.inTransaction">
+            <summary>
+            Checks if inside a transaction
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Peachpie.Library.PDO.PDO.__call(System.String,Pchp.Core.PhpArray)">
+            <inheritDoc />
+        </member>
+        <member name="M:Peachpie.Library.PDO.PDO.System#IDisposable#Dispose">
+            <inheritDoc />
+        </member>
+        <member name="M:Peachpie.Library.PDO.PDO.getAvailableDrivers">
+            <summary>
+            This function returns all currently available PDO drivers which can be used in DSN parameter of <see cref="T:Peachpie.Library.PDO.PDO" /> constructor.
+            </summary>
+        </member>
+        <member name="M:Peachpie.Library.PDO.PDO.CreateCommand(System.String)">
+            <summary>
+            Creates a DbCommand object.
+            </summary>
+            <param name="statement">The command text.</param>
+            <returns></returns>
+        </member>
+        <member name="M:Peachpie.Library.PDO.PDO.ClosePendingReader">
+            <summary>
+            Closes pending data reader if any.
+            </summary>
+        </member>
+        <member name="M:Peachpie.Library.PDO.PDO.exec(System.String)">
+            <summary>
+            Execute an SQL statement and return the number of affected rows.
+            </summary>
+            <param name="statement">The statement.</param>
+        </member>
+        <member name="M:Peachpie.Library.PDO.PDO.beginTransaction">
+            <summary>
+            Initiates a transaction
+            </summary>
+            <exception cref="T:Peachpie.Library.PDO.PDOException">When a transaction has already been started</exception>
+            <returns>True if transaction started successfully, or false</returns>
+        </member>
+        <member name="M:Peachpie.Library.PDO.PDO.commit">
+            <summary>
+            Commits a transaction
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Peachpie.Library.PDO.PDO.rollBack">
+            <summary>
+            Rolls back a transaction.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Peachpie.Library.PDO.PDO.lastInsertId(System.String)">
+            <summary>
+            Returns the ID of the last inserted row or sequence value.
+            </summary>
+            <param name="name">The name.</param>
+            <returns></returns>
+        </member>
+        <member name="M:Peachpie.Library.PDO.PDO.prepare(System.String,Pchp.Core.PhpArray)">
+            <summary>
+            Prepares a statement for execution and returns a statement object.
+            </summary>
+            <param name="statement">The statement.</param>
+            <param name="driver_options">The driver options.</param>
+            <returns></returns>
+        </member>
+        <member name="M:Peachpie.Library.PDO.PDO.query(System.String,Pchp.Core.PhpValue[])">
+            <summary>
+            Executes an SQL statement, returning a result set as a PDOStatement object.
+            </summary>
+            <param name="statement">The statement.</param>
+            <param name="args">The arguments.</param>
+            <returns></returns>
+        </member>
+        <member name="M:Peachpie.Library.PDO.PDO.quote(System.String,Peachpie.Library.PDO.PDO.PARAM)">
+            <summary>
+            Quotes a string for use in a query.
+            </summary>
+            <param name="str">The string.</param>
+            <param name="parameter_type">Type of the parameter.</param>
+            <returns></returns>
+        </member>
+        <member name="T:Peachpie.Library.PDO.PDO.PDO_CURSOR">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:Peachpie.Library.PDO.PDO.PDO_CURSOR.CURSOR_FWDONLY">
+            <summary>
+            forward only cursor (default)
+            </summary>
+        </member>
+        <member name="F:Peachpie.Library.PDO.PDO.PDO_CURSOR.CURSOR_SCROLL">
+            <summary>
+            scrollable cursor
+            </summary>
+        </member>
+        <member name="F:Peachpie.Library.PDO.PDO.CURSOR_FWDONLY">
+            <summary>
+            forward only cursor (default)
+            </summary>
+        </member>
+        <member name="F:Peachpie.Library.PDO.PDO.CURSOR_SCROLL">
+            <summary>
+            scrollable cursor
+            </summary>
+        </member>
+        <member name="T:Peachpie.Library.PDO.PDO.SQLSRV_CURSOR">
+            <summary></summary>
+        </member>
+        <member name="F:Peachpie.Library.PDO.PDO.SQLSRV_CURSOR.BUFFERED">
+            <summary></summary>
+        </member>
+        <member name="F:Peachpie.Library.PDO.PDO.SQLSRV_CURSOR.DYNAMIC">
+            <summary></summary>
+        </member>
+        <member name="F:Peachpie.Library.PDO.PDO.SQLSRV_CURSOR.KEYSET">
+            <summary></summary>
+        </member>
+        <member name="F:Peachpie.Library.PDO.PDO.SQLSRV_CURSOR.STATIC">
+            <summary></summary>
+        </member>
+        <member name="F:Peachpie.Library.PDO.PDO.SQLSRV_CURSOR_KEYSET">
+            <summary></summary>
+        </member>
+        <member name="F:Peachpie.Library.PDO.PDO.SQLSRV_CURSOR_DYNAMIC">
+            <summary></summary>
+        </member>
+        <member name="F:Peachpie.Library.PDO.PDO.SQLSRV_CURSOR_STATIC">
+            <summary></summary>
+        </member>
+        <member name="F:Peachpie.Library.PDO.PDO.SQLSRV_CURSOR_BUFFERED">
+            <summary></summary>
+        </member>
+        <member name="T:Peachpie.Library.PDO.PDO.PDO_ERRMODE">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:Peachpie.Library.PDO.PDO.PDO_ERRMODE.ERRMODE_SILENT">
+            <summary>
+            just set error codes
+            </summary>
+        </member>
+        <member name="F:Peachpie.Library.PDO.PDO.PDO_ERRMODE.ERRMODE_WARNING">
+            <summary>
+            raise E_WARNING
+            </summary>
+        </member>
+        <member name="F:Peachpie.Library.PDO.PDO.PDO_ERRMODE.ERRMODE_EXCEPTION">
+            <summary>
+            throw exceptions
+            </summary>
+        </member>
+        <member name="F:Peachpie.Library.PDO.PDO.ERRMODE_SILENT">
+            <summary>
+            just set error codes
+            </summary>
+        </member>
+        <member name="F:Peachpie.Library.PDO.PDO.ERRMODE_WARNING">
+            <summary>
+            raise E_WARNING
+            </summary>
+        </member>
+        <member name="F:Peachpie.Library.PDO.PDO.ERRMODE_EXCEPTION">
+            <summary>
+            throw exceptions
+            </summary>
+        </member>
+        <member name="F:Peachpie.Library.PDO.PDO.ERR_NONE">
+            <summary>
+            Corresponds to SQLSTATE '00000' and successful statement. Value returned from <see cref="M:Peachpie.Library.PDO.PDO.errorCode"/>.
+            </summary>
+        </member>
+        <member name="T:Peachpie.Library.PDO.PDO.ErrorInfo">
+            <summary>
+            Internal representation of PDO error.
+            </summary>
+        </member>
+        <member name="F:Peachpie.Library.PDO.PDO.ErrorInfo.SqlState">
+            <summary>SQLSTATE.</summary>
+        </member>
+        <member name="F:Peachpie.Library.PDO.PDO.ErrorInfo.Code">
+            <summary>Error code.</summary>
+        </member>
+        <member name="F:Peachpie.Library.PDO.PDO.ErrorInfo.Message">
+            <summary>Error message.</summary>
+        </member>
+        <member name="M:Peachpie.Library.PDO.PDO.ErrorInfo.Create(System.String)">
+            <summary>
+            Create error info for a general PDO error.
+            </summary>
+        </member>
+        <member name="M:Peachpie.Library.PDO.PDO.ErrorInfo.Create(System.String,System.String,System.String)">
+            <summary>
+            Create error info.
+            </summary>
+        </member>
+        <member name="M:Peachpie.Library.PDO.PDO.ErrorInfo.ToPhpErrorInfo">
+            <summary>
+            Gets array representation of the error according to <see cref="M:Peachpie.Library.PDO.PDO.errorInfo"/>.
+            </summary>
+        </member>
+        <member name="M:Peachpie.Library.PDO.PDO.ClearError">
+            <summary>
+            Clears the error.
+            </summary>
+        </member>
+        <member name="M:Peachpie.Library.PDO.PDO.HandleError(System.Exception)">
+            <summary>
+            Handles the error.
+            </summary>
+            <param name="exception">The exception to be handled.</param>
+        </member>
+        <member name="M:Peachpie.Library.PDO.PDO.HandleError(System.String,System.String,System.String)">
+            <summary></summary>
+        </member>
+        <member name="M:Peachpie.Library.PDO.PDO.HandleError(Peachpie.Library.PDO.PDO.ErrorInfo)">
+            <summary>Raises error according to <see cref="F:Peachpie.Library.PDO.PDO.PDO_ATTR.ATTR_ERRMODE"/>.</summary>
+            <exception cref="T:Peachpie.Library.PDO.PDOException">
+            In case <see cref="F:Peachpie.Library.PDO.PDO.PDO_ATTR.ATTR_ERRMODE"/> is set to <see cref="F:Peachpie.Library.PDO.PDO.PDO_ERRMODE.ERRMODE_EXCEPTION"/>, the exception is thrown.
+            </exception>
+        </member>
+        <member name="M:Peachpie.Library.PDO.PDO.HandleError(System.String)">
+            <summary>
+            Raises simple "HY000" error.
+            </summary>
+        </member>
+        <member name="M:Peachpie.Library.PDO.PDO.errorCode">
+            <summary>
+            Fetch the SQLSTATE associated with the last operation on the database handle
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Peachpie.Library.PDO.PDO.errorInfo">
+            <summary>
+            Fetch extended error information associated with the last operation on the database handle
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:Peachpie.Library.PDO.PDO.PDO_FETCH">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:Peachpie.Library.PDO.PDO.PDO_FETCH.Default">
+            <summary>
+            Zero. No flags.
+            </summary>
+        </member>
+        <member name="F:Peachpie.Library.PDO.PDO.PDO_FETCH.FETCH_LAZY">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:Peachpie.Library.PDO.PDO.PDO_FETCH.FETCH_ASSOC">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:Peachpie.Library.PDO.PDO.PDO_FETCH.FETCH_NUM">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:Peachpie.Library.PDO.PDO.PDO_FETCH.FETCH_BOTH">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:Peachpie.Library.PDO.PDO.PDO_FETCH.FETCH_OBJ">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:Peachpie.Library.PDO.PDO.PDO_FETCH.FETCH_BOUND">
+            <summary>
+            return true/false only; rely on bound columns
+            </summary>
+        </member>
+        <member name="F:Peachpie.Library.PDO.PDO.PDO_FETCH.FETCH_COLUMN">
+            <summary>
+            fetch a numbered column only
+            </summary>
+        </member>
+        <member name="F:Peachpie.Library.PDO.PDO.PDO_FETCH.FETCH_CLASS">
+            <summary>
+            create an instance of named class, call ctor and set properties
+            </summary>
+        </member>
+        <member name="F:Peachpie.Library.PDO.PDO.PDO_FETCH.FETCH_INTO">
+            <summary>
+            fetch row into an existing object
+            </summary>
+        </member>
+        <member name="F:Peachpie.Library.PDO.PDO.PDO_FETCH.FETCH_FUNC">
+            <summary>
+            fetch into function and return its result
+            </summary>
+        </member>
+        <member name="F:Peachpie.Library.PDO.PDO.PDO_FETCH.FETCH_NAMED">
+            <summary>
+            like FETCH_ASSOC, but can handle duplicate names
+            </summary>
+        </member>
+        <member name="F:Peachpie.Library.PDO.PDO.PDO_FETCH.FETCH_KEY_PAIR">
+            <summary>
+            Fetch a two-column result into an array where the first column is a key and the second column is the value
+            </summary>
+        </member>
+        <member name="F:Peachpie.Library.PDO.PDO.PDO_FETCH.FETCH_GROUP">
+            <summary>
+            Group return by values. Usually combined with PDO::FETCH_COLUMN or PDO::FETCH_KEY_PAIR
+            </summary>
+        </member>
+        <member name="F:Peachpie.Library.PDO.PDO.PDO_FETCH.FETCH_UNIQUE">
+            <summary>
+            Fetch only the unique values.
+            </summary>
+        </member>
+        <member name="F:Peachpie.Library.PDO.PDO.PDO_FETCH.FETCH_CLASSTYPE">
+            <summary>
+            Determine the class name from the value of first column.
+            </summary>
+        </member>
+        <member name="F:Peachpie.Library.PDO.PDO.PDO_FETCH.FETCH_SERIALIZE">
+            <summary>
+            As PDO::FETCH_INTO but object is provided as a serialized string. Available since PHP 5.1.0. Since PHP 5.3.0 the class constructor is never called if this flag is set.
+            </summary>
+        </member>
+        <member name="F:Peachpie.Library.PDO.PDO.PDO_FETCH.FETCH_PROPS_LATE">
+            <summary>
+            Call the constructor before setting properties.
+            </summary>
+        </member>
+        <member name="F:Peachpie.Library.PDO.PDO.PDO_FETCH.Flags">
+            <summary>
+            Additional flags mask combined with fetch mode.
+            </summary>
+        </member>
+        <member name="F:Peachpie.Library.PDO.PDO.FETCH_LAZY">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:Peachpie.Library.PDO.PDO.FETCH_ASSOC">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:Peachpie.Library.PDO.PDO.FETCH_NUM">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:Peachpie.Library.PDO.PDO.FETCH_BOTH">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:Peachpie.Library.PDO.PDO.FETCH_OBJ">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:Peachpie.Library.PDO.PDO.FETCH_BOUND">
+            <summary>
+            return true/false only; rely on bound columns
+            </summary>
+        </member>
+        <member name="F:Peachpie.Library.PDO.PDO.FETCH_COLUMN">
+            <summary>
+            fetch a numbered column only
+            </summary>
+        </member>
+        <member name="F:Peachpie.Library.PDO.PDO.FETCH_CLASS">
+            <summary>
+            create an instance of named class, call ctor and set properties
+            </summary>
+        </member>
+        <member name="F:Peachpie.Library.PDO.PDO.FETCH_INTO">
+            <summary>
+            fetch row into an existing object
+            </summary>
+        </member>
+        <member name="F:Peachpie.Library.PDO.PDO.FETCH_FUNC">
+            <summary>
+            fetch into function and return its result
+            </summary>
+        </member>
+        <member name="F:Peachpie.Library.PDO.PDO.FETCH_NAMED">
+            <summary>
+            like PDO_FETCH_ASSOC, but can handle duplicate names
+            </summary>
+        </member>
+        <member name="F:Peachpie.Library.PDO.PDO.FETCH_KEY_PAIR">
+            <summary>
+            fetch into an array where the 1st column is a key and all subsequent columns are values
+            </summary>
+        </member>
+        <member name="F:Peachpie.Library.PDO.PDO.FETCH_GROUP">
+            <summary>
+            Group return by values. Usually combined with PDO::FETCH_COLUMN or PDO::FETCH_KEY_PAIR
+            </summary>
+        </member>
+        <member name="F:Peachpie.Library.PDO.PDO.FETCH_UNIQUE">
+            <summary>
+            Fetch only the unique values.
+            </summary>
+        </member>
+        <member name="F:Peachpie.Library.PDO.PDO.FETCH_CLASSTYPE">
+            <summary>
+            Determine the class name from the value of first column.
+            </summary>
+        </member>
+        <member name="F:Peachpie.Library.PDO.PDO.FETCH_SERIALIZE">
+            <summary>
+            As PDO::FETCH_INTO but object is provided as a serialized string. Available since PHP 5.1.0. Since PHP 5.3.0 the class constructor is never called if this flag is set.
+            </summary>
+        </member>
+        <member name="F:Peachpie.Library.PDO.PDO.FETCH_PROPS_LATE">
+            <summary>
+            Call the constructor before setting properties.
+            </summary>
+        </member>
+        <member name="T:Peachpie.Library.PDO.PDO.PDO_FETCH_ORI">
+            <summary>
+            fetch orientation for scrollable cursors
+            </summary>
+        </member>
+        <member name="F:Peachpie.Library.PDO.PDO.PDO_FETCH_ORI.FETCH_ORI_NEXT">
+            <summary>
+            default: fetch the next available row
+            </summary>
+        </member>
+        <member name="F:Peachpie.Library.PDO.PDO.PDO_FETCH_ORI.FETCH_ORI_PRIOR">
+            <summary>
+            scroll back to prior row and fetch that
+            </summary>
+        </member>
+        <member name="F:Peachpie.Library.PDO.PDO.PDO_FETCH_ORI.FETCH_ORI_FIRST">
+            <summary>
+            scroll to the first row and fetch that
+            </summary>
+        </member>
+        <member name="F:Peachpie.Library.PDO.PDO.PDO_FETCH_ORI.FETCH_ORI_LAST">
+            <summary>
+            scroll to the last row and fetch that
+            </summary>
+        </member>
+        <member name="F:Peachpie.Library.PDO.PDO.PDO_FETCH_ORI.FETCH_ORI_ABS">
+            <summary>
+            scroll to an absolute numbered row and fetch that 
+            </summary>
+        </member>
+        <member name="F:Peachpie.Library.PDO.PDO.PDO_FETCH_ORI.FETCH_ORI_REL">
+            <summary>
+            scroll relative to the current row, and fetch that
+            </summary>
+        </member>
+        <member name="F:Peachpie.Library.PDO.PDO.FETCH_ORI_NEXT">
+            <summary>
+            default: fetch the next available row
+            </summary>
+        </member>
+        <member name="F:Peachpie.Library.PDO.PDO.FETCH_ORI_PRIOR">
+            <summary>
+            scroll back to prior row and fetch that
+            </summary>
+        </member>
+        <member name="F:Peachpie.Library.PDO.PDO.FETCH_ORI_FIRST">
+            <summary>
+            scroll to the first row and fetch that
+            </summary>
+        </member>
+        <member name="F:Peachpie.Library.PDO.PDO.FETCH_ORI_LAST">
+            <summary>
+            scroll to the last row and fetch that
+            </summary>
+        </member>
+        <member name="F:Peachpie.Library.PDO.PDO.FETCH_ORI_ABS">
+            <summary>
+            scroll to an absolute numbered row and fetch that 
+            </summary>
+        </member>
+        <member name="F:Peachpie.Library.PDO.PDO.FETCH_ORI_REL">
+            <summary>
+            scroll relative to the current row, and fetch that
+            </summary>
+        </member>
+        <member name="T:Peachpie.Library.PDO.PDO.PDO_NULL">
+            <summary>
+            "oracle" NULL handling
+            </summary>
+        </member>
+        <member name="F:Peachpie.Library.PDO.PDO.PDO_NULL.NULL_NATURAL">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:Peachpie.Library.PDO.PDO.PDO_NULL.NULL_EMPTY_STRING">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:Peachpie.Library.PDO.PDO.PDO_NULL.NULL_TO_STRING">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:Peachpie.Library.PDO.PDO.NULL_NATURAL">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:Peachpie.Library.PDO.PDO.NULL_EMPTY_STRING">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:Peachpie.Library.PDO.PDO.NULL_TO_STRING">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="T:Peachpie.Library.PDO.PDO.PARAM">
+            <summary></summary>
+        </member>
+        <member name="F:Peachpie.Library.PDO.PDO.PARAM.PARAM_NULL">
+            <summary>
+            The value is NULL.
+            </summary>
+        </member>
+        <member name="F:Peachpie.Library.PDO.PDO.PARAM.PARAM_INT">
+            <summary>
+            int as in long (the php native int type)
+            </summary>
+        </member>
+        <member name="F:Peachpie.Library.PDO.PDO.PARAM.PARAM_STR">
+            <summary>
+            get_col ptr should point to start of the string buffer
+            </summary>
+        </member>
+        <member name="F:Peachpie.Library.PDO.PDO.PARAM.PARAM_LOB">
+            <summary>
+            The pdo parameter lob
+            </summary>
+        </member>
+        <member name="F:Peachpie.Library.PDO.PDO.PARAM.PARAM_STMT">
+            <summary>
+            The pdo parameter statement
+            </summary>
+        </member>
+        <member name="F:Peachpie.Library.PDO.PDO.PARAM.PARAM_BOOL">
+            <summary>
+            The pdo parameter bool
+            </summary>
+        </member>
+        <member name="F:Peachpie.Library.PDO.PDO.PARAM.PARAM_ZVAL">
+            <summary>
+            The pdo parameter zval
+            </summary>
+        </member>
+        <member name="F:Peachpie.Library.PDO.PDO.PARAM.PARAM_INPUT_OUTPUT">
+            <summary>
+            The pdo parameter input output
+            </summary>
+        </member>
+        <member name="F:Peachpie.Library.PDO.PDO.PARAM_NULL">
+            <summary>
+            The value is NULL.
+            </summary>
+        </member>
+        <member name="F:Peachpie.Library.PDO.PDO.PARAM_INT">
+            <summary>
+            int as in long (the php native int type). If you mark a column as an int, PDO expects get_col to return a pointer to a long
+            </summary>
+        </member>
+        <member name="F:Peachpie.Library.PDO.PDO.PARAM_STR">
+            <summary>
+            get_col ptr should point to start of the string buffer
+            </summary>
+        </member>
+        <member name="F:Peachpie.Library.PDO.PDO.PARAM_LOB">
+            <summary>
+            get_col: when len is 0 ptr should point to a php_stream *, otherwise it should behave like a string. Indicate a NULL field value by setting the ptr to NULL
+            </summary>
+        </member>
+        <member name="F:Peachpie.Library.PDO.PDO.PARAM_STMT">
+            <summary>
+            get_col: will expect the ptr to point to a new PDOStatement object handle, but this isn't wired up yet
+            </summary>
+        </member>
+        <member name="F:Peachpie.Library.PDO.PDO.PARAM_BOOL">
+            <summary>
+            get_col ptr should point to a zend_bool
+            </summary>
+        </member>
+        <member name="F:Peachpie.Library.PDO.PDO.PARAM_ZVAL">
+            <summary>
+            get_col ptr should point to a zval* and the driver is responsible for adding correct type information to get_column_meta()
+            </summary>
+        </member>
+        <member name="F:Peachpie.Library.PDO.PDO.PARAM_INPUT_OUTPUT">
+            <summary>
+            magic flag to denote a parameter as being input/output
+            </summary>
+        </member>
+        <member name="F:Peachpie.Library.PDO.PDO.PARAM_STR_NATL">
+            <summary></summary>
+        </member>
+        <member name="F:Peachpie.Library.PDO.PDO.PARAM_STR_CHAR">
+            <summary></summary>
+        </member>
+        <member name="F:Peachpie.Library.PDO.PDO.PARAM_EVT_ALLOC">
+            <summary></summary>
+        </member>
+        <member name="F:Peachpie.Library.PDO.PDO.PARAM_EVT_FREE">
+            <summary></summary>
+        </member>
+        <member name="F:Peachpie.Library.PDO.PDO.PARAM_EVT_EXEC_PRE">
+            <summary></summary>
+        </member>
+        <member name="F:Peachpie.Library.PDO.PDO.PARAM_EVT_EXEC_POST">
+            <summary></summary>
+        </member>
+        <member name="F:Peachpie.Library.PDO.PDO.PARAM_EVT_FETCH_PRE">
+            <summary></summary>
+        </member>
+        <member name="F:Peachpie.Library.PDO.PDO.PARAM_EVT_FETCH_POST">
+            <summary></summary>
+        </member>
+        <member name="F:Peachpie.Library.PDO.PDO.PARAM_EVT_NORMALIZE">
+            <summary></summary>
+        </member>
+        <member name="T:Peachpie.Library.PDO.PDO.PdoConnectionResource">
+            <summary>Implementation of our connection resource to be used by PDO.</summary>
+        </member>
+        <member name="P:Peachpie.Library.PDO.PDO.PdoConnectionResource.Context">
+            <summary>Current runtime context.</summary>
+        </member>
+        <member name="P:Peachpie.Library.PDO.PDO.PdoConnectionResource.Connection">
+            <summary>Actual database connection.</summary>
+        </member>
+        <member name="T:Peachpie.Library.PDO.PDO.PdoResultResource">
+            <summary>Result loaded with data supporting iteration.</summary>
+        </member>
+        <member name="P:Peachpie.Library.PDO.PDO.PdoResultResource.Connection">
+            <summary>
+            Underlying connection resource.
+            </summary>
+        </member>
+        <member name="P:Peachpie.Library.PDO.PDO.PdoResultResource.Context">
+            <summary>Current context.</summary>
+        </member>
+        <member name="P:Peachpie.Library.PDO.PDO.PdoResultResource.PDO">
+            <summary>Reference to containing <see cref="P:Peachpie.Library.PDO.PDO.PdoResultResource.PDO"/> instance.</summary>
+        </member>
+        <member name="P:Peachpie.Library.PDO.PDO.PdoResultResource.Driver">
+            <summary>Reference to underlying PDO driver.</summary>
+        </member>
+        <member name="M:Peachpie.Library.PDO.PDO.PdoResultResource.ConvertDbValue(System.String,System.Object,System.Boolean)">
+            <summary>
+            Converts a value of a specified MySQL DB type to PHP value.
+            </summary>
+            <param name="dataType">MySQL DB data type.</param>
+            <param name="sqlValue">The value.</param>
+            <param name="stringify">Whether to convert the value to nullable string.
+            Byte arrays are not converted to be later properly turned into PhpString.</param>
+            <returns>PHP value.</returns>
+        </member>
+        <member name="T:Peachpie.Library.PDO.PDOConfiguration">
+            <summary>
+            PDO configuration
+            </summary>
+            <seealso cref="T:Pchp.Core.IPhpConfiguration" />
+        </member>
+        <member name="M:Peachpie.Library.PDO.PDOConfiguration.Copy">
+            <inheritDoc />
+        </member>
+        <member name="P:Peachpie.Library.PDO.PDOConfiguration.ExtensionName">
+            <inheritDoc />
+        </member>
+        <member name="P:Peachpie.Library.PDO.PDOConfiguration.Dsn">
+            <summary>
+            Defines DSN alias.
+            </summary>
+        </member>
+        <member name="T:Peachpie.Library.PDO.PDODriver">
+            <summary>
+            PDO driver base class
+            </summary>
+        </member>
+        <member name="P:Peachpie.Library.PDO.PDODriver.Name">
+            <summary>
+            Gets the driver name (used in DSN)
+            </summary>
+        </member>
+        <member name="P:Peachpie.Library.PDO.PDODriver.ClientVersion">
+            <summary>
+            Gets the client version.
+            </summary>
+            <value>
+            The client version.
+            </value>
+        </member>
+        <member name="P:Peachpie.Library.PDO.PDODriver.DbFactory">
+            <inheritDoc />
+        </member>
+        <member name="M:Peachpie.Library.PDO.PDODriver.BuildConnectionString(System.ReadOnlySpan{System.Char},System.String,System.String,Pchp.Core.PhpArray)">
+            <summary>
+            Builds the connection string.
+            </summary>
+            <param name="dsn">The DSN.</param>
+            <param name="user">The user.</param>
+            <param name="password">The password.</param>
+            <param name="options">The options.</param>
+            <returns></returns>
+        </member>
+        <member name="M:Peachpie.Library.PDO.PDODriver.OpenConnection(System.ReadOnlySpan{System.Char},System.String,System.String,Pchp.Core.PhpArray)">
+            <summary>
+            Opens a new database connection.
+            </summary>
+            <param name="dsn">The DSN.</param>
+            <param name="user">The user.</param>
+            <param name="password">The password.</param>
+            <param name="options">The options.</param>
+            <returns></returns>
+        </member>
+        <member name="M:Peachpie.Library.PDO.PDODriver.TryGetExtensionMethod(System.String)">
+            <summary>
+            Gets the methods added to the PDO instance when this driver is used.
+            Returns <c>null</c> if the method is not defined.
+            </summary>
+        </member>
+        <member name="M:Peachpie.Library.PDO.PDODriver.GetLastInsertId(Peachpie.Library.PDO.PDO,System.String)">
+            <summary>
+            Gets the last insert identifier.
+            </summary>
+            <param name="pdo">Reference to corresponding <see cref="T:Peachpie.Library.PDO.PDO"/> instance.</param>
+            <param name="name">The name.</param>
+            <returns></returns>
+        </member>
+        <member name="M:Peachpie.Library.PDO.PDODriver.TrySetStringifyFetches(Peachpie.Library.PDO.PDO,System.Boolean)">
+            <summary>
+            Sets <see cref="F:Peachpie.Library.PDO.PDO.PDO_ATTR.ATTR_STRINGIFY_FETCHES"/> attribute value.
+            </summary>
+            <param name="pdo">Containing <see cref="T:Peachpie.Library.PDO.PDO"/> object reference.</param>
+            <param name="stringify">Whether to stringify fetched values.</param>
+            <returns>Value indicating the attribute was set successfully.</returns>
+        </member>
+        <member name="M:Peachpie.Library.PDO.PDODriver.TrySetAttribute(Peachpie.Library.PDO.PDO,System.Collections.Generic.Dictionary{Peachpie.Library.PDO.PDO.PDO_ATTR,Pchp.Core.PhpValue},System.Int32,Pchp.Core.PhpValue)">
+            <summary>
+            Tries to set a driver specific attribute value.
+            </summary>
+            <param name="pdo">Containing <see cref="T:Peachpie.Library.PDO.PDO"/> object reference.</param>
+            <param name="attributes">The current attributes collection.</param>
+            <param name="attribute">The attribute to set.</param>
+            <param name="value">The value.</param>
+            <returns>true if value is valid, or false if value can't be set.</returns>
+        </member>
+        <member name="M:Peachpie.Library.PDO.PDODriver.Quote(System.String,Peachpie.Library.PDO.PDO.PARAM)">
+            <summary>
+            Quotes a string for use in a query.
+            </summary>
+            <param name="str">The string.</param>
+            <param name="param">The parameter.</param>
+            <returns></returns>
+        </member>
+        <member name="M:Peachpie.Library.PDO.PDODriver.RewriteCommand(System.String,Pchp.Core.PhpArray,System.Collections.Generic.Dictionary{Pchp.Core.IntStringKey,Pchp.Core.IntStringKey}@)">
+            <summary>
+            Preprocesses the command for use with parameters.
+            Returns updated query string, optionally creates the <paramref name="bound_param_map"/> with parameter name mapping.
+            Most of ADO.NET drivers does not allow to use unnamed parameters - we'll rewrite them to named parameters.
+            </summary>
+            <param name="queryString">The original command text.</param>
+            <param name="options">Custom options.</param>
+            <param name="bound_param_map">Will be set to <c>null</c> or a map of user-provided names to rewritten parameter names.</param>
+        </member>
+        <member name="P:Peachpie.Library.PDO.PDODriver.StatementStringRewriter.TranslateNamedParams">
+            <summary>
+            Translate `:name` syntax to `@name` syntax.
+            Add `name` to <see cref="P:Peachpie.Library.PDO.PDODriver.StatementStringRewriter.BoundParamMap"/>.
+            </summary>
+        </member>
+        <member name="M:Peachpie.Library.PDO.PDODriver.HandleException(System.Exception,Peachpie.Library.PDO.PDO.ErrorInfo@)">
+            <summary>
+            Processes DB exception and returns corresponding error info.
+            </summary>
+        </member>
+        <member name="M:Peachpie.Library.PDO.PDODriver.GetAttribute(Peachpie.Library.PDO.PDO,System.Int32)">
+            <summary>
+            Gets the driver specific attribute value
+            </summary>
+            <param name="pdo">The pdo.</param>
+            <param name="attribute">The attribute.</param>
+            <returns></returns>
+        </member>
+        <member name="M:Peachpie.Library.PDO.PDODriver.OpenReader(Peachpie.Library.PDO.PDO,System.Data.Common.DbCommand,Peachpie.Library.PDO.PDO.PDO_CURSOR)">
+            <summary>
+            Opens a DataReader.
+            </summary>
+            <param name="pdo">The pdo.</param>
+            <param name="cmd">The command.</param>
+            <param name="cursor">The cursor configuration.</param>
+            <returns></returns>
+        </member>
+        <member name="T:Peachpie.Library.PDO.PDOEngine">
+            <summary>
+            PDOEngine methods
+            </summary>
+        </member>
+        <member name="P:Peachpie.Library.PDO.PDOEngine.s_knownAssemblies">
+            <summary>
+            List of known assembly names exporting implementations of <see cref="T:Peachpie.Library.PDO.PDODriver"/> interface.
+            CONSIDER: TODO: configuration ? We have the 'Context' so we can read the config there ...
+            </summary>
+        </member>
+        <member name="M:Peachpie.Library.PDO.PDOEngine.GetDrivers">
+            <summary>
+            Gets set of loaded PDO drivers.
+            </summary>
+        </member>
+        <member name="M:Peachpie.Library.PDO.PDOEngine.RegisterDriver(Peachpie.Library.PDO.PDODriver)">
+            <summary>
+            Register a custom <see cref="T:Peachpie.Library.PDO.PDODriver"/>.
+            </summary>
+            <param name="driver">Driver instance to be added. Cannot be <c>null</c>.</param>
+            <returns>If driver was successfuly registered. Otherwise there was a driver with the same name already.</returns>
+            <exception cref="T:System.ArgumentNullException"><paramref name="driver"/> was <c>null</c> reference.</exception>
+        </member>
+        <member name="T:Peachpie.Library.PDO.PDOException">
+            <summary>
+            Exception raised by PDO objects
+            </summary>
+            <seealso cref="T:Pchp.Library.Spl.Exception" />
+        </member>
+        <member name="P:Peachpie.Library.PDO.PDOException.errorInfo">
+            <summary>
+            Corresponds to <see cref="M:Peachpie.Library.PDO.PDO.errorInfo"/> or <see cref="M:Peachpie.Library.PDO.PDOStatement.errorInfo"/>.
+            Can be changed.
+            </summary>
+        </member>
+        <member name="M:Peachpie.Library.PDO.PDOException.getCode">
+            <summary>
+            SQLSTATE error code.
+            </summary>
+        </member>
+        <member name="M:Peachpie.Library.PDO.PDOException.#ctor">
+            <summary>
+            Empty constructor used when overriding class in PHP.
+            </summary>
+        </member>
+        <member name="M:Peachpie.Library.PDO.PDOException.#ctor(System.String,System.Int64,Pchp.Library.Spl.Throwable)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Peachpie.Library.PDO.PDOException"/> class.
+            </summary>
+            <param name="message">The message.</param>
+            <param name="code">The code.</param>
+            <param name="previous">The previous.</param>
+        </member>
+        <member name="T:Peachpie.Library.PDO.PDOStatement">
+            <summary>
+            PDOStatement class
+            </summary>
+        </member>
+        <member name="P:Peachpie.Library.PDO.PDOStatement.Connection">
+            <summary>PDO connection owning this statement.</summary>
+        </member>
+        <member name="F:Peachpie.Library.PDO.PDOStatement._cmd">
+            <summary>Prepared command.</summary>
+        </member>
+        <member name="F:Peachpie.Library.PDO.PDOStatement.bound_param_map">
+            <summary>
+            When rewriting from named to positional or to a different parameter name notation,
+            this maps user-provided names to actual names.
+            </summary>
+        </member>
+        <member name="F:Peachpie.Library.PDO.PDOStatement.bound_params">
+            <summary>Keeps track of bound parameters.
+            Positional keys are 0-based.</summary>
+        </member>
+        <member name="F:Peachpie.Library.PDO.PDOStatement.bound_columns">
+            <summary>Keeps track of PHP variables bound to named (or positional) columns in the result set.
+            Positional keys are 0-based.</summary>
+        </member>
+        <member name="P:Peachpie.Library.PDO.PDOStatement.Result">
+            <summary>
+            Result of the query.
+            Set after calling to <see cref="M:Peachpie.Library.PDO.PDOStatement.execute(Pchp.Core.PhpArray)"/>.
+            </summary>
+        </member>
+        <member name="F:Peachpie.Library.PDO.PDOStatement._lastError">
+            <summary>
+            Error information associated with the last operation on the statement.
+            </summary>
+        </member>
+        <member name="M:Peachpie.Library.PDO.PDOStatement.HandleError(System.String)">
+            <summary>
+            Raises simple "HY000" error.
+            </summary>
+        </member>
+        <member name="M:Peachpie.Library.PDO.PDOStatement.#ctor">
+            <summary>
+            Default constructor that does not prepare the statement.
+            </summary>
+        </member>
+        <member name="M:Peachpie.Library.PDO.PDOStatement.Prepare(Peachpie.Library.PDO.PDO.PdoConnectionResource,System.String,Pchp.Core.PhpArray)">
+            <summary>
+            2 phase ctor.
+            Prepares the command.
+            </summary>
+            <param name="pdo"></param>
+            <param name="queryString"></param>
+            <param name="options">Driver options. Optional.</param>
+        </member>
+        <member name="P:Peachpie.Library.PDO.PDOStatement.queryString">
+            <summary>Used query string.</summary>
+        </member>
+        <member name="M:Peachpie.Library.PDO.PDOStatement.bindColumn(Pchp.Core.IntStringKey,Pchp.Core.PhpAlias,System.Nullable{Peachpie.Library.PDO.PDO.PARAM},System.Int32,Pchp.Core.PhpValue)">
+            <summary>
+            Bind a column to a PHP variable.
+            </summary>
+            <param name="column">
+            Number of the column (1-indexed) or name of the column in the result set.
+            If using the column name, be aware that the name should match the case of the column, as returned by the driver</param>
+            <param name="param">PHP variable to which the column will be bound.</param>
+            <param name="type">Data type of the parameter, specified by the PDO::PARAM_* constants.</param>
+            <param name="maxlen">A hint for pre-allocation.</param>
+            <param name="driverdata">Optional parameter(s) for the driver.</param>
+            <returns>Returns TRUE on success or FALSE on failure</returns>
+        </member>
+        <member name="M:Peachpie.Library.PDO.PDOStatement.bindParam(Pchp.Core.IntStringKey,Pchp.Core.PhpAlias,Peachpie.Library.PDO.PDO.PARAM,System.Nullable{System.Int32},Pchp.Core.PhpValue)">
+            <summary>
+            Binds a parameter to the specified variable name
+            </summary>
+            <param name="parameter">Parameter identifier.
+            For a prepared statement using named placeholders, this will be a parameter name of the form <c>:name</c>.
+            For a prepared statement using question mark placeholders, this will be the 1-indexed position of the parameter.</param>
+            <param name="variable">Name of the PHP variable to bind to the SQL statement parameter.</param>
+            <param name="data_type">Explicit data type for the parameter using the PDO::PARAM_* constants. To return an INOUT parameter from a stored procedure, use the bitwise OR operator to set the PDO::PARAM_INPUT_OUTPUT bits for the data_type parameter.</param>
+            <param name="length">Length of the data type. To indicate that a parameter is an OUT parameter from a stored procedure, you must explicitly set the length.</param>
+            <param name="driver_options"></param>
+            <returns>Returns TRUE on success or FALSE on failure.</returns>
+        </member>
+        <member name="M:Peachpie.Library.PDO.PDOStatement.bindValue(Pchp.Core.IntStringKey,Pchp.Core.PhpValue,Peachpie.Library.PDO.PDO.PARAM)">
+            <summary>
+            Binds a value to a parameter.
+            </summary>
+            <param name="parameter">Parameter identifier.
+            For a prepared statement using named placeholders, this will be a parameter name of the form <c>:name</c>.
+            For a prepared statement using question mark placeholders, this will be the 1-indexed position of the parameter.</param>
+            <param name="value">The value to bind to the parameter.</param>
+            <param name="data_type">Explicit data type for the parameter using the PDO::PARAM_* constants.</param>
+            <returns>Returns TRUE on success or FALSE on failure</returns>
+        </member>
+        <member name="M:Peachpie.Library.PDO.PDOStatement.closeCursor">
+            <summary>
+            Closes the cursor, enabling the statement to be executed again.
+            </summary>
+            <returns>Returns TRUE on success or FALSE on failure</returns>
+        </member>
+        <member name="M:Peachpie.Library.PDO.PDOStatement.columnCount">
+            <summary>
+            Returns the number of columns in the result set
+            </summary>
+            <returns>
+            Returns the number of columns in the result set represented by the <see cref="T:Peachpie.Library.PDO.PDOStatement"/> object, even if the result set is empty.
+            If there is no result set, <see cref="M:Peachpie.Library.PDO.PDOStatement.columnCount"/> returns <c>0</c>.
+            </returns>
+        </member>
+        <member name="M:Peachpie.Library.PDO.PDOStatement.debugDumpParams">
+            <summary>
+            Dump an SQL prepared command.
+            </summary>
+        </member>
+        <member name="M:Peachpie.Library.PDO.PDOStatement.errorCode">
+            <summary>
+            Fetch the SQLSTATE associated with the last operation on the statement handle
+            </summary>
+            <returns>Identical to PDO::errorCode(), except that PDOStatement::errorCode() only retrieves error codes for operations performed with PDOStatement objects</returns>
+        </member>
+        <member name="M:Peachpie.Library.PDO.PDOStatement.errorInfo">
+            <summary>
+            Fetch extended error information associated with the last operation on the statement handle.
+            </summary>
+            <returns>PDOStatement::errorInfo() returns an array of error information about the last operation performed by this statement handle.</returns>
+        </member>
+        <member name="M:Peachpie.Library.PDO.PDOStatement.execute(Pchp.Core.PhpArray)">
+            <summary>
+            Executes a prepared statement
+            </summary>
+            <param name="input_parameters">An array of values with as many elements as there are bound parameters in the SQL statement being executed. All values are treated as PDO::PARAM_STR.</param>
+            <returns>Returns TRUE on success or FALSE on failure</returns>
+        </member>
+        <member name="M:Peachpie.Library.PDO.PDOStatement.fetch(Peachpie.Library.PDO.PDO.PDO_FETCH,Peachpie.Library.PDO.PDO.PDO_FETCH_ORI,System.Int32)">
+            <summary>
+            Fetches the specified fetch style.
+            </summary>
+            <param name="fetch_style">Controls how the next row will be returned to the caller. This value must be one of the PDO::FETCH_* constants.</param>
+            <param name="cursor_orientation">This value determines which row will be returned to the caller.</param>
+            <param name="cursor_offet">Relative or absolute position move for the cursor.</param>
+            <returns>The return value of this function on success depends on the fetch type. In all cases, FALSE is returned on failure.</returns>
+        </member>
+        <member name="M:Peachpie.Library.PDO.PDOStatement.fetchAll(Peachpie.Library.PDO.PDO.PDO_FETCH,Pchp.Core.PhpValue,Pchp.Core.PhpArray)">
+            <summary>
+            Controls the contents of the returned array as documented in PDOStatement::fetch()
+            </summary>
+            <param name="fetch_style">The fetch style.</param>
+            <param name="fetch_argument">This argument has a different meaning depending on the value of the fetch_style parameter.</param>
+            <param name="ctor_args">Arguments of custom class constructor when the fetch_style parameter is PDO::FETCH_CLASS.</param>
+            <returns>An array containing all of the remaining rows in the result set. <c>FALSE</c> on failure.</returns>
+        </member>
+        <member name="M:Peachpie.Library.PDO.PDOStatement.GroupResult(Pchp.Core.PhpArray,Peachpie.Library.PDO.PDO.PDO_FETCH)">
+            <summary>
+            Create result set grouped by the first column according to <see cref="F:Peachpie.Library.PDO.PDO.FETCH_GROUP"/>.
+            </summary>
+        </member>
+        <member name="M:Peachpie.Library.PDO.PDOStatement.TryFetchColumn(System.Int64,Pchp.Core.PhpValue@)">
+            <summary>
+            Reads next row and gets field value at given column.
+            </summary>
+        </member>
+        <member name="M:Peachpie.Library.PDO.PDOStatement.fetchColumn(System.Int64)">
+            <summary>
+            Returns a single column from the next row of a result set.
+            </summary>
+            <param name="column_number">0-indexed number of the column you wish to retrieve from the row. If no value is supplied, PDOStatement::fetchColumn() fetches the first column</param>
+            <returns>Single column from the next row of a result set or FALSE if there are no more rows</returns>
+        </member>
+        <member name="M:Peachpie.Library.PDO.PDOStatement.fetchObject(System.String,Pchp.Core.PhpArray)">
+            <summary>
+            Fetches the next row and returns it as an object.
+            </summary>
+            <param name="class_name">Name of the created class.</param>
+            <param name="ctor_args">Elements of this array are passed to the constructor.</param>
+            <returns>Returns an instance of the required class with property names that correspond to the column names or FALSE on failure</returns>
+        </member>
+        <member name="M:Peachpie.Library.PDO.PDOStatement.getAttribute(System.Int32)">
+            <summary>
+            Retrieve a statement attribute.
+            </summary>
+            <param name="attribute"></param>
+            <returns>Returns the attribute value</returns>
+        </member>
+        <member name="M:Peachpie.Library.PDO.PDOStatement.setAttribute(System.Int32,Pchp.Core.PhpValue)">
+            <summary>
+            Set a statement attribute.
+            </summary>
+            <param name="attribute">The attribute.</param>
+            <param name="value">The value.</param>
+            <returns>Returns TRUE on success or FALSE on failure</returns>
+        </member>
+        <member name="M:Peachpie.Library.PDO.PDOStatement.getColumnMeta(System.Int32)">
+            <summary>
+            Returns metadata for a column in a result set.
+            </summary>
+            <param name="column">The 0-indexed column in the result set.</param>
+            <returns>Returns an associative array containing the values representing the metadata for a single column</returns>
+        </member>
+        <member name="M:Peachpie.Library.PDO.PDOStatement.nextRowset">
+            <summary>
+            Advances to the next rowset in a multi-rowset statement handle.
+            </summary>
+            <returns>Returns TRUE on success or FALSE on failure</returns>
+        </member>
+        <member name="M:Peachpie.Library.PDO.PDOStatement.rowCount">
+            <summary>
+            Returns the number of rows affected by the last SQL statement
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Peachpie.Library.PDO.PDOStatement.setFetchMode(Peachpie.Library.PDO.PDO.PDO_FETCH,Pchp.Core.PhpValue[])">
+            <summary>
+            Set the default fetch mode for this statement
+            
+            </summary>
+            <param name="mode">The fetch mode.</param>
+            <param name="args">
+            args[0] For FETCH_COLUMN : column number. For FETCH_CLASS : the class name. For FETCH_INTO, the object.
+            args[1] For FETCH_CLASS : the constructor arguments.
+            </param>
+            <returns>Returns TRUE on success or FALSE on failure</returns>
+        </member>
+        <member name="T:Peachpie.Library.PDO.PDOStatic">
+            <summary>
+            PDO static functions
+            </summary>
+        </member>
+        <member name="M:Peachpie.Library.PDO.PDOStatic.pdo_drivers">
+            <summary>
+            Get the known PDO drivers
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:Peachpie.Library.PDO.Utilities.DataSourceString">
+            <summary>
+            Helper class for manipulation with data source string as it is in PDO.
+            </summary>
+        </member>
+        <member name="M:Peachpie.Library.PDO.Utilities.DataSourceString.ParseNameValue``1(System.ReadOnlySpan{System.Char},``0,System.Action{``0,System.String,System.String})">
+            <summary>
+            Parses the raw data source values.
+            </summary>
+        </member>
+        <member name="M:Peachpie.Library.PDO.Utilities.DbValueHelper.AsObject(System.Boolean)">
+            <summary>
+            Gets boxed boolean value.
+            </summary>
+        </member>
+        <member name="T:Peachpie.Library.PDO.Utilities.PdoExtension">
+            <summary>
+            Extension methods to <see cref="T:Peachpie.Library.PDO.PDO"/>.
+            </summary>
+        </member>
+        <member name="M:Peachpie.Library.PDO.Utilities.PdoExtension.GetCurrentCommand(Peachpie.Library.PDO.PDO)">
+            <summary>
+            Gets last created command.
+            </summary>
+        </member>
+        <member name="M:Peachpie.Library.PDO.Utilities.PdoExtension.CreateCommand(Peachpie.Library.PDO.PDO,System.String)">
+            <summary>
+            Creates command using provided PDO driver.
+            </summary>
+        </member>
+        <member name="M:Peachpie.Library.PDO.Utilities.PdoExtension.ClosePendingReader(Peachpie.Library.PDO.PDO)">
+            <summary>
+            Closes pending data reader if any.
+            </summary>
+        </member>
+        <member name="M:Peachpie.Library.PDO.Utilities.PdoExtension.GetCurrentConnection``1(Peachpie.Library.PDO.PDO)">
+            <summary>
+            Gets underlying <see cref="T:System.Data.Common.DbConnection"/> of a <see cref="T:Peachpie.Library.PDO.PDO"/> object.
+            </summary>
+            <typeparam name="TConnection"></typeparam>
+            <param name="pdo">PDO object instance.</param>
+            <returns>Underlying connection. Can be <c>null</c>.</returns>
+        </member>
+        <member name="F:Peachpie.Library.PDO.Utilities.StatementStringParser.Tokens.UnnamedParameter">
+            <summary>
+            ?
+            </summary>
+        </member>
+        <member name="F:Peachpie.Library.PDO.Utilities.StatementStringParser.Tokens.NamedParameter">
+            <summary>
+            :name
+            </summary>
+        </member>
+    </members>
+</doc>

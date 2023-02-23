@@ -17,6 +17,16 @@ namespace ForMyPhpApplict_site_application.MiddleWare
         {
             next = next_;
         }
+       /* static readonly string[] AdditionalReferences = new[]
+        {
+            typeof(Peachpie.Library.Graphics.PhpGd2).Assembly.Location,
+            typeof(Peachpie.Library.PDO.PDO).Assembly.Location,
+            typeof(Peachpie.Library.PDO.Sqlite.PDOSqliteDriver).Assembly.Location,
+            typeof(Peachpie.Library.Scripting.Standard).Assembly.Location,
+            typeof(Peachpie.Library.XmlDom.XmlDom).Assembly.Location,
+            typeof(Peachpie.Library.Network.CURLFunctions).Assembly.Location,
+            
+        };*/
         public async Task Invoke(HttpContext context)
         {
             await Task.Run(delegate {
@@ -53,29 +63,29 @@ namespace ForMyPhpApplict_site_application.MiddleWare
                         
                         try
                         {
-                                using (MemoryStream cesh_s = new MemoryStream()) {
-                                    using (Context php_context = Context.CreateConsole(String.Empty, cur_dir, cesh_s))
-                                    {
 
-                                        var srcipt = Context.DefaultScriptingProvider.CreateScript(new Context.ScriptOptions()
-                                        {
-                                            Context = php_context,
-                                            Location = new Location(cur_dir, 0, 0),
-                                            EmitDebugInformation = true,
-                                            IsSubmission = false,
-                                            AdditionalReferences = new string[] {
-                       // typeof(Program).Assembly.Location,
-                       cur_dir,
-                        typeof(Peachpie.Library.Graphics.PhpImage).Assembly.Location,
-                        typeof(Peachpie.Library.MySql.MySql).Assembly.Location,
-                        typeof(Peachpie.Library.Network.CURLFunctions).Assembly.Location,
-                    },
-                                        }, File.ReadAllText(Path.Combine(cur_dir+"/", f_name)));
-                                         srcipt.Evaluate(php_context, php_context.Globals);
-                                       
-                                    }
-                                    result = UTF8Encoding.UTF8.GetString(cesh_s.ToArray());
-                                }
+                                /* var AR = AdditionalReferences.ToList();
+
+
+                                 using (MemoryStream cesh_s = new MemoryStream()) {
+                                     using (Context php_context = Context.CreateConsole(String.Empty,typeof(Program).Assembly.Location))
+                                     {
+
+                                         var srcipt = Context.DefaultScriptingProvider.CreateScript(new Context.ScriptOptions
+                                         {
+                                             Context = php_context,
+                                             Location = new Location(Path.Combine(cur_dir + "/", f_name), 0, 0),
+                                             EmitDebugInformation = true,
+                                             IsSubmission = false,
+                                             AdditionalReferences =AR.ToArray() ,
+                                         }, File.ReadAllText(Path.Combine(cur_dir+"/", f_name)));
+                                          srcipt.Evaluate(php_context, php_context.Globals,null);
+
+                                     }
+                                     result = UTF8Encoding.UTF8.GetString(cesh_s.ToArray());
+                                 }*/
+                                next(context).Wait();
+                                return;
                         }
                         catch(Exception e)
                         {
