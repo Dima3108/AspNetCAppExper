@@ -21,11 +21,11 @@ namespace ForMyPhpApplict_site_application.Controllers
         public IActionResult Index() => AddFiles();
         public IActionResult AddFiles()
         {
-            return View("Index");
+            return SetDirectory(Path.Combine(BasePath.RootPath + "/", BasePath.UserFalesPath));
         }
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public   IActionResult LoadFiles(List<IFormFile> files)
+        public   IActionResult LoadFiles(List<IFormFile> files,string dir)
         {
             Console.WriteLine(Directory.Exists("html_content"));
             Console.WriteLine(files.Count);
@@ -40,10 +40,10 @@ namespace ForMyPhpApplict_site_application.Controllers
                         {
                              f.CopyTo(s);
                         }*/
-                        html_content.AddFile.Add(f);
+                        html_content.AddFile.Add(f,dir);
                     }
                 }
-                return AddFiles();
+                return SetDirectory(dir);
             }
             else
             {
@@ -51,6 +51,37 @@ namespace ForMyPhpApplict_site_application.Controllers
                return Redirect("Error");
             }
             
+        }
+        [HttpGet]
+        public IActionResult SetDirectory(string dir_name)
+        {
+            if (dir_name!=""&&Directory.Exists(dir_name))
+            {
+                ViewData["dir_name"] = (string)dir_name;
+                return View("Index");
+            }
+            else return SetDirectory(Path.Combine(BasePath.RootPath+"/",  BasePath.UserFalesPath));
+        }
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public IActionResult AddDirectory(string dir_name,string new_dir)
+        {
+            if (Directory.Exists(dir_name))
+            {
+                Directory.CreateDirectory(Path.Combine(dir_name + "/", new_dir));
+                
+            }
+            return SetDirectory(dir_name);
+        }
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public IActionResult DeleteFile(string fname,string dir_name)
+        {
+            if (System.IO.File.Exists(fname)&&fname.Contains(Path.Combine(BasePath.RootPath+"/",BasePath.UserFalesPath)))
+            {
+                System.IO.File.Delete(fname);
+            }
+            return SetDirectory(dir_name);
         }
         [HttpPost]
         [ValidateAntiForgeryToken]
@@ -92,7 +123,7 @@ namespace ForMyPhpApplict_site_application.Controllers
             using(Stream s = System.IO.File.OpenRead("1backup.tar.gzip"))
             {
                 Console.WriteLine("read file"); 
-                return File(s, "application/gzip", "1backup.tar.gzip");
+                return File(s, "application/gzip", "backup.tar.gzip");
 
                 // 
 
