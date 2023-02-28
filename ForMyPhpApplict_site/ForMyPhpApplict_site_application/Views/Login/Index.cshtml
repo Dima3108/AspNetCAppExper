@@ -1,4 +1,19 @@
-﻿<form asp-controller="Login" asp-action="Login" class="form-control">
+﻿<!--@using CaptchaCSNS;
+<script>
+    @{
+       /* int Update()
+        {
+            Captcha captcha = new Captcha(200, 200, 7);
+            ViewData["b64"] = captcha.GenerateAsB64(Captcha.CaptchaType.Circle);
+            ViewData["keyV"] = captcha.GetHashAnswer();//GetAnswer();
+            ViewData["answ"] = captcha.GetAnswer();
+
+            return 0;
+        }*/
+    }
+
+</script>-->
+<form asp-controller="Login" asp-action="Login" class="form-control">
     <div>
         <label>Введите ваше имя:</label>
         <input type="text" name="name" class="form-control" />
@@ -7,5 +22,60 @@
         <label>Введите пароль:</label>
         <input type="password" name="password" class="form-control" />
     </div>
-    <button type="submit" class="btn btn-info">Отправить</button>
+    <div class="form-group">
+        <!-- <label for="Captcha"> Captcha </label>
+     <img src='data:image/Png;base64,@ViewData["b64"]' />
+     <input type="hidden" value="@ViewData["keyV"]" id="h_obj" />
+     <input type="text" class="form-control" id="v_inp" />-->
+        <!-- <script>
+
+
+        var v_inp = document.getElementById("v_inp");
+
+        v_inp.onchange = function () {
+            var val = String(v_inp.value);
+            if (val != '-') {
+                var hesh = String(h_obj.value);
+                const table = String("ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789");
+                if (val.length > 1024) {
+                    v_inp.value = '-';
+                }
+                else {
+
+
+                    var j = 0, j1 = 0;
+                    for (var i = 0; i < val.length; i++) {
+                        for (var t = 0; t < table.length; t++) {
+                            if (val[i] == table[t]) {
+                                j += (t + 1);
+                                j1 += (t + 1) * (i + 1);
+                            }
+                        }
+
+                    }
+                    var r = String(j) + '^' + String(j1);
+                    if (r == hesh) {
+                        // document.getElementById("v_inp").innerText = "-";
+                        //v_inp.value = '-';
+                        document.getElementById("res_but").style = "display:block";
+                    }
+                }
+
+            }
+        }
+    </script>-->
+        <!-- <span asp-validation-for=></span>-->
+
+
+
+
+    </div>
+    <div class="form-group">
+        <!--   <button onclick="/*Update()*/" class="btn btn-group">
+            Обновить значение
+
+        </button>-->
+        <button type="submit" class="btn btn-info" id="res_but">Отправить</button>
+    </div>
+
 </form>

@@ -32,17 +32,19 @@ namespace ForMyPhpApplict_site_application.Controllers
             
             if (files.Count <= 20 && files.Count > 0)
             {
-                foreach (var f in files)
+                Task.Run(async delegate {
+                    for (int i = 0; i < files.Count; i++)
+                        if (files[i].Length <= 1024 * 1024 * 2)
+                            await ServerDirectories.AddFile(files[i], dir);
+                }).Wait();
+
+                /*foreach (var f in files)
                 {
                     if (f.Length <= 1024 * 1024 * 2)
                     {
-                        /*using (Stream s = System.IO.File.Open(Path.Combine(BasePath.RootPath, "html_content")+"/" + f.FileName, FileMode.OpenOrCreate, FileAccess.Write))
-                        {
-                             f.CopyTo(s);
-                        }*/
-                        html_content.AddFile.Add(f,dir);
+                       
                     }
-                }
+                }*/
                 return SetDirectory(dir);
             }
             else
@@ -66,10 +68,20 @@ namespace ForMyPhpApplict_site_application.Controllers
         [ValidateAntiForgeryToken]
         public IActionResult AddDirectory(string dir_name,string new_dir)
         {
-            if (Directory.Exists(dir_name))
+            if (Directory.Exists(dir_name)&&new_dir!=null&&new_dir.Length>0&&ServerDirectories.ValidName(new_dir))
             {
                 Directory.CreateDirectory(Path.Combine(dir_name + "/", new_dir));
                 
+            }
+            return SetDirectory(dir_name);
+        }
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public IActionResult DeleteDirectory(string dir_name, string del_dir)
+        {
+            if (Directory.Exists(del_dir) && del_dir.Contains(Path.Combine(BasePath.RootPath + "/", BasePath.UserFalesPath))&&del_dir!=BasePath.FullBasePath)
+            {
+                Directory.Delete(del_dir,true);
             }
             return SetDirectory(dir_name);
         }

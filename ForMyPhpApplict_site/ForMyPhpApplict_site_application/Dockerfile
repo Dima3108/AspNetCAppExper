@@ -12,6 +12,13 @@ COPY . .
 WORKDIR "/src/."
 RUN dotnet build "ForMyPhpApplict_site_application.csproj" -c Release -o /app/build
 
+#MyPhp build
+#FROM php:7.2-apache
+#ENV APACHE_DOCUMENT_ROOT /app/html_content
+
+#RUN sed -ri -e 's!/var/www/html!${APACHE_DOCUMENT_ROOT}!g' /etc/apache2/sites-available/*.conf
+#RUN sed -ri -e 's!/var/www/!${APACHE_DOCUMENT_ROOT}!g' /etc/apache2/apache2.conf /etc/apache2/conf-available/*.conf
+#Php end
 FROM build AS publish
 RUN dotnet publish "ForMyPhpApplict_site_application.csproj" -c Release -o /app/publish
 

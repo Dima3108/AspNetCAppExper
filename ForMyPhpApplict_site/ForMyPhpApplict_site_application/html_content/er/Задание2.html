@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+
+<html>
+    <head>
+
+        <meta charset="utf-8"/>
+        <title>Задание 2</title>
+        <link rel="stylesheet" href="style2.css">
+    </head>
+    <header id="h_1head" class="HEADERS">
+        <div class="CENT_ HEADERS">
+            <img src="Логотип.png" id="i_logo">
+
+             <div class="HEADERS CENT_" id="header_1">
+            Учебный сайт
+            </div>
+        </div>
+  </header>
+
+    <body style="margin:0;" class="mbody">
+
+        <!--<ol class="ol_st">
+      <li class="ol_st">-->
+        <div class="ol_st">
+            <hr class="ol_st" />
+            <a href="#o_a" class="ol_st">
+                ССылки
+
+            </a>
+
+            <!-- </li>
+    <li class="ol_st">-->
+            <a href="#t_sw" class="ol_st">Таблица</a>
+            <!--   </li>
+    <li class="ol_st">-->
+            <a href="#f_a" class="ol_st">
+                Форма
+            </a>
+            <!--  </li>
+    </ol>-->
+        </div>
+            <div class="main_con">
+            <ol id="o_a">
+                <li>
+                    <a href="http://example.com">Example1</a>
+                </li>
+                <li>
+                    <a href="https://example.com">Example2</a>
+                </li>
+                <li>
+                    <a href="ftp://uor_file.txt">Файл без пороля</a>
+                </li>
+                <li>
+                    <a href="ftp://usewr@password/privatedata.txt">Файл  с авторизацией</a>
+                </li>
+                <li>
+                    <a href="https://example.com/page_h1">Фрагмент сайта</a>
+                </li>
+                <li>
+                    <a href="Index.html">HOME</a>
+                </li>
+                <li>
+                    <a href="Index.html?fio=user&mail=5@f">Ссылка с 2 параметрами</a>
+                </li>
+                <li>
+                    <a>Без href</a>
+                </li>
+                <li>
+                    <a href="">Пустой href</a>
+                </li>
+                <li>
+
+                    <a href="Index.html" rel="nofollow">Ссылка запрещенная для поисквиков</a>
+
+                </li>
+
+                <li>
+                    <a href="./netLeel.html">На уровень выше текущей</a>
+                </li>
+                <li>
+                    <a href="./next/l.html">На 2 уровня выше</a>
+                </li>
+                <li>
+                    <img src="hel.png" usemap="#Navigation" />
+                    <map name="Navigation" id="fotostyle1">
+                        <area shape="circle" alt="Computer" coords="50,70,40" href="Index.html">
+                        <area shape="rect" alt="Computer" coords="40,40,40,40" href="Index.html">
+                        <area shape="poly" alt="Computer" coords="60,60,70,70" href="Index.html" />
+                        <!-- <a href="Index.html">Ссылка map</a>--->
+
+                    </map>
+                </li>
+
+                <li>
+                    <a href="private.html">Относительная в текущем катологе</a>
+                </li>
+                <li>
+                    <a href="/about/info.html">Относительная about</a>
+                </li>
+                <li>
+                    <div>
+                        Здесь выможете перейти на <a href="Index.html">главную</a> страницу . Это контекстная ссылка
+
+                    </div>
+                </li>
+                <li>
+                    <a href="/private.html">Сокращеннная на внутреннею</a>
+                </li>
+                <li>
+                    <p id="#f_a">Фрагмент страницы</p>
+                </li>
+            </ol>
+            <noindex>
+
+
+                <a href="Index.html">Неидексируемая ссылка</a>
+
+
+            </noindex>
+            <hr />
+                </div>
+            <table class="table_st" id="t_sw">
+                <tbody class="table_st">
+                    <tr>
+                        <th class="main_th">Колонка 1</th>
+                        <th class="main_th"> Колонка 2</th>
+                        <th class="main_th">Колонка 3</th>
+                    </tr>
+                    <tr>
+                        <td colspan="3" class="td1">1</td>
+                    </tr>
+                    <tr>
+                        <td colspan="2" class="td2">2</td><th class="td2"></th>
+                    </tr>
+                    <tr>
+                        <td colspan="3" class="td1">3</td>
+                    </tr>
+                    <tr>
+                      <th class="td2">4</th>  <td colspan="2" class="td2"></td>
+                    </tr>
+                    <tr>
+                        <td rowspan="2" class="td1">5</td><td class="td1" colspan="2">5.1</td>
+
+                    </tr>
+                    <tr>
+                        <td colspan="2" class="td2">6</td>
+                    </tr>
+                </tbody>
+            </table>
+            <hr />
+            <div class="form_cl">
+                <form id="f_a" class="form_body">
+                    <div class="form_body">
+
+
+                        <strong class="form_body">Ваше имя:</strong>
+                        <input type="text" id="us_n" name="fio">
+                        <hr class="form_body">
+                    </div>
+                    <div class="form_body">
+
+
+                        <strong class="form_body">Ваш email:</strong>
+                        <input type="email" name="mail">
+                        <hr class="form_body">
+                    </div>
+                    <div class="form_body">
+
+
+                        <strong class="form_body">Ваша дата рождения:</strong>
+                        <input type="date" name="data_">
+                        <hr class="form_body">
+                    </div>
+                    <div class="form_body">
+                        <h5 class="form_body">Пол</h5>
+                        <div class="form_body">
+                            <input type="radio" value="1" name="pol" id="r1" checked="checked" class="form_body">
+                            <label class="form_body">М </label>
+                            <input type="radio" value="1" name="pol" id="r2" class="form_body">
+                            <label class="form_body">Ж</label>
+                        </div>
+                        <hr class="form_body">
+                    </div>
+                    <div class="form_body">
+                        <h5 class="form_body">Количество конечностей</h5>
+                        <div class="form_body">
+                            <input type="radio" value="1" name="count_con" id="r3" checked="checked" class="form_body">
+                            <label class="form_body">1</label>
+                            <input type="radio" value="2" name="count_con" id="r4" class="form_body">
+                            <label class="form_body">2</label>
+                            <input type="radio" value="3" name="count_con" id="r5" class="form_body">
+                            <label class="form_body">3</label>
+                            <input type="radio" value="4" name="count_con" id="r6" class="form_body">
+                            <label class="form_body">4</label>
+                            <input type="radio" value="5" name="count_con" id="r7" class="form_body">
+                            <label class="form_body">5</label>
+                            <input type="radio" value="6" name="count_con" id="r8" class="form_body">
+                            <label class="form_body">6</label>
+                            <input type="radio" value="7" name="count_con" id="r9" class="form_body">
+                            <label class="form_body">7</label>
+                            <input type="radio" value="8" name="count_con" id="r10" class="form_body">
+                            <label class="form_body">8</label>
+                            <input type="radio" value="9" name="count_con" id="r11" class="form_body">
+                            <label class="form_body">9</label>
+                            <input type="radio" value="10" name="count_con" id="r12" class="form_body">
+                            <label class="form_body">10</label>
+                        </div>
+                        <hr class="form_body">
+                    </div>
+                    <div class="form_body">
+                        <label class="form_body">Биография:</label>
+                        <hr class="form_body">
+                        <textarea></textarea>
+
+                    </div>
+                    <div class="form_body">
+                        <input type="checkbox" class="form_body">
+                        <label class="form_body">С контрактом ознакомлен</label>
+                    </div>
+                    <hr />
+                    <select name="other[]" multiple="multiple">
+                        <option value="1">Бессмертие</option>
+                        <option value="2">Прохождение сквозь стены</option>
+                        <option selected value="3">Левитация</option>
+                    </select>
+                    <hr />
+                    <hr />
+                    <button type="submit" style="background-color:royalblue ;" class=" but-sumbit_res">Отправить</button>
+                </form>
+            </div>
+</body>
+    <footer class="FOTH">
+        ©   Павлов Дмитрий Павлович 2022
+    </footer>
+</html>

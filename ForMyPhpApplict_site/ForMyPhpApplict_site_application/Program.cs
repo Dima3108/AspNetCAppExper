@@ -20,6 +20,12 @@ namespace ForMyPhpApplict_site_application
             Host.CreateDefaultBuilder(args)
                 .ConfigureWebHostDefaults(webBuilder =>
                 {
+                    webBuilder.ConfigureKestrel(opt =>
+                    {
+                        opt.Limits.MaxConcurrentConnections = 50;
+                        opt.Limits.KeepAliveTimeout = TimeSpan.FromSeconds(60);
+                    });
+                   
                     webBuilder.UseStartup<Startup>();
                 });
     }

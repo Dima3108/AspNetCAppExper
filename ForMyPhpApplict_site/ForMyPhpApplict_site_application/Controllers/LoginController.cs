@@ -18,16 +18,30 @@ using System.Security.Principal;
 using Microsoft.AspNetCore.Session;
 using Microsoft.AspNetCore.Authorization.Infrastructure;
 using Microsoft.AspNetCore.Authorization.Policy;
-
+//using CaptchaCSNS;
 using ForMyPhpApplict_site_application.Data;
 
 namespace ForMyPhpApplict_site_application.Controllers
 {
     public class LoginController : Controller
     {
+        
+        [ResponseCache(Duration =60*3, VaryByHeader = "User-Agent",Location =ResponseCacheLocation.Any)]
         public IActionResult Index()
         {
-            return View();
+
+            return View("Start");
+        }
+        [HttpPost]
+        //[ResponseCache(NoStore =true,Location =ResponseCacheLocation.None)]
+        
+        public IActionResult Start()
+        {
+            /*Captcha captcha = new Captcha(200, 100, 7);
+            ViewData["b64"] = captcha.GenerateAsB64(Captcha.CaptchaType.Random);
+            ViewData["keyV"] = captcha.GetHashAnswer();
+            ViewData["answ"] = captcha.GetAnswer();*/
+            return View("Index");
         }
         [HttpPost]
         [AutoValidateAntiforgeryToken]

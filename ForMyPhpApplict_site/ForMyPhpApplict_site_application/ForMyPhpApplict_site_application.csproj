@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk.Web">
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
 
   <PropertyGroup>
     <TargetFramework>net5.0</TargetFramework>
@@ -14,17 +14,13 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="W:\GITHub\peachpie-1.1.4\peachpie-1.1.4\src\Peachpie.AspNetCore.Web\Peachpie.AspNetCore.Web.csproj" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Reference Include="ICSharpCode.SharpZipLib">
-      <HintPath>W:\7ZipSDK\original sharpziplib\SharpZipLib-master\SharpZipLib-master\src\ICSharpCode.SharpZipLib\bin\Debug\netstandard2\ICSharpCode.SharpZipLib.dll</HintPath>
-    </Reference>
-  </ItemGroup>
-
-  <ItemGroup>
     <Content Update="Data\users.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Update="DLLS\CaptchaCSNS.deps.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Update="DLLS\ICSharpCode.SharpZipLib.deps.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Update="html_content\json.json">
@@ -34,6 +30,33 @@
 
   <ItemGroup>
     <Folder Include="wwwroot\icons\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Reference Include="CaptchaCSNS">
+      <HintPath>DLLS\CaptchaCSNS.dll</HintPath>
+    </Reference>
+    <Reference Include="ICSharpCode.SharpZipLib">
+      <HintPath>DLLS\ICSharpCode.SharpZipLib.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Update="DLLS\CaptchaCSNS.dll">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="DLLS\CaptchaCSNS.pdb">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="DLLS\ICSharpCode.SharpZipLib.dll">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="DLLS\ICSharpCode.SharpZipLib.pdb">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="DLLS\ICSharpCode.SharpZipLib.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
   </ItemGroup>
 
 </Project>

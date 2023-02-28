@@ -10,6 +10,7 @@
         <header>
             <div>
                 <h3>@directoryModel.safename</h3>
+                <div><label>На диске:</label><h4>@directoryModel.name</h4></div>
                 <form asp-controller="Admin" asp-action="SetDirectory" method="get">
                     <input type="hidden" name="dir_name" value="@directoryModel.root_dir" />
                     <button type="submit" class="btn btn-primary">Вернутся в вышестоящею папку</button>
@@ -38,14 +39,23 @@
                     {
                        <div class="col">
 
+                           <div>
+                               <form asp-controller="Admin" asp-action="SetDirectory" method="get">
+                                   <input type="hidden" name="dir_name" value="@directoryModel.directories[i]" />
+                                   <button type="submit">
+                                       <img src="~/icons/Folder.png" />
+                                       <h5>@directoryModel.safe_directory_name[i]</h5>
+                                   </button>
 
-                           <form asp-controller="Admin" asp-action="SetDirectory" method="get">
-                              <input type="hidden" name="dir_name" value="@directoryModel.directories[i]" />
-                              <button type="submit">
-                                <img src="~/icons/Folder.png" />
-                                <h5>@directoryModel.safe_directory_name[i]</h5>
-                              </button>
-                           </form>
+                               </form>
+                           </div>
+                           <div>
+                               <form asp-controller="Admin" asp-action="DeleteDirectory" method="post">
+                                   <input type="hidden" name="del_dir" value="@directoryModel.directories[i]" />
+                                   <input type="hidden" name="dir_name" value="@directoryModel.name" />
+                                   <button type="submit">Удалить</button>
+                               </form>
+                           </div>
                        </div>
                     }
                     @for(int i = 0; i < directoryModel.files.Length; i++)
@@ -61,6 +71,15 @@
                                 <form asp-controller="Admin" asp-action="DeleteFile" method="post">
                                     <input type="hidden" name="fname" value="@directoryModel.files[i]" />
                                     <input type="hidden" name="dir_name" value="@directoryModel.name" />
+                                    <a href="@ServerDirectories.ToWebPath(directoryModel.files[i])" class="btn btn-info" download="">
+                                        Скачать
+                                    </a>
+                                    @if (directoryModel.safe_file_names[i].ToString().Contains(".html"))
+                                    {
+                                        <a href="@ServerDirectories.ToWebPath(directoryModel.files[i])" class="btn btn-info" >
+                                            Открыть
+                                        </a>
+                                    }
                                     <button type="submit" class="btn btn-danger">Удалить</button>
                                 </form>
                             </div>

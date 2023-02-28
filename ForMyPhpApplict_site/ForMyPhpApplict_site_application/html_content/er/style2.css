@@ -1,0 +1,90 @@
+.HEADERS {
+    background-color: aqua;
+    padding: 10px;
+    height: 120px;
+    align-content: center;
+    margin-left: auto;
+    margin-right: auto;
+    width: 960px;
+}
+#i_logo{
+
+
+ margin:10px;
+ width:100px; height:100px;
+ float: left;
+
+}
+#header_1{
+  text-align: left;
+  font-family: 'Times New Roman', Times, serif;
+  font-size: 45px;
+  font-style: oblique;
+  color: purple;
+}
+.FOTH{
+  color: navy;
+  background-color: rgb(99, 98, 98);
+  font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+  font-size: 37px;
+  font-style: initial;
+}
+.mbody {
+    background-color: aquamarine;
+
+}
+.but-sumbit_res{
+  font-size: 29px;
+  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+  font-style: oblique;
+}
+.form_body {
+    background-color: slategrey;
+
+}
+.table_st {
+    background-color: azure;
+    text-align: left;
+    margin-left: auto;
+    margin-right: auto;
+    width: 960px;
+}
+.td1{
+  background-color: darkolivegreen;
+}
+.td2{
+  background-color: khaki;
+}
+.main_th{
+  background-color: aqua;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  font-size: 20px;
+}
+.ol_st {
+    background-color: greenyellow;
+    color: magenta;
+    font-size: 26px;
+    align-content: center;
+    text-align:center;
+    
+    width: 960px;
+    margin-left: auto;
+    margin-right: auto;
+}
+.CENT_{
+    width:960px;
+    align-content:center;
+
+}
+.main_con {
+    width: 960px;
+    text-align: left;
+    margin-left: auto;
+    margin-right: auto;
+}
+.form_cl {
+    text-align: left;
+    margin-left: auto;
+    margin-right: auto;
+    width: 960px;
+}

@@ -1,0 +1,18 @@
+﻿<!--<cache expires-after="@TimeSpan.FromHours(1.0)" expires-sliding="@TimeSpan.FromMinutes(40.0)">-->
+@{
+    Layout = null;
+}
+<html>
+<head>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+</head>
+<heder>
+
+</heder>
+<body>
+    <form asp-controller="Login" asp-action="Start" method="post" class="form-control" asp-antiforgery="false">
+        <button type="submit" class="btn btn-primary">Войти</button>
+    </form>
+</body>
+</html>
+<!--</cache>-->

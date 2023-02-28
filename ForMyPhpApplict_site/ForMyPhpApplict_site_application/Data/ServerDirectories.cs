@@ -4,10 +4,19 @@ using System.Linq;
 using System.Threading.Tasks;
 using ForMyPhpApplict_site_application.Model;
 using System.IO;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Http;
 namespace ForMyPhpApplict_site_application.Data
 {
     public class ServerDirectories
     {
+        public static bool ValidName(string name)
+        {
+            foreach (string s in path_chars)
+                if (name.Contains(s))
+                    return false;
+            return true;
+        }
         public static string SafeName(string name)
         {
             string s = "";
@@ -32,6 +41,19 @@ namespace ForMyPhpApplict_site_application.Data
                 v += dir[p].ToString();
             return v;
         }
+        public static readonly string[]path_chars= { @"//", @"\\", @"||", @"\", @"|" };
+        public static string ToWebPath(string path)
+        {
+            string[] appf = path_chars;
+            string e = Path.Combine(BasePath.RootPath + "/", "");
+            string p = path.Replace(e, "");
+            for(int i = 0; i < appf.Length; i++)
+            {
+                string v = p.Replace(appf[i], @"/");
+                p = v;
+            }
+            return "../"+ p;
+        }
         public static DirectoryModel GetDirectory(string dir)
         {
             if (Directory.Exists(dir))
@@ -55,6 +77,18 @@ namespace ForMyPhpApplict_site_application.Data
                 return model;
             }
             return null;
+        }
+        public static Task AddFile(IFormFile file,string dir)
+        {
+            if (Directory.Exists(dir))
+            {
+                string f_n = Path.Combine(dir + "/", file.FileName);
+                using (Stream f = File.Open(f_n, FileMode.Create, FileAccess.Write, FileShare.Read))
+                {
+                    return file.CopyToAsync(f);
+                }
+            }
+            else return new Task(delegate { Console.WriteLine($"direcoty not found!{dir}"); });
         }
     }
 }
