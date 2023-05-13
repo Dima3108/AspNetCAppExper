@@ -67,10 +67,13 @@ namespace ForMyPhpApplict_site_application
                     ForwardedHeaders.XForwardedFor | ForwardedHeaders.XForwardedProto;
                 options.AllowedHosts.Add("localhost");
                 options.AllowedHosts.Add("192.168.1.71");
+                options.AllowedHosts.Add("192.168.1.1");
                 options.AllowedHosts.Add("mysiteapp.mykeencentvi12.keenetic.pro");
+                options.AllowedHosts.Add("*");
+                options.KnownNetworks.Add(new IPNetwork(IPAddress.Parse("192.168.1.1").MapToIPv6(), 24));
                 options.ForwardLimit = null;
-                options.KnownProxies.Add(IPAddress.Parse("192.168.1.1"));
-                options.KnownProxies.Add(IPAddress.Parse("192.168.1.71"));
+                options.KnownProxies.Add(IPAddress.Parse("192.168.1.1").MapToIPv6());
+                options.KnownProxies.Add(IPAddress.Parse("192.168.1.71").MapToIPv6());
             });
             
             services.AddResponseCaching();

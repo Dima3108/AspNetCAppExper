@@ -22,8 +22,17 @@ namespace ForMyPhpApplict_site_application
                 {
                     webBuilder.ConfigureKestrel(opt =>
                     {
+                        opt.Limits.RequestHeadersTimeout = TimeSpan.FromMinutes(1);
                         opt.Limits.MaxConcurrentConnections = 50;
                         opt.Limits.KeepAliveTimeout = TimeSpan.FromSeconds(60);
+                        opt.Limits.Http2.MaxStreamsPerConnection = 25;
+                        opt.Limits.Http2.HeaderTableSize = 4096;
+                        opt.Limits.Http2.MaxFrameSize = 16_384;
+                        opt.Limits.Http2.MaxRequestHeaderFieldSize = 8192;
+                        opt.Limits.Http2.InitialConnectionWindowSize = 131_072;
+                        opt.Limits.Http2.InitialStreamWindowSize = 98_304;
+                        opt.Limits.Http2.KeepAlivePingDelay = TimeSpan.FromSeconds(30);
+                        opt.Limits.Http2.KeepAlivePingTimeout = TimeSpan.FromMinutes(1);
                     });
                    
                     webBuilder.UseStartup<Startup>();

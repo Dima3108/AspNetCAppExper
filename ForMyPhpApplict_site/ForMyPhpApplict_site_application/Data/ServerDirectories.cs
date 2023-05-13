@@ -82,11 +82,18 @@ namespace ForMyPhpApplict_site_application.Data
         {
             if (Directory.Exists(dir))
             {
-                string f_n = Path.Combine(dir + "/", file.FileName);
+                return Task.Run(delegate { 
+string f_n = Path.Combine(dir + "/", file.FileName);
+                    if (File.Exists(f_n))
+                    {
+                        File.Delete(f_n);
+                    }
                 using (Stream f = File.Open(f_n, FileMode.Create, FileAccess.Write, FileShare.Read))
                 {
-                    return file.CopyToAsync(f);
+                     file.CopyTo(f);
                 }
+                });
+                
             }
             else return new Task(delegate { Console.WriteLine($"direcoty not found!{dir}"); });
         }

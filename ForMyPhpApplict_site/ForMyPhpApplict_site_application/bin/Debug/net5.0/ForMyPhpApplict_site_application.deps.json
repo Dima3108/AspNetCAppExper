@@ -24,7 +24,7 @@
     "allowUnsafe": false,
     "warningsAsErrors": false,
     "optimize": false,
-    "keyFile": "",
+    "keyFile": "core.snk",
     "emitEntryPoint": true,
     "xmlDoc": false,
     "debugType": "portable"
@@ -34,18 +34,8 @@
       "ForMyPhpApplict_site_application/1.0.0": {
         "dependencies": {
           "Microsoft.VisualStudio.Azure.Containers.Tools.Targets": "1.11.1",
+          "CaptchaCSNS": "1.0.0.0",
           "ICSharpCode.SharpZipLib": "1.3.1.9",
-          "Peachpie.App": "1.0.0.0",
-          "Peachpie.CodeAnalysis": "1.0.0.0",
-          "Peachpie.Library": "1.0.0.0",
-          "Peachpie.Library.Graphics": "1.0.0.0",
-          "Peachpie.Library.MsSql": "1.0.0.0",
-          "Peachpie.Library.MySql": "1.0.0.0",
-          "Peachpie.Library.Network": "1.0.0.0",
-          "Peachpie.Library.PDO": "1.0.0.0",
-          "Peachpie.Library.Scripting": "1.0.0.0",
-          "Peachpie.Library.XmlDom": "1.0.0.0",
-          "Peachpie.Runtime": "1.0.0.0",
           "Microsoft.AspNetCore.Antiforgery": "5.0.0.0",
           "Microsoft.AspNetCore.Authentication.Abstractions": "5.0.0.0",
           "Microsoft.AspNetCore.Authentication.Cookies": "5.0.0.0",
@@ -338,6 +328,17 @@
         }
       },
       "Microsoft.VisualStudio.Azure.Containers.Tools.Targets/1.11.1": {},
+      "CaptchaCSNS/1.0.0.0": {
+        "runtime": {
+          "CaptchaCSNS.dll": {
+            "assemblyVersion": "1.0.0.0",
+            "fileVersion": "1.0.0.0"
+          }
+        },
+        "compile": {
+          "CaptchaCSNS.dll": {}
+        }
+      },
       "ICSharpCode.SharpZipLib/1.3.1.9": {
         "runtime": {
           "ICSharpCode.SharpZipLib.dll": {
@@ -347,127 +348,6 @@
         },
         "compile": {
           "ICSharpCode.SharpZipLib.dll": {}
-        }
-      },
-      "Peachpie.App/1.0.0.0": {
-        "runtime": {
-          "Peachpie.App.dll": {
-            "assemblyVersion": "1.0.0.0",
-            "fileVersion": "1.0.0.0"
-          }
-        },
-        "compile": {
-          "Peachpie.App.dll": {}
-        }
-      },
-      "Peachpie.CodeAnalysis/1.0.0.0": {
-        "runtime": {
-          "Peachpie.CodeAnalysis.dll": {
-            "assemblyVersion": "1.0.0.0",
-            "fileVersion": "1.0.0.0"
-          }
-        },
-        "compile": {
-          "Peachpie.CodeAnalysis.dll": {}
-        }
-      },
-      "Peachpie.Library/1.0.0.0": {
-        "runtime": {
-          "Peachpie.Library.dll": {
-            "assemblyVersion": "1.0.0.0",
-            "fileVersion": "1.0.0.0"
-          }
-        },
-        "compile": {
-          "Peachpie.Library.dll": {}
-        }
-      },
-      "Peachpie.Library.Graphics/1.0.0.0": {
-        "runtime": {
-          "Peachpie.Library.Graphics.dll": {
-            "assemblyVersion": "1.0.0.0",
-            "fileVersion": "1.0.0.0"
-          }
-        },
-        "compile": {
-          "Peachpie.Library.Graphics.dll": {}
-        }
-      },
-      "Peachpie.Library.MsSql/1.0.0.0": {
-        "runtime": {
-          "Peachpie.Library.MsSql.dll": {
-            "assemblyVersion": "1.0.0.0",
-            "fileVersion": "1.0.0.0"
-          }
-        },
-        "compile": {
-          "Peachpie.Library.MsSql.dll": {}
-        }
-      },
-      "Peachpie.Library.MySql/1.0.0.0": {
-        "runtime": {
-          "Peachpie.Library.MySql.dll": {
-            "assemblyVersion": "1.0.0.0",
-            "fileVersion": "1.0.0.0"
-          }
-        },
-        "compile": {
-          "Peachpie.Library.MySql.dll": {}
-        }
-      },
-      "Peachpie.Library.Network/1.0.0.0": {
-        "runtime": {
-          "Peachpie.Library.Network.dll": {
-            "assemblyVersion": "1.0.0.0",
-            "fileVersion": "1.0.0.0"
-          }
-        },
-        "compile": {
-          "Peachpie.Library.Network.dll": {}
-        }
-      },
-      "Peachpie.Library.PDO/1.0.0.0": {
-        "runtime": {
-          "Peachpie.Library.PDO.dll": {
-            "assemblyVersion": "1.0.0.0",
-            "fileVersion": "1.0.0.0"
-          }
-        },
-        "compile": {
-          "Peachpie.Library.PDO.dll": {}
-        }
-      },
-      "Peachpie.Library.Scripting/1.0.0.0": {
-        "runtime": {
-          "Peachpie.Library.Scripting.dll": {
-            "assemblyVersion": "1.0.0.0",
-            "fileVersion": "1.0.0.0"
-          }
-        },
-        "compile": {
-          "Peachpie.Library.Scripting.dll": {}
-        }
-      },
-      "Peachpie.Library.XmlDom/1.0.0.0": {
-        "runtime": {
-          "Peachpie.Library.XmlDom.dll": {
-            "assemblyVersion": "1.0.0.0",
-            "fileVersion": "1.0.0.0"
-          }
-        },
-        "compile": {
-          "Peachpie.Library.XmlDom.dll": {}
-        }
-      },
-      "Peachpie.Runtime/1.0.0.0": {
-        "runtime": {
-          "Peachpie.Runtime.dll": {
-            "assemblyVersion": "1.0.0.0",
-            "fileVersion": "1.0.0.0"
-          }
-        },
-        "compile": {
-          "Peachpie.Runtime.dll": {}
         }
       },
       "Microsoft.AspNetCore.Antiforgery/5.0.0.0": {
@@ -2183,62 +2063,12 @@
       "path": "microsoft.visualstudio.azure.containers.tools.targets/1.11.1",
       "hashPath": "microsoft.visualstudio.azure.containers.tools.targets.1.11.1.nupkg.sha512"
     },
+    "CaptchaCSNS/1.0.0.0": {
+      "type": "reference",
+      "serviceable": false,
+      "sha512": ""
+    },
     "ICSharpCode.SharpZipLib/1.3.1.9": {
-      "type": "reference",
-      "serviceable": false,
-      "sha512": ""
-    },
-    "Peachpie.App/1.0.0.0": {
-      "type": "reference",
-      "serviceable": false,
-      "sha512": ""
-    },
-    "Peachpie.CodeAnalysis/1.0.0.0": {
-      "type": "reference",
-      "serviceable": false,
-      "sha512": ""
-    },
-    "Peachpie.Library/1.0.0.0": {
-      "type": "reference",
-      "serviceable": false,
-      "sha512": ""
-    },
-    "Peachpie.Library.Graphics/1.0.0.0": {
-      "type": "reference",
-      "serviceable": false,
-      "sha512": ""
-    },
-    "Peachpie.Library.MsSql/1.0.0.0": {
-      "type": "reference",
-      "serviceable": false,
-      "sha512": ""
-    },
-    "Peachpie.Library.MySql/1.0.0.0": {
-      "type": "reference",
-      "serviceable": false,
-      "sha512": ""
-    },
-    "Peachpie.Library.Network/1.0.0.0": {
-      "type": "reference",
-      "serviceable": false,
-      "sha512": ""
-    },
-    "Peachpie.Library.PDO/1.0.0.0": {
-      "type": "reference",
-      "serviceable": false,
-      "sha512": ""
-    },
-    "Peachpie.Library.Scripting/1.0.0.0": {
-      "type": "reference",
-      "serviceable": false,
-      "sha512": ""
-    },
-    "Peachpie.Library.XmlDom/1.0.0.0": {
-      "type": "reference",
-      "serviceable": false,
-      "sha512": ""
-    },
-    "Peachpie.Runtime/1.0.0.0": {
       "type": "reference",
       "serviceable": false,
       "sha512": ""
